@@ -1,0 +1,117 @@
+﻿1. Project Objectives
+* Provide students with instant, accurate answers to common questions about courses, schedules, examinations, study materials, library resources, and faculty information.
+* Showcase bilingual (English/Arabic) support while acknowledging that English answers may initially be of higher fidelity because the reference material is primarily in English.
+* Validate the end‑to‑end technical workflow which includes data ingestion, vector indexing, tool/agent orchestration, and conversational UI.
+
+
+2. Services To Be Provided
+- Academic Assistance
+* Course Information – Details on courses, Majors, syllabus, and prerequisites.
+   * Majors: you can find it in admission guide PDF
+      * What majors does the university offer?
+      * What are the available faculties university have?
+      * What majors does the faculty of engineering have?
+      * Can you list all the undergraduate majors available?
+      * Can you tell me the required prerequisites for the Computer Science major?
+      * Can you list all the undergraduate majors available?
+      * How many credits does a computer science major have?
+      * What is the prerequisite to take course csc 226?
+* Class Schedules – Timetable updates and reminders.
+   * Times: class timetable PDF
+      * When does the fall semester start and end?
+      * Can I see the class csc 226 schedule for the upcoming semester?
+      * What are the lecture times for [Course Name]?
+      * When does the fall semester final exams starts?
+* Exam Alerts & Deadlines – Deadlines and schedules.
+   * Exam Schedules: Exam Schedule PDF
+      * When will the final exam schedule be released?
+      * What time is my [Course Name] exam?
+      * Are exams held online or on campus?
+      * Where will my exam csc 226 be held?
+   * We can have a PDF for deadline for registrations
+* Study Resources – Links to notes, and past exams.
+   * We can create small file service where it contain each course name and previous exams
+      * Where can I find study materials for my courses?
+      * Do you have previous exam papers I can practice with?
+      * Is there a place to access course lecture slides or notes?
+      * Can you suggest resources to help me study for [Course Name]?
+      * Are there any recommended textbooks for my major?
+   * Refer to the excel sheet: Course_Study_Materials
+   * Students can ask the system questions related to their studies and they will get the reply with the reference from the books or valid resources.
+* Library -  Book availability and borrowing process.
+   * Preferably to have a small DB for POC purposes to show the capability. Also when a student rents a book and DB will be updated.
+      * How can I check if a book is available in the library?
+      * What’s the process to borrow a book from the library?
+      * What is the borrowing duration for students?
+      * Is book 1948 available for renting?
+      * What is the cost for renting book “1984”?
+      * How much does the book “who moved my cheese” cost?
+   * Refer to the excel sheet: books_catalog
+* Professors details: professor details, office hours, and teaching courses. Schedule meeting with the professor before going
+   * Refer to the PDFs: Nazir Hawi, Hoda Maalof
+      * Who is teaching [Course Name] this semester?
+      * How can I find a professor’s “Hoda Maalouf” contact information? 
+      * What are Professor [Name]’s office hours?
+      * Where is Professor [Name]’s office located?
+      * Can I schedule a meeting with my professor?
+      * What courses is Professor [Name] currently teaching?
+   * We can add also under each instructor the courses he/she teaches and timings
+
+
+* Voice to text feature: provide a mechanics to record instructor voice, take notes, and summarize important notes using AI 
+
+
+
+
+3. Data Sources & Assumptions
+* Dummy data (PDFs, Excel files, and sample databases) are provided at the shared Google Drive link. These artefacts will form the knowledge base for the POC only.
+* To control scope, documents with complex layouts (images, graphs, or tables) will be excluded at this stage.
+* A lightweight relational schema will be created to simulate live services such as library inventory or class timetables.
+* Drive Link: https://drive.google.com/drive/folders/1K4TtQF_TaMbJ9wTHRejgaaHbtj68L0xB?usp=sharing
+
+
+4. Project Milestones
+#
+	Milestone
+	Description
+	Target Output
+	1
+	Agentic Workflow Setup
+	Establish Streamlit skeleton; create dummy SQL/NoSQL stores to emulate institutional APIs.
+	Running a local prototype that returns hard‑coded responses.
+	2
+	Data Preparation & Vectorisation
+	Clean, chunk, and embed documents; ingest embeddings into Qdrant.
+	Populated vector index.
+	3
+	Tooling & Agent Orchestration
+	Build retrieval‑augmented generation (RAG) pipeline and implement tools required to answer example questions.
+	Chatbot answers reference queries correctly.
+	4
+	Voice‑to‑Text Module
+	Integrate speech capture, diarisation, and note‑summarisation workflow as a distinct component.
+	Demonstrable voice recording and summarisation feature.
+	
+
+
+
+5. API Keys Needed 
+
+
+1. OpenAI API key
+2. Openrouter API key
+3. Qdrant API key
+4. Qdrant Cluster URL
+
+
+6. Out‑of‑Scope Items
+* Integration with live production databases or authentication systems.
+* Support for documents containing complex visual layouts (until a later phase).
+* Mobile application packaging.
+7. Final Deliverables
+
+
+* Standalone chatbot deployed on streamlit 
+* Chatbot is able to answer questions defined in the scope above
+* Scripts used for data ingestion and preprocessing
+* Complete source code for the chatbot

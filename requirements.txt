@@ -1,0 +1,12 @@
+streamlit
+openai
+qdrant-client
+langchain
+langchain_openai
+python-dotenv
+pydantic
+pandas
+python-docx
+PyPDF2
+nltk
+tabulate

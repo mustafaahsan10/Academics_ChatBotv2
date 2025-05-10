@@ -1,0 +1,1308 @@
+{
+  "metadata": {
+    "export_date": "2025-05-11T00:28:21.504349",
+    "total_chunks": 72,
+    "collection_name": "university_data",
+    "statistics": {
+      "source_types": {
+        "unknown": 72
+      },
+      "top_sources": {
+        "unknown": 72
+      }
+    }
+  },
+  "chunks": [
+    {
+      "id": 0,
+      "payload": {
+        "text": "ADMISSION GUIDE\n2025-2026\nInternationally Accredited\nNECHE accreditation and programmatic\naccreditation from leading bodies around the worldAT A\nGLANCEInternational\nReach\nThree Campuses\nacross LebanonMain Campus\nZouk MosbehNorth Lebanon\nCampus\nBarsa, El KouraShouf Campus\nSt. Abda Monastery,\nDeir EI-KamarPersonal Support\nA variety of ﬁnancial support and\npersonal mentoring so that you can\ngrow into your best self55+\nDifferent Nationalities\nOVER 24,000\nalumni worldwide\nMoUs\nwith multinational corporations and NGOs\nWASHINGTON\nD.C OFFICE\ncharged with advancing the NDU Mission\nin the U.S.A., while supporting the various\nAmerican Friends of NDU (AFNDU) chapters\nand NDU alumni residing in the countryYou are about to choose your academic path, and we are\ndelighted that you are considering NDU for this trajectory.\nThis guide provides a glimpse into the degrees we offer at the\nundergraduate and graduate levels, admission requirements,\nstudent life, and more.\nInclusion",
+        "metadata": {
+          "doc_title": "newAdmission Guide 25-26 digital",
+          "section": null,
+          "heading": null,
+          "entities": [],
+          "type": "course_document",
+          "keywords": [
+            "credit"
+          ],
+          "source": "data\\raw\\admission guide.pdf"
+        }
+      }
+    },
+    {
+      "id": 1,
+      "payload": {
+        "text": "This guide provides a glimpse into the degrees we offer at the\nundergraduate and graduate levels, admission requirements,\nstudent life, and more.\nInclusion\nEverybody is welcome at NDU! We cultivate \na diverse and inclusive campus for all students \nwith initiatives to promote gender diversity, \ninternational reach, and offer support tailored to \nstudents with all types of difﬁculties. To ﬁnd out \nmore about our inclusion initiatives, contact the \nOfﬁce of Student Affairs on 09 208 000 \nExt. 2047 | email: sao@ndu.edu.lb\nAPPLY\nNOW\nStudent Activities\nWith more than 30 student clubs and societies, NDU has something for everyone! Student \nsocieties are an ideal way to practice leadership, and teamwork while at NDU and \nexperience the plethora of extracurricular activities your University has to offer. \nTo ﬁnd out more about how you can get involved, contact the Department of Student \nActivities on \nT: 09 208 000 Ext. 2348 | E: studentactivities@ndu.edu.lb",
+        "metadata": {
+          "doc_title": "newAdmission Guide 25-26 digital",
+          "section": "D.C OFFICE",
+          "heading": "TO",
+          "entities": [],
+          "type": "course_document",
+          "keywords": [],
+          "source": "data\\raw\\admission guide.pdf"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "payload": {
+        "text": "To ﬁnd out more about how you can get involved, contact the Department of Student \nActivities on \nT: 09 208 000 Ext. 2348 | E: studentactivities@ndu.edu.lb\nIn addition to Clubs and Societies, you can beneﬁt from NDU Model United Nations (MUN) \nprogram, which promotes diversity, respect for human dignity and rights, concern for the \ncommon good. You will learn to resolve issues at the forefront of international relations. Join \nMUN for an opportunity to exercise leadership through workshops, round-table discussions, \nexecutive committees and task forces, as well as soft skills development programs. To ﬁnd \nout more about how you can get involved, contact the MUN Ofﬁce on \nT: 09 208 000 Ext. 2048 | E: mun@ndu.edu.lb\nSports\nNDU students regularly compete locally and internationally. You can \ntoo! The campus hosts a multipurpose gym for ﬁtness, martial arts, \nbodybuilding and dancing, along with a wide variety of sports clubs",
+        "metadata": {
+          "doc_title": "newAdmission Guide 25-26 digital",
+          "section": "APPLY",
+          "heading": "TO",
+          "entities": [],
+          "type": "course_document",
+          "keywords": [],
+          "source": "data\\raw\\admission guide.pdf"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "payload": {
+        "text": "too! The campus hosts a multipurpose gym for ﬁtness, martial arts, \nbodybuilding and dancing, along with a wide variety of sports clubs \nincluding: Basketball, Volleyball, Taekwondo, Aikido, Physical \nFitness, Body Building, Tennis, Swimming, Soccer, Rugby, Futsal, \nTable Tennis, etc. To ﬁnd out more about how you can get involved, \ncontact the Department of Athletics on\nT: 09 208 000 Ext. 2067 | E: athletics@ndu.edu.lb\nCommunity Services\nNDU maintains good relationships with a large number of NGOs to bring about positive \nchange in Lebanon and beyond. The Department of Community Service and Awareness \nbrings together students with diverse skills and educational backgrounds to plan, adopt, and \ncomplete projects alongside NDU’s NGO partners. To ﬁnd out more about how you can get \ninvolved, contact the Department of Community Service and Awareness on   \nT: 09 208 000 Ext. 2068 | E: csa@ndu.edu.lbSTUDENT LIFE\nHousing\nThe Student Housing facility offers a safe, well-maintained, and",
+        "metadata": {
+          "doc_title": "newAdmission Guide 25-26 digital",
+          "section": "APPLY",
+          "heading": "TO",
+          "entities": [],
+          "type": "course_document",
+          "keywords": [],
+          "source": "data\\raw\\admission guide.pdf"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "payload": {
+        "text": "T: 09 208 000 Ext. 2068 | E: csa@ndu.edu.lbSTUDENT LIFE\nHousing\nThe Student Housing facility offers a safe, well-maintained, and \nreasonably priced residence for NDU students studying at the \nMain Campus. Services include laundry, a fully equipped \nkitchen, a study room, a TV room, internet access, and full-time \nsecurity. To ﬁnd out more, contact Student Housing on \nT: 09 208 000 Ext. 2998 | E: studenthousing@ndu.edu.lb\nStudents with Special Needs   \nServing as an integral part of the Department of \nAcademic Advising, the SKILD-led Learning \nAccommodation Service (LAS) is facilitating learning \naccommodations for students with special needs to \nfulﬁll their academic potential by providing advice and \nsupport, while ensuring the integrity of educational \nrequirements. Services include support, \naccommodations, and collaboration with faculty and \nadministration in order to meet academic \nrequirements. For more info, please contact the \nLearning Accommodation Service team on",
+        "metadata": {
+          "doc_title": "newAdmission Guide 25-26 digital",
+          "section": "APPLY",
+          "heading": "TO",
+          "entities": [],
+          "type": "course_document",
+          "keywords": [],
+          "source": "data\\raw\\admission guide.pdf"
+        }
+      }
+    },
+    {
+      "id": 5,
+      "payload": {
+        "text": "accommodations, and collaboration with faculty and \nadministration in order to meet academic \nrequirements. For more info, please contact the \nLearning Accommodation Service team on \nT: 09 208 000 Ext. 2987 | E:  las@ndu.edu.lb Medical & Counseling \nServices\nThe University Counseling \nServices team is available to all \nenrolled students who need \ncounseling and services. If you \nfeel that you need to make use of \nthe counseling services, \ndo not hesitate to visit the \nMedical House or contact the \nmedical staff on \nT: 09 208 800 Ext. 2269\nE: medicalhouse@ndu.edu.lb\nNDU Career Center\nThe Career Center aims to empower students and alumni to \nmake informed career decisions and successfully navigate the \njob market. The Center’s services include career guidance, CV, \ncover letter, and portfolio assistance, interview preparation, job \nsearch support, skill development workshops, personality tests, \ninternship and networking opportunities, career fairs, job",
+        "metadata": {
+          "doc_title": "newAdmission Guide 25-26 digital",
+          "section": "APPLY",
+          "heading": "TO",
+          "entities": [
+            "networking"
+          ],
+          "type": "course_document",
+          "keywords": [],
+          "source": "data\\raw\\admission guide.pdf"
+        }
+      }
+    },
+    {
+      "id": 6,
+      "payload": {
+        "text": "cover letter, and portfolio assistance, interview preparation, job \nsearch support, skill development workshops, personality tests, \ninternship and networking opportunities, career fairs, job \nshadowing, company visits, and career resources. The Center \nworks with around 1,500 national and multinational companies \nas well as with more than 400 alumni managers, owners, or \nCEOs of companies.\nT: 09 208 000 Ext. 2050 | E: career@ndu.edu.lb   \nAPPLY\nNOW\n102 cr.\n99 cr.\n102 cr.\n103 cr.\n102 cr.\n99 cr.\n97 cr.\n97 cr.\n97 cr.\n108 cr.\n21 cr.\n21 cr.\n21 cr.\n21 cr.\n21 cr.\n21 cr.\n21 cr.\n21 cr.\n21 cr.\n33 cr.\n33 cr.\n33 cr.\n36 cr.\n30 cr.\n30 cr.\n36 cr.\n36 cr.\n36 cr.\n36 cr.\n36 cr.Undergraduate\n - Advertising & Marketing (BA) • \n - Basic Education (BA)\n - Communication Arts (BA): \n  > Journalism & Electronic Media •\n  > Radio/TV • \n - English Language (BA) \n - Physical Education & Sport (BA)\n - Psychology (BA):\n  > Clinical \n  > Educational\n  > Industrial\n - Translation & Interpretation (BA)",
+        "metadata": {
+          "doc_title": "newAdmission Guide 25-26 digital",
+          "section": "APPLY",
+          "heading": "TO",
+          "entities": [
+            "NOW 102",
+            "networking"
+          ],
+          "type": "course_document",
+          "keywords": [],
+          "source": "data\\raw\\admission guide.pdf"
+        }
+      }
+    },
+    {
+      "id": 7,
+      "payload": {
+        "text": "> Radio/TV • \n - English Language (BA) \n - Physical Education & Sport (BA)\n - Psychology (BA):\n  > Clinical \n  > Educational\n  > Industrial\n - Translation & Interpretation (BA)\n - Teaching Diploma (TD):\n  > Arabic Language & Literature\n  > Basic Education\n  > Chemistry\n  > Computer Science\n  > English Language\n  > Life Science (Biology)\n  > Mathematics\n  > Physical Education & Sport\n  > Physics\nGraduate\n - Education (MA):\n  > Educational Technology\n  > School Management & Educational Leadership\n  > Special Education\n - Educational Psychology (MA)\n - English Language & Literature (MA):\n  > Applied Linguistics & TEFL\n  > Literature\n - Media Studies (MA) :\n  > Advertising\n  > Electronic Journalism\n  > TV Production & Management\n  > Media Data Analytics\n - Translation (MA)\nUndergraduate\n - International Affairs & Diplomacy (BA)\n - Laws (BLaws)\n - Political Science (BA)\n - Political Science (BA):\n  > NGOs105 cr.\n140 cr.\n105 cr.\n105 cr.FACULTY OF\nHUMANITIES\nFACULTY OF LAW",
+        "metadata": {
+          "doc_title": "newAdmission Guide 25-26 digital",
+          "section": "APPLY",
+          "heading": "TO",
+          "entities": [],
+          "type": "course_document",
+          "keywords": [],
+          "source": "data\\raw\\admission guide.pdf"
+        }
+      }
+    },
+    {
+      "id": 8,
+      "payload": {
+        "text": "- International Affairs & Diplomacy (BA)\n - Laws (BLaws)\n - Political Science (BA)\n - Political Science (BA):\n  > NGOs105 cr.\n140 cr.\n105 cr.\n105 cr.FACULTY OF\nHUMANITIES\nFACULTY OF LAW\n& POLITICAL SCIENCEUndergraduate\n - Architecture (BArch) • \n - Fashion Design (BA)\n - Graphic Design (BA) \n -  Interior Design (BA) •\n -  Musicology (BA)\nGraduate\n - Design (MA)\n - Sustainable Architecture (MA)172 cr.\n102 cr.\n102 cr.\n136 cr.\n99 cr.\n36 cr.\n30 cr.\nUndergraduate\n - Accounting (BBA) \n - Banking & Finance (BBA) \n - Distribution & Logistics Management (BBA)\n - Economics (BS) \n - Entrepreneurship (BBA)\n - Financial Engineering (BBA) \n - Hotel Management & Tourism (BHMT):\n  > Food & Beverage Management\n  > Hospitality Events Management\n  > Hospitality Management\n - Human Resources Management (BBA) • \n - International Business Management (BBA) • \n - Management (BBA) • \n - Marketing (BBA) • \nGraduate\n - Master of Business Administration (MBA) :\n  > General\n  > Project Management",
+        "metadata": {
+          "doc_title": "newAdmission Guide 25-26 digital",
+          "section": "APPLY",
+          "heading": "TO",
+          "entities": [],
+          "type": "course_document",
+          "keywords": [],
+          "source": "data\\raw\\admission guide.pdf"
+        }
+      }
+    },
+    {
+      "id": 9,
+      "payload": {
+        "text": "- International Business Management (BBA) • \n - Management (BBA) • \n - Marketing (BBA) • \nGraduate\n - Master of Business Administration (MBA) :\n  > General\n  > Project Management\n - Business Strategy (MS) \n - Financial Risk Management (MS)92 cr.\n92 cr.\n92 cr.\n90 cr.\n92 cr.\n99 cr.\n103 cr.\n103 cr.\n103 cr.\n92 cr.\n92 cr.\n92 cr.\n92 cr.\n39 cr.\n39 cr.\n30 cr.\n30 cr.\nUndergraduate\n - Chemical Engineering (BE)   \n - Civil Engineering (BE) • \n - Computer & Communication Engineering (BE) •  \n - Electrical Engineering (BE) • \n - Mechanical Engineering (BE) • \n - Petroleum Engineering (BE)   \nGraduate\n - Civil Engineering (MS)\n - Electrical & Computer Engineering (MS)\n - Mechanical Engineering (MS) 150 cr.\n150 cr.\n150 cr.\n150 cr.\n150 cr.\n150 cr.\n30 cr.\n30 cr.\n30 cr.RAMEZ G  CHAGOURY FACULTY OF\nARCHITECTURE, ARTS & DESIGN\nFACULTY OF BUSINESS\nADMINISTRATION & ECONOMICS\nFACULTY OF\nENGINEERINGDEGREES OFFERED\nGraduate\n - International Affairs & Diplomacy (MA):\n  > International Affairs & Diplomacy",
+        "metadata": {
+          "doc_title": "newAdmission Guide 25-26 digital",
+          "section": "APPLY",
+          "heading": "TO",
+          "entities": [],
+          "type": "course_document",
+          "keywords": [],
+          "source": "data\\raw\\admission guide.pdf"
+        }
+      }
+    },
+    {
+      "id": 10,
+      "payload": {
+        "text": "FACULTY OF BUSINESS\nADMINISTRATION & ECONOMICS\nFACULTY OF\nENGINEERINGDEGREES OFFERED\nGraduate\n - International Affairs & Diplomacy (MA):\n  > International Affairs & Diplomacy\n  > International Law\n - Political Science (MA):\n  > Human Rights\n  > NGOs\n  > Political Science\n - Public Administration (MA)36 cr.\n36 cr.\n36 cr.\n36 cr.\n36 cr.\n36 cr.\nUndergraduate\n - Actuarial Sciences (BS)\n -  Biochemistry (BS)\n - Biology (BS) • \n - Chemistry (BS)\n - Computer Graphics & Animation (BS) \n - Computer Science (BS) • \n - Environmental Science (BS)\n - Information Technology (BS) • \n - Management Information Systems (BS) •\n - Mathematics (BS) \n - Physics (BS) • \nGraduate\n - Biology (MS)\n - Computer Science (MS)\n - Mathematics (MS)\n - Actuarial Sciences (MS)\n - Industrial Chemistry (MS)94 cr.\n92 cr.\n92 cr.\n92 cr.\n94 cr.\n94 cr.\n92 cr.\n94 cr.\n94 cr.\n90 cr.\n95 cr.\n36 cr.\n30 cr.\n33 cr.\n30 cr.\n36 cr.\nUndergraduate\n - Food Safety & Quality Management (BS)\n - Medical Laboratory Technology (BS) •",
+        "metadata": {
+          "doc_title": "newAdmission Guide 25-26 digital",
+          "section": "APPLY",
+          "heading": "TO",
+          "entities": [],
+          "type": "course_document",
+          "keywords": [],
+          "source": "data\\raw\\admission guide.pdf"
+        }
+      }
+    },
+    {
+      "id": 11,
+      "payload": {
+        "text": "92 cr.\n92 cr.\n94 cr.\n94 cr.\n92 cr.\n94 cr.\n94 cr.\n90 cr.\n95 cr.\n36 cr.\n30 cr.\n33 cr.\n30 cr.\n36 cr.\nUndergraduate\n - Food Safety & Quality Management (BS)\n - Medical Laboratory Technology (BS) • \n - Nursing (BNurs)\n - Nutrition & Dietetics (BS) • \n - Nutrition & Dietetics - Coordinated Program (BS) • \nGraduate\n - Food Safety & Quality Management (MS)\n - Human Nutrition (MS) \n These majors will have to be completed at NDU, \n Main Campus\nThese majors will have to be completed at NDU,\n Main Campus\n•North Lebanon Campus\nShouf Campus93 cr.\n103 cr.\n105 cr.\n97 cr.\n102 cr.\n36 cr.\n35 cr.FACULTY OF NATURAL\n& APPLIED SCIENCES\nFACULTY OF NURSING\n& HEALTH SCIENCES18 cr.\n18 cr.\n15 cr.\n15 cr.\n15 cr.\n15 cr.\n15 cr.\n15 cr.\n15 cr.\n19 cr.\n18 cr.\n16 cr.\n15 cr.\n18 cr.\n18 cr.\n15 cr.\n16 cr.\n15 cr.\n18 cr.\n18 cr.\n18 cr.\n15 cr.\n18 cr.\n18 cr.\n15 cr.\n18 cr.\n15 cr.\n18 cr.\n18 cr.\n18 cr.\n18 cr.\n18 cr.\n18 cr.\n18 cr.\n18 cr.\n18 cr.\n15 cr.\n18 cr.\n15 cr.\n15 cr.\n17 cr.\n16 cr.\n15 cr.\n15 cr. - Graphic Design\n - Photography",
+        "metadata": {
+          "doc_title": "newAdmission Guide 25-26 digital",
+          "section": "APPLY",
+          "heading": "TO",
+          "entities": [],
+          "type": "course_document",
+          "keywords": [],
+          "source": "data\\raw\\admission guide.pdf"
+        }
+      }
+    },
+    {
+      "id": 12,
+      "payload": {
+        "text": "18 cr.\n15 cr.\n18 cr.\n18 cr.\n15 cr.\n18 cr.\n15 cr.\n18 cr.\n18 cr.\n18 cr.\n18 cr.\n18 cr.\n18 cr.\n18 cr.\n18 cr.\n18 cr.\n15 cr.\n18 cr.\n15 cr.\n15 cr.\n17 cr.\n16 cr.\n15 cr.\n15 cr. - Graphic Design\n - Photography\n - Accounting\n - Finance\n - Economics\n - Management\n - Marketing Management\n - Distribution & Logistics Management\n - Human Resources Management\n - Food & Beverage Management\n - Hospitality Management\n - Events Management\n - Entrepreneurship\n - Engineering Management\n - English\n - French\n - Translation\n - Physical Education & Sport\n - Advertising & Marketing\n - Radio & Television\n - Journalism\n - Arabic Language & Literature\n - Public Relations\n - Philosophy\n - Sociology\n - Psychology\n - Romance Languages\n - Political Science \n - International Affairs & Diplomacy\n - Public Administration\n - Middle Eastern Studies\n - Strategic Studies\n - Gender Studies\n - Peace & Conﬂict Studies\n - Euro Mediterranean Studies\n - American Studies\n - Geographic Information Systems\n - Actuarial Sciences",
+        "metadata": {
+          "doc_title": "newAdmission Guide 25-26 digital",
+          "section": "APPLY",
+          "heading": "TO",
+          "entities": [],
+          "type": "course_document",
+          "keywords": [],
+          "source": "data\\raw\\admission guide.pdf"
+        }
+      }
+    },
+    {
+      "id": 13,
+      "payload": {
+        "text": "- Middle Eastern Studies\n - Strategic Studies\n - Gender Studies\n - Peace & Conﬂict Studies\n - Euro Mediterranean Studies\n - American Studies\n - Geographic Information Systems\n - Actuarial Sciences\n - Mathematics\n - Physics\n - Biology\n - Environmental Science\n - Nutrition\n - Food Safety & Quality ManagementMINORS OFFERED\nAPPLY\nNOW\nEET Score Ranges Status Corresponding English \n   Courses\n60 and above Accepted ENL 213 (Sophomore Level)\n55 - 59 Accepted ENL 110 (3 credits - Remedial)\n50 - 54 Accepted ENL 1051 (3 credits - Remedial)\n40 - 49 Accepted ENL 0022 (9 credits - Intensive)\nTOEFL iBT Score Ranges Status Corresponding English \n   Courses\n91 and above Accepted ENL 213 (Sophomore Level)\n79 - 90 Accepted ENL 110 (3 credits - Remedial)\n69 - 78 Accepted ENL 1051 (3 credits - Remedial)\n54 - 68 Accepted ENL 0022 (9 credits - Intensive)SAT Evidence-Based Reading  Status Corresponding English  \nand Writing Score Ranges  Courses   \n540 and above Accepted ENL 213 (Sophomore Level)",
+        "metadata": {
+          "doc_title": "newAdmission Guide 25-26 digital",
+          "section": "APPLY",
+          "heading": "TO",
+          "entities": [
+            "ENL 213",
+            "ENL 110",
+            "ENL 213",
+            "ENL 110",
+            "ENL 213"
+          ],
+          "type": "course_document",
+          "keywords": [
+            "credit"
+          ],
+          "source": "data\\raw\\admission guide.pdf"
+        }
+      }
+    },
+    {
+      "id": 14,
+      "payload": {
+        "text": "54 - 68 Accepted ENL 0022 (9 credits - Intensive)SAT Evidence-Based Reading  Status Corresponding English  \nand Writing Score Ranges  Courses   \n540 and above Accepted ENL 213 (Sophomore Level) \n490 - 530 Accepted ENL 110 (3 credits - Remedial)\n430 - 480 Accepted ENL 1051 (3 credits - Remedial)\n400 - 420 Accepted ENL 0022 (9 credits - Intensive)\nIELTS Score Ranges  Status Corresponding English \n   Courses\n6.5 and above Accepted ENL 213 (Sophomore Level)\n6 Accepted ENL 110 (3 credits - Remedial)\n5.5 Accepted ENL 1051 (3 credits - Remedial)\n5 Accepted ENL 0022 (9 credits - Intensive)BEGIN YOUR\nJOURNEY\n1.  Complete your online application at https://sis.ndu.edu.lb/iApply/ \n  The payment of USD 30 may either be made online using a USD credit card or in    \n  person at NDU.\n2. The documents to be provided are:\n a. Ofﬁcially issued secondary school grades for the last three academic years\n b. A photocopy of your National Identity Card or Passport\n c. One recent passport-size photo",
+        "metadata": {
+          "doc_title": "newAdmission Guide 25-26 digital",
+          "section": "APPLY",
+          "heading": "TO",
+          "entities": [
+            "ENL 213",
+            "ENL 110",
+            "ENL 213",
+            "ENL 110"
+          ],
+          "type": "course_document",
+          "keywords": [
+            "grade",
+            "credit"
+          ],
+          "source": "data\\raw\\admission guide.pdf"
+        }
+      }
+    },
+    {
+      "id": 15,
+      "payload": {
+        "text": "a. Ofﬁcially issued secondary school grades for the last three academic years\n b. A photocopy of your National Identity Card or Passport\n c. One recent passport-size photo\n d. A certiﬁed copy of the Lebanese Baccalaureate Part II or its equivalent\n3. Sit for the NDU Entrance Exams or submit scores of the following standardized exams:\n a. SAT Evidence-Based Reading and Writing, or TOEFL, or IELTS\n b. SAT Math\n • If you are sitting for either the English Entrance Test or Math Aptitude Test, the fee is USD 30   \n  per exam. If you are sitting for both tests, the total fee is USD 50. All fees are non-refundable.\n • All documents submitted must be original certiﬁed copies, and, once submitted,\n  become the property of NDU regardless of whether applicants are accepted or not.\nEnglish Proﬁciency Requirements\nAll applicants must demonstrate a certain level of English proﬁciency to be admitted.\nNDU recognizes one of the following tests to measure this level:",
+        "metadata": {
+          "doc_title": "newAdmission Guide 25-26 digital",
+          "section": "APPLY",
+          "heading": "TO",
+          "entities": [],
+          "type": "course_document",
+          "keywords": [
+            "exam",
+            "grade"
+          ],
+          "source": "data\\raw\\admission guide.pdf"
+        }
+      }
+    },
+    {
+      "id": 16,
+      "payload": {
+        "text": "English Proﬁciency Requirements\nAll applicants must demonstrate a certain level of English proﬁciency to be admitted.\nNDU recognizes one of the following tests to measure this level:\n• EET (English Entrance Test) administered by NDU or\n• TOEFL (Test of English as Foreign Language) or\n• SAT Evidence-Based Reading and Writing section or\n• IELTS (International English Language Testing System).\n1 Any student enrolled in ENL 105, who scores a \"B\" or above, will automatically pass to ENL 213.\n2 Any student enrolled in ENL 002, who scores a \"B\" or above, will automatically pass to ENL 110.\nStudents are advised to take/repeat any of the above English Proﬁciency Tests for a chance to\nimprove the score and hence, reduce the number of the English remedial courses.\nIF YOU ARE\nA FRESHMAN\nSTUDENTA TRANSFER\nSTUDENT\nAn ofﬁcial school attestation stating that \nyou have completed and passed your \nHigh School requirements or a copy of \nyour High School Diploma certiﬁed by \nthe school’s principal",
+        "metadata": {
+          "doc_title": "newAdmission Guide 25-26 digital",
+          "section": "APPLY",
+          "heading": "TO",
+          "entities": [
+            "ENL 105",
+            "ENL 213",
+            "ENL 002",
+            "ENL 110"
+          ],
+          "type": "course_document",
+          "keywords": [],
+          "source": "data\\raw\\admission guide.pdf"
+        }
+      }
+    },
+    {
+      "id": 17,
+      "payload": {
+        "text": "STUDENT\nAn ofﬁcial school attestation stating that \nyou have completed and passed your \nHigh School requirements or a copy of \nyour High School Diploma certiﬁed by \nthe school’s principal\nWritten Authorization from the\nLebanese Ministry of Education and \nHigher Education to start your higher \neducation on the basis of a foreign \nProgram\nScores of your SAT\n(upon submission of the application)An ofﬁcial transcript of the \nundergraduate record\nA copy of the undergraduate \ncourses description certiﬁed by \nthe university\nNote: If you are coming from an\ninternational university/college, you\nneed to certify the ofﬁcial transcript at \nthe Embassy of the relevant country in \nLebanon and at the Lebanese Ministry \nof Foreign Affairs.1 1\n2\n2\n3\nNote: Freshman students need to \ncomplete 30 credits at the\nFreshman Level.\nIf you are a Freshman Science student,\nyou can declare any major of your choice.\nIf you are a Freshman Arts student, you \ncan declare any major except for",
+        "metadata": {
+          "doc_title": "newAdmission Guide 25-26 digital",
+          "section": "APPLY",
+          "heading": "TO",
+          "entities": [],
+          "type": "course_document",
+          "keywords": [
+            "credit"
+          ],
+          "source": "data\\raw\\admission guide.pdf"
+        }
+      }
+    },
+    {
+      "id": 18,
+      "payload": {
+        "text": "complete 30 credits at the\nFreshman Level.\nIf you are a Freshman Science student,\nyou can declare any major of your choice.\nIf you are a Freshman Arts student, you \ncan declare any major except for\nEngineering and Computer Science\nSAT includes Evidence-Based\n Reading and Writing, and Math. \nThe required score of SAT for\nFreshman Arts is 870 and for\nFreshman Sciences 950.\nOfﬁce of Admissions Contact Information:\nMain Campus\nT: +961 9 208 000 Ext: 2156 or 2056\nE: admission@ndu.edu.lb\nNorth Lebanon Campus\nT: +961 6 416 101 / 2 / 4 Ext: 3122\nE: admission_nlc@ndu.edu.lb\nShouf Campus\nT: +961 25 511 202 / 4 / 5 Ext: 4120 / 1\nE: admission_shouf@ndu.edu.lbYou will need to additionally submit\nAPPLY\nNOW\nSemester Application Timeline\nFall Semester, 2025 Tuesday, December 10, 2024 - Tuesday, July 22, 2025\nSpring Semester, 2026 Wednesday, October 1, 2025 - Wednesday, December 3, 2025\nSemester Application Examination Decision\n Deadline (At Noon) Dates Dates",
+        "metadata": {
+          "doc_title": "newAdmission Guide 25-26 digital",
+          "section": "APPLY",
+          "heading": "TO",
+          "entities": [],
+          "type": "course_document",
+          "keywords": [
+            "exam",
+            "credit"
+          ],
+          "source": "data\\raw\\admission guide.pdf"
+        }
+      }
+    },
+    {
+      "id": 19,
+      "payload": {
+        "text": "Spring Semester, 2026 Wednesday, October 1, 2025 - Wednesday, December 3, 2025\nSemester Application Examination Decision\n Deadline (At Noon) Dates Dates\nEarly Admission, Fall 2025 Wed. Jan. 22, 2025 Sat. Jan. 25, 2025 Mon. Feb. 17, 2025\nRegular Admission I, Fall 2025 Wed. March 5, 2025 Sat. March 8, 2025 Fri. March 28, 2025\nRegular Admission II, Fall 2025 Tues. May 20, 2025 Fri. May 23, 2025 Mon. June 16, 2025\nRegular Admission III, Fall 2025 Tues. July 22, 2025 Fri. July 25, 2025 Thurs. Aug. 21, 2025\nSpring Semester, 2026 Wed. Dec. 3, 2025 Sat. Dec. 6, 2025 Fri. Dec. 19, 2025\nOpen Doors - Main Campus Friday, April 11, 2025\nOpen Doors - Shouf Campus Tuesday, April 29, 2025\nOpen Doors - North Lebanon Campus Tuesday, April 29, 2025IMPORTANT \nADMISSIONS DATES\nAPPLY\nNOW SCHOLARSHIPS\n& FINANCIAL AID\nScholarships upon \nAdmission\n• Scored well on your SAT or\n Lebanese/French/International/\n Technical Baccalaureate?\n• Any scholarship upon admission you \n are entitled to will be automatically",
+        "metadata": {
+          "doc_title": "newAdmission Guide 25-26 digital",
+          "section": "APPLY",
+          "heading": "TO",
+          "entities": [],
+          "type": "course_document",
+          "keywords": [
+            "exam"
+          ],
+          "source": "data\\raw\\admission guide.pdf"
+        }
+      }
+    },
+    {
+      "id": 20,
+      "payload": {
+        "text": "Scholarships upon \nAdmission\n• Scored well on your SAT or\n Lebanese/French/International/\n Technical Baccalaureate?\n• Any scholarship upon admission you \n are entitled to will be automatically \n given once you submit your scores.Applying for the Sibling \nGrant\n• Access Financial Aid on the SIS,  \n click on Sibling Grant and add your    \n sibling’s ID number.\n• Submit a copy of the Family Status\n Record (not older than one year) to \n the Department of Financial Aid.\nNDU is committed to providing you with an exceptional education at exceptional value, \nwith a variety of ﬁnancial aid, scholarships, and grants for which you might be eligible.\nNDU offers several forms of ﬁnancial aid to new students: Financial Aid Upon Admission,\nScholarships Upon Admission, Sports Grant, and Sibling Grant. In case a student is eligible\nfor multiple scholarships/forms of ﬁnancial aid, the highest percentage is always chosen.\nSports Grant\nStudents joining a sports team at NDU will beneﬁt from a 10%",
+        "metadata": {
+          "doc_title": "newAdmission Guide 25-26 digital",
+          "section": "APPLY",
+          "heading": "TO",
+          "entities": [],
+          "type": "course_document",
+          "keywords": [],
+          "source": "data\\raw\\admission guide.pdf"
+        }
+      }
+    },
+    {
+      "id": 21,
+      "payload": {
+        "text": "for multiple scholarships/forms of ﬁnancial aid, the highest percentage is always chosen.\nSports Grant\nStudents joining a sports team at NDU will beneﬁt from a 10% \nSports Grant. An additional 5% will be granted to the team that \nwins a tournament or a championship. NDU athletes, members \nof a ﬁrst division sports team, or members of the national team \nwill be granted a 20% discount on tuition fees. The Sports Grant \ncan be combined with other types of Financial Aid or Scholarship. \nElite players can also join NDU through the Sports Scouting \nScholarship and receive a 50% scholarship on their ﬁrst year.\nSibling Grant \nNDU provides a family discount when two or more siblings \nare enrolled simultaneously. Students can beneﬁt from the \nSibling Grant starting their ﬁrst semester.\nApplying for Financial\nAid upon Admission\nThink you’ll need Financial Aid upon \nAdmission? Complete the following steps\nbefore the deadlines for submission: \nend of June for the Fall Semester,",
+        "metadata": {
+          "doc_title": "newAdmission Guide 25-26 digital",
+          "section": "APPLY",
+          "heading": "TO",
+          "entities": [],
+          "type": "course_document",
+          "keywords": [],
+          "source": "data\\raw\\admission guide.pdf"
+        }
+      }
+    },
+    {
+      "id": 22,
+      "payload": {
+        "text": "Applying for Financial\nAid upon Admission\nThink you’ll need Financial Aid upon \nAdmission? Complete the following steps\nbefore the deadlines for submission: \nend of June for the Fall Semester, \nand end of November for Spring.Undergraduate T uition\nGraduate T uition\nDormitory Fees\nThe sooner you complete these steps, the  \nsooner we can process your application \nand provide you with the help you need. \nA delay in the application may negatively \nimpact the amount and nature of the aid \nwe can provide.\nFor more information, please contact\nthe Department of Financial Aid on\nﬁnancialaid@ndu.edu.lbTUITION &\nOTHER FEES\nUSD 440\nUSD 395\nUSD 470\nUSD 440\nUSD 380\nUSD 2,880\n75% of credit tuitionTuition / Credit Hour (Architecture)\nTuition / Credit Hour (Business)\nTuition / Credit Hour (Engineering)\nTuition / Credit Hour  (Computer\nSciences)\nTuition / Credit Hour (All Others)\nIntensive Course\nAudit / Credit Hour per Semester\nUSD 520\nUSD 670\nUSD 670\nUSD 635\nUSD 765\nUSD 590",
+        "metadata": {
+          "doc_title": "newAdmission Guide 25-26 digital",
+          "section": "APPLY",
+          "heading": "TO",
+          "entities": [
+            "USD 440",
+            "USD 395",
+            "USD 470",
+            "USD 440",
+            "USD 380"
+          ],
+          "type": "course_document",
+          "keywords": [
+            "credit"
+          ],
+          "source": "data\\raw\\admission guide.pdf"
+        }
+      }
+    },
+    {
+      "id": 23,
+      "payload": {
+        "text": "Tuition / Credit Hour  (Computer\nSciences)\nTuition / Credit Hour (All Others)\nIntensive Course\nAudit / Credit Hour per Semester\nUSD 520\nUSD 670\nUSD 670\nUSD 635\nUSD 765\nUSD 590\n75% of credit tuitionTuition / Credit Hour (Remedial)\nTuition / Credit Hour (Architecture)\nTuition / Credit Hour (Computer\nScience)\nTuition / Credit Hour (Business)\nTuition / Credit Hour (Engineering)\nTuition / Credit Hour (All others)\nAudit / Credit Hour per Semester\nThe fees per semester per accommodation facility are as follows:\nFall Spring Summer\nUSD 1,200 USD 1,200 USD 420\nUSD 1,800 USD 1,800  USD 650\n     USD 300\n     USD 200BLOCK B (Female) & C (Male)\nShared Accommodation\nSingle Accommodation\nThe deposit for single accommodation is\nThe deposit for shared accommodation is\nThe Deposit will be refunded at the end of your stay. \nIn case of any damage to the room or to Student Housing \nfacilities and furnishings, a ﬁne will be charged and\ndeducted from the deposit.\nFor reservation and more information,",
+        "metadata": {
+          "doc_title": "newAdmission Guide 25-26 digital",
+          "section": "APPLY",
+          "heading": "TO",
+          "entities": [
+            "USD 520",
+            "USD 670",
+            "USD 670",
+            "USD 635",
+            "USD 765"
+          ],
+          "type": "course_document",
+          "keywords": [
+            "credit"
+          ],
+          "source": "data\\raw\\admission guide.pdf"
+        }
+      }
+    },
+    {
+      "id": 24,
+      "payload": {
+        "text": "In case of any damage to the room or to Student Housing \nfacilities and furnishings, a ﬁne will be charged and\ndeducted from the deposit.\nFor reservation and more information,\nplease contact the studenthousing@ndu.edu.lbFor more details about the tuition and other fees, please \ncheck this link\n Visit the Online Acceptance Results \nat https://sis.ndu.edu.lb/OAR/\nFill out the Financial Aid application \nonline with one of your parents\nMake sure that all sections are \ncompletely ﬁlled\nSchedule an appointment online for \nan interview with the Department \nof Financial Aid\nAt least one of your parents must \ncome with you\nThe interview can take up to 45 minutes\nPrint the application and have it signed \nby one of your parents and yourself\nSubmit the application with all required \ndocuments in person during the \ninterview scheduled with the staff in \nthe Department of Financial Aid\nGET\nTHE\nAPPLY\nNOW CLICK\n HERE\n    TO",
+        "metadata": {
+          "doc_title": "newAdmission Guide 25-26 digital",
+          "section": "APPLY",
+          "heading": "TO",
+          "entities": [],
+          "type": "course_document",
+          "keywords": [
+            "schedule"
+          ],
+          "source": "data\\raw\\admission guide.pdf"
+        }
+      }
+    },
+    {
+      "id": 25,
+      "payload": {
+        "text": "Bachelor of Science in Computer Science - Class Timetable\nTime Sunday Monday Tuesday Wednesday Thursday\n08:00-09:30 CSC 226 CSC 226 CSC 385 CSC 385 CSC 405\n09:30-11:00 CSC 305 CSC 305 CSC 345 CSC 345 CSC 425\n11:00-12:30 CSC 312 CSC 312 CSC 317 CSC 317 CSC 446\n12:30-14:00 CSC 316 CSC 316 CSC 414 CSC 414 CSC 463\n14:00-15:30 MTH 110 MTH 110 CSC 450 CSC 450 CSC 490\n15:30-17:00 COM 201 COM 201 CSC 480 CSC 480 ENG 101\nBachelor of Science in Computer Science - Class Timetable\nCourse Legend\nCSC 226: Introduction to Database\nCSC 305: System Analysis and Design\nCSC 312: Computer Architecture\nCSC 316: Fundamentals of Computer Security\nCSC 317: Information Assurance and Security\nCSC 345: Fundamentals of Computer Network Management\nCSC 385: Internet Computing\nCSC 405: Systems Integration\nCSC 414: Applied Operating Systems\nCSC 425: Data Communications and Computer Networks\nCSC 446: Applied Database Systems\nCSC 450: Human-Computer Interaction\nCSC 463: Advanced Software Development\nCSC 480: Internship",
+        "metadata": {
+          "doc_title": "class_timetable",
+          "section": null,
+          "heading": null,
+          "entities": [
+            "CSC 226",
+            "CSC 226",
+            "CSC 385",
+            "CSC 385",
+            "CSC 405"
+          ],
+          "type": "course_document",
+          "keywords": [
+            "schedule"
+          ],
+          "source": "data\\raw\\class_timetable.pdf"
+        }
+      }
+    },
+    {
+      "id": 26,
+      "payload": {
+        "text": "CSC 425: Data Communications and Computer Networks\nCSC 446: Applied Database Systems\nCSC 450: Human-Computer Interaction\nCSC 463: Advanced Software Development\nCSC 480: Internship\nCSC 490: Senior Study\nENG 101: English Composition\nMTH 110: Pre-Calculus Mathematics\nCOM 201: Public Speaking",
+        "metadata": {
+          "doc_title": "class_timetable",
+          "section": "15:30-17:00 COM 201 COM 201 CSC 480 CSC 480 ENG 101",
+          "heading": "CSC 414: Applied Operating Systems",
+          "entities": [
+            "CSC 425",
+            "CSC 446",
+            "CSC 450",
+            "CSC 463",
+            "CSC 480"
+          ],
+          "type": "course_document",
+          "keywords": [],
+          "source": "data\\raw\\class_timetable.pdf"
+        }
+      }
+    },
+    {
+      "id": 27,
+      "payload": {
+        "text": "Bachelor of Science in Computer Science - Exam Schedule\nCourse Code Course Name Exam Date Exam Time\nCSC 226 Introduction to Database 2025-06-21 09:00 AM\nCSC 305 System Analysis and Design 2025-06-01 01:00 PM\nCSC 312 Computer Architecture 2025-06-08 11:00 AM\nCSC 316 Fundamentals of Computer Security 2025-06-05 09:00 AM\nCSC 317 Information Assurance and Security 2025-06-18 09:00 AM\nCSC 345 Fundamentals of Computer Network Managem 2025-06-19 03:00 PM\nCSC 385 Internet Computing 2025-06-02 09:00 AM\nCSC 405 Systems Integration 2025-06-03 11:00 AM\nCSC 414 Applied Operating Systems 2025-06-08 09:00 AM\nCSC 425 Data Communications and Computer Network 2025-06-18 11:00 AM\nCSC 446 Applied Database Systems 2025-06-21 03:00 PM\nCSC 450 Human-Computer Interaction 2025-06-08 03:00 PM\nCSC 463 Advanced Software Development 2025-06-19 01:00 PM\nCSC 480 Internship 2025-06-01 11:00 AM\nCSC 490 Senior Study 2025-06-14 01:00 PM\nENG 101 English Composition 2025-06-09 11:00 AM",
+        "metadata": {
+          "doc_title": "exam_schedule",
+          "section": null,
+          "heading": null,
+          "entities": [
+            "CSC 226",
+            "CSC 305",
+            "CSC 312",
+            "CSC 316",
+            "CSC 317"
+          ],
+          "type": "course_document",
+          "keywords": [
+            "exam",
+            "schedule"
+          ],
+          "source": "data\\raw\\exam_schedule.pdf"
+        }
+      }
+    },
+    {
+      "id": 28,
+      "payload": {
+        "text": "CSC 463 Advanced Software Development 2025-06-19 01:00 PM\nCSC 480 Internship 2025-06-01 11:00 AM\nCSC 490 Senior Study 2025-06-14 01:00 PM\nENG 101 English Composition 2025-06-09 11:00 AM\nMTH 110 Pre-Calculus Mathematics 2025-06-07 01:00 PM\nCOM 201 Public Speaking 2025-06-04 09:00 AM",
+        "metadata": {
+          "doc_title": "exam_schedule",
+          "section": "Course Code Course Name Exam Date Exam Time",
+          "heading": "CSC 450 Human-Computer Interaction 2025-06-08 03:00 PM",
+          "entities": [
+            "CSC 463",
+            "CSC 480",
+            "CSC 490",
+            "ENG 101",
+            "MTH 110"
+          ],
+          "type": "course_document",
+          "keywords": [],
+          "source": "data\\raw\\exam_schedule.pdf"
+        }
+      }
+    },
+    {
+      "id": 29,
+      "payload": {
+        "text": "Biography  \n Hoda Maalouf holds a Ph.D. in Communication Engineering from Imperial College, London. She worked at Imperial  \n College, between 1990 and 1995 as a researcher on the Commission of the European Communities Advanced  \n Transport Telematics DRIVE I CIDER and DRIVE II FRAME projects. She joined Notre Dame University in 1999 and  \n chaired the Department of Computer Science between 2001 and 2006, and from 2010 till now. Her research interests  \n include performance evaluation and modeling of fixed, wireless and hybrid networks. In particular, she concentrated  \n on the analytical study of wireless sensor networks, delay/disruptive tolerant networks, multi-stage hybrid networks,  \n distributed database systems and real-time systems\nPeer-reviewed Journals\nRegional\n • Moussa, A., & Maalouf, H. (2009). Performance Optimization in Structured Wireless Sensor Networks.   \n  International Arab Journal Information Technology, 6(5), 451–456.\n  International",
+        "metadata": {
+          "doc_title": "Hoda Maalouf",
+          "section": null,
+          "heading": null,
+          "entities": [
+            "database"
+          ],
+          "type": "course_document",
+          "keywords": [],
+          "source": "data\\raw\\Hoda Maalouf.pdf"
+        }
+      }
+    },
+    {
+      "id": 30,
+      "payload": {
+        "text": "Regional\n • Moussa, A., & Maalouf, H. (2009). Performance Optimization in Structured Wireless Sensor Networks.   \n  International Arab Journal Information Technology, 6(5), 451–456.\n  International  \n • Maalouf, H.W., & Gurcan, M.K. (2002). Minimization of the update response time in a distributed database system. \n  Performance Evaluation, Elsevier, 50(4), 245–266.\nPeer-reviewed Conference Proceedings\n Local\n • Akiki, P ., & Maalouf, H.W. (2007). Extending Relational Database Management Systems to support Spatial Data. \n  Current Trends in the Theory and Applications of Computer Science, 2007. CTTACS ’07. NDU Press.\n • Saab, S., & Maalouf, H.W. (2007). Data MULE Aggregation Protocol for Wireless Sensor Networks. Current  \n  Trends in the Theory and Applications of Computer Science, 2007. CTTACS ’07. NDU Press.\n  Regional\n    • Katerji, W., & Maalouf, H.W. (2011). GIS Based Deployment Strategies of Wireless Sensors Networks for Forest",
+        "metadata": {
+          "doc_title": "Hoda Maalouf",
+          "section": "Biography",
+          "heading": "Biography",
+          "entities": [
+            "database"
+          ],
+          "type": "course_document",
+          "keywords": [],
+          "source": "data\\raw\\Hoda Maalouf.pdf"
+        }
+      }
+    },
+    {
+      "id": 31,
+      "payload": {
+        "text": "Regional\n    • Katerji, W., & Maalouf, H.W. (2011). GIS Based Deployment Strategies of Wireless Sensors Networks for Forest  \n Fire Surveillance. In the 5th International Conference on Information Technology, Jordan .\n International\n • Akiki, P . A., & Maalouf , H. W. (2014). A Real-Time Merging Process for Multi-view Video Coding. In 2014 17th  IEEE \n  Mediterranean Electrotechnical Conference (MELECON) (pp. 163–169). IEEE Press.\n • Akiki, P . A., & Maalouf, H. W. (2011). A Two-Stage Encoding Scheme for Holographic Data Transmission. In 2011 5th Hoda Maalouf\nProfessor\nChairperson, Department of Computer Science\nO: FNAS 1.18  \nT: 09.208000, Ext. 2117\nE: hmaalouf@ndu.edu.lb",
+        "metadata": {
+          "doc_title": "Hoda Maalouf",
+          "section": "Biography",
+          "heading": "International",
+          "entities": [],
+          "type": "course_document",
+          "keywords": [],
+          "source": "data\\raw\\Hoda Maalouf.pdf"
+        }
+      }
+    },
+    {
+      "id": 32,
+      "payload": {
+        "text": "FTRA International Conference on Multimedia and Ubiquitous Engineering (MUE) (pp. 138–142).\n • Maalouf, H. W. (2009). Managing Trade-Offs between Information Loss and Latency in Real-Time Distributed  \n  Systems. In International Conference for Internet Technology and Secured Transactions, 2009. ICITST 2009 (pp.  \n  1–6). IEEE Press.\n • Maalouf, H. W., & Aakvaag, N. D. (2008). Packet resequencing and aggregation in wireless ad hoc networks. In I \n  EEE International Symposium on Wireless Communication Systems. 2008. ISWCS ’08 (pp. 672–676). IEEE Press.\n • Maalouf, H. W. (2008). The Modeling of Packet Disordering in Multi-stage Wireless Sensor Networks. Proceedings  \n  of 5th International Symposium on Mechatronics and Its Applications, 2008. ISMA 2008 (pp. 1–5). IEEE Press.\n    • Chelala, M. G., & Maalouf, H. (2007). Performance Evaluation of Video Stream Transport over 2-Stage Hybrid",
+        "metadata": {
+          "doc_title": "Hoda Maalouf",
+          "section": "O: FNAS 1.18",
+          "heading": "International",
+          "entities": [],
+          "type": "course_document",
+          "keywords": [],
+          "source": "data\\raw\\Hoda Maalouf.pdf"
+        }
+      }
+    },
+    {
+      "id": 33,
+      "payload": {
+        "text": "• Chelala, M. G., & Maalouf, H. (2007). Performance Evaluation of Video Stream Transport over 2-Stage Hybrid  \n EEE International Conference on Signal Processing and Communications, 2007. ICSPC 2007 (pp. 404–407). IEEE  \n Press.\n • Lewis, N. H., Maalouf, H. W., Gurcan, M. K., & Jones, M. C. (1993). The Impact of User Requirements on the  \n  System Design and Architecture of Hazardous Goods Monitoring Systems. Proceedings of DRIVE-II Technical  \n  Days, Commission of the European Communities, Brussels, Belgium.\nChapters in Books\n  International\n • Siranossian, A. S., & Maalouf, H. W. (2013). REsilient Double WEighted TruST Based (REDWEST) WSN Using SAX.  \n  In Sensor Systems and Software (pp. 17–33). Springer International Publishing.\n • Akiki, P ., & Maalouf, H. (2009). Incorporating Spatial Data into Enterprise Applications. In Information Systems  \n  Development Towards a Service Provision Society (pp. 695–704). Springer US.\nExhibitions, Competitions and Creative Work",
+        "metadata": {
+          "doc_title": "Hoda Maalouf",
+          "section": "O: FNAS 1.18",
+          "heading": "International",
+          "entities": [],
+          "type": "course_document",
+          "keywords": [],
+          "source": "data\\raw\\Hoda Maalouf.pdf"
+        }
+      }
+    },
+    {
+      "id": 34,
+      "payload": {
+        "text": "Development Towards a Service Provision Society (pp. 695–704). Springer US.\nExhibitions, Competitions and Creative Work\n  International\n Co-author of “En ergize your Leadership” book, CreateSpace-Amazon, USA. http://www.energizeyourleadership.net/\nEsteemed indicators\n Vice Chair of IEEE Computer Society, Lebanon Chapter (Region 8)\nCV\n Additional info can be  found at: http://www.hodamaalouf.com/",
+        "metadata": {
+          "doc_title": "Hoda Maalouf",
+          "section": "O: FNAS 1.18",
+          "heading": "International",
+          "entities": [],
+          "type": "course_document",
+          "keywords": [],
+          "source": "data\\raw\\Hoda Maalouf.pdf"
+        }
+      }
+    },
+    {
+      "id": 35,
+      "payload": {
+        "text": "Bachelor of Science in Computer Science - ABET Accredited Program\nMajor Requirements (46cr.)\nCSC 226 Introduction to Database (3 credits)\nDescription: Fundamentals of database systems, data modeling, relational databases, and SQL.\nPrerequisite: Introduction to Programming.\nCSC 305 System Analysis and Design (3 credits)\nDescription: Study of system development life cycle (SDLC), requirements gathering, analysis, and design\ntechniques.\nPrerequisite: CSC 226 Introduction to Database.\nCSC 312 Computer Architecture (3 credits)\nDescription: Organization and structure of computer systems, instruction sets, and assembly language\nprogramming.\nPrerequisite: Introduction to Computer Science.\nCSC 316 Fundamentals of Computer Security (3 credits)\nDescription: Basic concepts of securing systems, cryptography, network security, and threat mitigation.\nPrerequisite: CSC 312 Computer Architecture.\nCSC 317 Information Assurance and Security (3 credits)",
+        "metadata": {
+          "doc_title": "major_requirements_",
+          "section": null,
+          "heading": null,
+          "entities": [
+            "CSC 226",
+            "CSC 305",
+            "CSC 226",
+            "CSC 312",
+            "CSC 316"
+          ],
+          "type": "course_document",
+          "keywords": [
+            "prerequisites",
+            "credit"
+          ],
+          "source": "data\\raw\\major_requirements_.pdf"
+        }
+      }
+    },
+    {
+      "id": 36,
+      "payload": {
+        "text": "Prerequisite: CSC 312 Computer Architecture.\nCSC 317 Information Assurance and Security (3 credits)\nDescription: Strategies to ensure data integrity, availability, and confidentiality within IT environments.\nPrerequisite: CSC 316 Fundamentals of Computer Security.\nCSC 345 Fundamentals of Computer Network Management (3 credits)\nDescription: Principles of managing computer networks, including protocols, architectures, and network\nBachelor of Science in Computer Science - ABET Accredited Program\nMajor Requirements (46cr.)\ntroubleshooting.\nPrerequisite: CSC 312 Computer Architecture.\nCSC 385 Internet Computing (3 credits)\nDescription: Technologies behind web applications, internet protocols, and web development principles.\nPrerequisite: CSC 226 Introduction to Database.\nCSC 405 Systems Integration (3 credits)\nDescription: Combining different computing systems and software applications to function as a coordinated\nwhole.\nPrerequisite: CSC 305 System Analysis and Design.",
+        "metadata": {
+          "doc_title": "major_requirements_",
+          "section": null,
+          "heading": "CSC 316 Fundamentals of Computer Security (3 credits)",
+          "entities": [
+            "CSC 312",
+            "CSC 317",
+            "CSC 316",
+            "CSC 345",
+            "CSC 312"
+          ],
+          "type": "course_document",
+          "keywords": [
+            "prerequisites",
+            "credit"
+          ],
+          "source": "data\\raw\\major_requirements_.pdf"
+        }
+      }
+    },
+    {
+      "id": 37,
+      "payload": {
+        "text": "Description: Combining different computing systems and software applications to function as a coordinated\nwhole.\nPrerequisite: CSC 305 System Analysis and Design.\nCSC 414 Applied Operating Systems (3 credits)\nDescription: In-depth study of operating system concepts, including process management, memory\nmanagement, and file systems.\nPrerequisite: CSC 312 Computer Architecture.\nCSC 425 Data Communications and Computer Networks (3 credits)\nDescription: Covers transmission methods, network design, TCP/IP protocols, and wireless communication.\nPrerequisite: CSC 345 Fundamentals of Computer Network Management.\nCSC 446 Applied Database Systems (3 credits)\nDescription: Advanced database concepts, database design, and database-driven application development.\nPrerequisite: CSC 226 Introduction to Database.\nBachelor of Science in Computer Science - ABET Accredited Program\nMajor Requirements (46cr.)\nCSC 450 Human-Computer Interaction (3 credits)",
+        "metadata": {
+          "doc_title": "major_requirements_",
+          "section": null,
+          "heading": "CSC 405 Systems Integration (3 credits)",
+          "entities": [
+            "CSC 305",
+            "CSC 414",
+            "CSC 312",
+            "CSC 425",
+            "CSC 345"
+          ],
+          "type": "course_document",
+          "keywords": [
+            "prerequisites",
+            "credit"
+          ],
+          "source": "data\\raw\\major_requirements_.pdf"
+        }
+      }
+    },
+    {
+      "id": 38,
+      "payload": {
+        "text": "Prerequisite: CSC 226 Introduction to Database.\nBachelor of Science in Computer Science - ABET Accredited Program\nMajor Requirements (46cr.)\nCSC 450 Human-Computer Interaction (3 credits)\nDescription: Design and evaluation of user interfaces, usability principles, and user experience design.\nPrerequisite: CSC 305 System Analysis and Design.\nCSC 463 Advanced Software Development (3 credits)\nDescription: Techniques and practices for building large-scale, maintainable software systems.\nPrerequisite: CSC 305 System Analysis and Design.\nCSC 480 Internship (3 credits)\nDescription: Practical experience in the IT field to apply academic knowledge in a professional environment.\nPrerequisite: Completion of at least 90 credits.\nCSC 490 Senior Study (3 credits)\nDescription: Capstone project involving research, development, and presentation in a specialized computing\narea.\nPrerequisite: Final year standing and departmental approval.\nLiberal Arts Curriculum\nENG 101 English Composition (3 credits)",
+        "metadata": {
+          "doc_title": "major_requirements_",
+          "section": null,
+          "heading": "CSC 446 Applied Database Systems (3 credits)",
+          "entities": [
+            "CSC 226",
+            "CSC 450",
+            "CSC 305",
+            "CSC 463",
+            "CSC 305"
+          ],
+          "type": "course_document",
+          "keywords": [
+            "prerequisites",
+            "credit"
+          ],
+          "source": "data\\raw\\major_requirements_.pdf"
+        }
+      }
+    },
+    {
+      "id": 39,
+      "payload": {
+        "text": "area.\nPrerequisite: Final year standing and departmental approval.\nLiberal Arts Curriculum\nENG 101 English Composition (3 credits)\nDescription: Development of writing skills, including grammar, composition, and research paper techniques.\nPrerequisite: None.\nMTH 110 Pre-Calculus Mathematics (3 credits)\nDescription: Fundamental concepts in algebra and trigonometry as preparation for calculus.\nBachelor of Science in Computer Science - ABET Accredited Program\nMajor Requirements (46cr.)\nPrerequisite: High school mathematics.\nCOM 201 Public Speaking (3 credits)\nDescription: Techniques of effective oral communication, speech writing, and public presentation skills.\nPrerequisite: None.",
+        "metadata": {
+          "doc_title": "major_requirements_",
+          "section": null,
+          "heading": "CSC 490 Senior Study (3 credits)",
+          "entities": [
+            "ENG 101",
+            "MTH 110",
+            "COM 201"
+          ],
+          "type": "course_document",
+          "keywords": [
+            "prerequisites",
+            "credit"
+          ],
+          "source": "data\\raw\\major_requirements_.pdf"
+        }
+      }
+    },
+    {
+      "id": 40,
+      "payload": {
+        "text": "Biography  \nDr. Nazir Hawi holds the position of Full Professor within the Faculty of Natural and Applied Sciences at Notre Dame \nUniversity-Louaize. He is the co-founder of the Institute of Internet and Technology Addiction at NDU and served\nas the Chair of its Board of Directors. Over the past four consecutive years, he has consistently ranked among the top \n2% of scientists worldwide worldwide for five consecutive years based on Scopus data, compiled by scientists from \nStanford University.\nIn his role, Dr. Hawi instructs a diverse range of courses, including Advanced Data Science, Information Presentation \nand Visualization, Advanced Programming Technologies, Advanced Software Development, Senior Study, Advanced \nProgramming using Java, Systems Analysis and Design, Applied Operating Systems, Web Design, Program Design \nand Data Abstraction, Object-Oriented Design, Mobile App Development, Computer Programming II & I, and \nComputers and Their Use.",
+        "metadata": {
+          "doc_title": "Nazir Hawi",
+          "section": null,
+          "heading": null,
+          "entities": [
+            "programming"
+          ],
+          "type": "course_document",
+          "keywords": [],
+          "source": "data\\raw\\Nazir Hawi.pdf"
+        }
+      }
+    },
+    {
+      "id": 41,
+      "payload": {
+        "text": "and Data Abstraction, Object-Oriented Design, Mobile App Development, Computer Programming II & I, and \nComputers and Their Use.\nHis primary research interests encompass the field of computers in human behavior, technology addiction, data \nmining, expert systems, computer science education, Internet addiction, Smartphone Addiction, and Video Gaming \nDisorder. At present, his research delves into interdisciplinary topics related to computer science, higher education, \ndata mining, Internet addiction, screen devices, and smartphone addiction. Prior to the financial crises in Lebanon, he \nsecured 4 consecutive grants from The National Council for Scientific Research Lebanon (CNRS).\nDr. Hawi is a recognized thought leader on digital addiction, having been interviewed by numerous local, regional, and \ninternational radio and television programs. He has also been a featured speaker at various educational and non-",
+        "metadata": {
+          "doc_title": "Nazir Hawi",
+          "section": "Biography",
+          "heading": "Professor",
+          "entities": [
+            "programming"
+          ],
+          "type": "course_document",
+          "keywords": [],
+          "source": "data\\raw\\Nazir Hawi.pdf"
+        }
+      }
+    },
+    {
+      "id": 42,
+      "payload": {
+        "text": "international radio and television programs. He has also been a featured speaker at various educational and non-\neducational institutions. His contributions extend to published articles in Arabic, English, and French newspapers and \nwebsites. His latest appearance on CNBC, USA has accumulated over 3.5 million views.\nAmong his significant achievements, Dr. Hawi is known for publishing the first research on Internet Addiction in the \nArab world. He has also developed and validated the first published Digital Addiction Scale for Children globally, \ntranslated and validated the Internet Addiction Test and Internet Gaming Disorder scales into Arabic, which have been \nwidely sought after by researchers across at least 15 Arab countries. Additionally, he is credited with coining the terms \n“e-discipline” and “EM-Factor” in the context of Internet Addiction. \nPeer-reviewed Journals",
+        "metadata": {
+          "doc_title": "Nazir Hawi",
+          "section": "Biography",
+          "heading": "Professor",
+          "entities": [],
+          "type": "course_document",
+          "keywords": [
+            "credit"
+          ],
+          "source": "data\\raw\\Nazir Hawi.pdf"
+        }
+      }
+    },
+    {
+      "id": 43,
+      "payload": {
+        "text": "“e-discipline” and “EM-Factor” in the context of Internet Addiction. \nPeer-reviewed Journals\n •  Hawi, N., & Samaha, M. (2024). Relationships of gaming disorder, ADHD, and academic performance in university \nstudents: A mediation analysis. Plos one, 19(4), e0300680.\n •  Hawi, N. S., & Samaha, M. (2023). The Relationship Between Obsessive-Compulsive Disorder and Gaming Disorder, \nInternational Journal of Cyber Behavior, Psychology and Learning (IJCBPL), 13(1), 1-15.Nazir Hawi, Ph.D.\nProfessor\nO: FNAS 1 .46  \nT: 09 218 950, Ext. 2361\nE: nhawi@ndu.edu.lb",
+        "metadata": {
+          "doc_title": "Nazir Hawi",
+          "section": "Biography",
+          "heading": "Professor",
+          "entities": [],
+          "type": "course_document",
+          "keywords": [],
+          "source": "data\\raw\\Nazir Hawi.pdf"
+        }
+      }
+    },
+    {
+      "id": 44,
+      "payload": {
+        "text": "• Samaha, M., & Hawi, N.S. (2020). \n  Internet Gaming Disorder and Its Relationships with Student Engagement and Academic Performance , \n  International Journal of Cyber Behavior, Psychology and Learning.\n • Hawi, N. S., Samaha, M., & Griffiths, M. D. (2019). \n  The Digital addiction scale for children: Development and Validation , Cyberpsychology, Behavior, and Social   \n  Networking.\n • Hawi, N.S., & Samaha, M. (2019). \n  Identifying commonalities and differences of personality characteristics in profiling Internet and social media   \n  addictions: Traits, self-esteem, and self-construal , Behaviour & Information Technology.\n • Hawi, N.S., Samaha, M. & Griffiths, M. D. (2018). Internet gaming disorder in Lebanon: Relationships with age,   \n  sleep habits, and academic achievement , Journal of Behavioural Addictions.\n • Hawi, N.S., & Samaha, M. (2017). Relationships among smartphone addiction, anxiety, and family relations ,  \n  Behaviour & Information Technology.",
+        "metadata": {
+          "doc_title": "Nazir Hawi",
+          "section": "O: FNAS 1 .46",
+          "heading": "O: FNAS 1 .46",
+          "entities": [
+            "networking"
+          ],
+          "type": "course_document",
+          "keywords": [],
+          "source": "data\\raw\\Nazir Hawi.pdf"
+        }
+      }
+    },
+    {
+      "id": 45,
+      "payload": {
+        "text": "• Hawi, N.S., & Samaha, M. (2017). Relationships among smartphone addiction, anxiety, and family relations ,  \n  Behaviour & Information Technology.\n • Samaha, M & Hawi, N.S. (2017). Associations between screen media parenting practices and children’s screen  \n  time in Lebanon, Telematics and informatics, Elsevier. 34.1 (2017): 351-358.\n • Hawi, N.S., & Samaha, M. (2016). The relations among social media addiction, self-esteem and life satisfaction in  \n  university students. Social Science Computer Review. Sage.\n • Hawi, N.S., & Maya Samaha (2016). To excel or not to excel: Strong evidence on the adverse effect of smartphone  \n  addiction on academic performance, Computers & Education, Elsevier. 98, 81-89.\n • Samaha, M & Hawi, N.S. (2016). Relationships among smartphone addiction, stress, academic performance, and  \n  satisfaction with life, Computers in Human Behavior, Elsevier. 57 , 321-325.",
+        "metadata": {
+          "doc_title": "Nazir Hawi",
+          "section": "O: FNAS 1 .46",
+          "heading": "O: FNAS 1 .46",
+          "entities": [],
+          "type": "course_document",
+          "keywords": [],
+          "source": "data\\raw\\Nazir Hawi.pdf"
+        }
+      }
+    },
+    {
+      "id": 46,
+      "payload": {
+        "text": "• Samaha, M & Hawi, N.S. (2016). Relationships among smartphone addiction, stress, academic performance, and  \n  satisfaction with life, Computers in Human Behavior, Elsevier. 57 , 321-325.\n • Hawi, N.S., Blanchio, A., & Przepiorka, A. (2015). Exploring the Online Cognition Scale in a Polish Sample,   \n  Computers in Human Behavior, Elsevier. 51, 470-475.\n • Hawi, N.S., & Maya Samaha Rupert (2015). Impact of e-Discipline on Children’s Screen Time, Cyberpsychology,  \n  Behavior, and Social Networking, Mary Ann Liebert, 18(6), 337-342.\n • Hawi, N.S., Blanchio, A., & Przepiorka, A. (2015). Polish validation of the Internet Addiction Test, Computers in  \n  Human Behavior, Elsevier. 48, 548-553.\n • Hawi, N.S. (2014), Learning programming: A model emerging from data, International Journal of Computer   \n  Applications, 100(4), 24-34.\n • Hawi, N.S. (2013), Knowledge mining from human interactions with the Internet, Global Journal on Technology,  \n  4(1), 486-492.",
+        "metadata": {
+          "doc_title": "Nazir Hawi",
+          "section": "O: FNAS 1 .46",
+          "heading": "O: FNAS 1 .46",
+          "entities": [
+            "programming",
+            "networking"
+          ],
+          "type": "course_document",
+          "keywords": [],
+          "source": "data\\raw\\Nazir Hawi.pdf"
+        }
+      }
+    },
+    {
+      "id": 47,
+      "payload": {
+        "text": "Applications, 100(4), 24-34.\n • Hawi, N.S. (2013), Knowledge mining from human interactions with the Internet, Global Journal on Technology,  \n  4(1), 486-492.\n • Hawi, N.S. (2013), Arabic validation of the internet addiction test, Cyberpsychology, Behavior, and Social   \n  Networking, Mary Ann Liebert, 16(3), 200-204.\n • Hawi, N.S. (2012), Internet addiction among adolescents in Lebanon, Computers in Human Behavior, Elsevier,  \n  28(2012), 1044-1053.\n • Hawi, N.S. (2012), A CAD (classroom assessment design) of a computer programming course, US-China   \n  Education Review B, David Publishing, 2(1), 41-49.\n • Hawi, N.S. (2010), Causal attributions of success and failure made by undergraduate students in an introductory  \n  level computer programming course, Computers & Education, Elsevier, 54(4), 1127-1136.\n • Hawi, N.S. (2010), The exploration of student-centered approaches for the improvement of learning programming",
+        "metadata": {
+          "doc_title": "Nazir Hawi",
+          "section": "O: FNAS 1 .46",
+          "heading": "O: FNAS 1 .46",
+          "entities": [
+            "programming",
+            "networking"
+          ],
+          "type": "course_document",
+          "keywords": [],
+          "source": "data\\raw\\Nazir Hawi.pdf"
+        }
+      }
+    },
+    {
+      "id": 48,
+      "payload": {
+        "text": "• Hawi, N.S. (2010), The exploration of student-centered approaches for the improvement of learning programming  \n  in higher education, US-China Education Review, David Publishing, 7(9), 47-57 .\n  \nPeer-reviewed Conference Proceedings\n • Hawi, N.S., & Samaha, M. (October 2017). A spectral clustering approach to determine the relationship between   \n  technology use and academic performance . IEEE Jordan Conference on Applied Electrical Engineering and   \n Computing Technologies (AEECT), Aqaba, Jordan\n • Samaha, M., & Hawi, N.S. (July 2017). Analysis using spectral clustering to predict Internet gaming behaviours .  \n  Proceedings of the the 21st International Database Engineering & Applications Symposium, (IDEAS2017), \n  12th to 14th of July 2017 , Bristol, United Kingdom, pages 1-5, ACM Digital Library.\n • Hawi, N.S., & Samaha, M. (December, 2016). Effect of technology on the lives of 9-year old children . Proceedings",
+        "metadata": {
+          "doc_title": "Nazir Hawi",
+          "section": "O: FNAS 1 .46",
+          "heading": "O: FNAS 1 .46",
+          "entities": [
+            "programming",
+            "database"
+          ],
+          "type": "course_document",
+          "keywords": [],
+          "source": "data\\raw\\Nazir Hawi.pdf"
+        }
+      }
+    },
+    {
+      "id": 49,
+      "payload": {
+        "text": "• Hawi, N.S., & Samaha, M. (December, 2016). Effect of technology on the lives of 9-year old children . Proceedings  \n  of the 17th International Arab Conference on Information Technology (ACIT’2016), 6th to 8th of December 2016,  \n  Beni-Mellal, Morocco.\n • Hawi, N.S. (2014), Intelligent agent for diagnosis and counseling Internet addicts using Bayesian Networks, Global  \n  Journal on Technology, 4(6), 16-20.\n • Hawi, N.S. (2009). “ A classroom assessment design of a computer programming course” , The First Regional  \n  Conference on Program and Learning Assessment in Higher Education, 6th and 7th of November 2009, The   \n  Lebanese American University Center for Program and Learning Assessment, Beirut, Lebanon.\n • Hawi, N.S. (April, 2013). Knowledge mining from human interactions with the Internet. Proceedings of the 3rd  \n  World Conference on Innovation and Computer Science, 26th to 29th of April 2013, Antalya, Turkey.",
+        "metadata": {
+          "doc_title": "Nazir Hawi",
+          "section": "O: FNAS 1 .46",
+          "heading": "O: FNAS 1 .46",
+          "entities": [
+            "programming"
+          ],
+          "type": "course_document",
+          "keywords": [],
+          "source": "data\\raw\\Nazir Hawi.pdf"
+        }
+      }
+    },
+    {
+      "id": 50,
+      "payload": {
+        "text": "World Conference on Innovation and Computer Science, 26th to 29th of April 2013, Antalya, Turkey.\n • Hawi, N.S. (September, 2008). Globalization: A Fourth Dimension of Attribution Theory. The BERA Annual   \n  Conference 2008, Edinburgh, Scotland.\n •  Hawi, N.S. (July, 2004). An exploration of the application of learner-centered approaches to the improvement of  \neducational practice in an undergraduate language programming course. Proceedings of Directions in \nEducational  Research 2004, Leicester, England.  \nArticles for Internet and T echnology Addiction Institute\n • Hawi, N.S. (2021). Screen Time, Screen Time, who is the looser of them all? .\n • Hawi, N.S. (2020). Children, Technology, and Online Strangers.\n • Hawi, N.S. (2020). The COVID-19 Outbreak and Screen Time: Allies or Foes.\n • Hawi, N.S. (2019). The Dangers of Video Game Addiction.\nBook\n• Hawi, N. S. (1998). Introductory Algebra for Non-Science Students: a Computer Algebra System Approach,",
+        "metadata": {
+          "doc_title": "Nazir Hawi",
+          "section": "O: FNAS 1 .46",
+          "heading": "O: FNAS 1 .46",
+          "entities": [
+            "programming"
+          ],
+          "type": "course_document",
+          "keywords": [],
+          "source": "data\\raw\\Nazir Hawi.pdf"
+        }
+      }
+    },
+    {
+      "id": 51,
+      "payload": {
+        "text": "• Hawi, N.S. (2019). The Dangers of Video Game Addiction.\nBook\n• Hawi, N. S. (1998). Introductory Algebra for Non-Science Students: a Computer Algebra System Approach,   \n United Arab Emirates, Al-Ain: United Arab Emirates University.\nManual\n• Hawi, N. S. and Hamdan, R. (1997). Derive: a Mathematical Assistant, United Arab Emirates, Al-Ain: United  \n  Arab Emirates University.\nSpecialized Reports\n• Lebanese Army Magazine: Interview with journalist Pascale Mouawad titled \n\t\t “ظاھرة\tتسویق\tاألوالد\tمن\tقِبِل\tأھلھم\tعلى\tوسائل\tالتواصل\tاالجتماعي “\t on March 23, 2022.\n• The Daily Star: “COVID-19 outbreak and screen time: Allies or foes” , April 14, 2020 http://www.dailystar.com. \n  lb/Opinion/Commentary/2020/Apr-14/504364-covid-19-outbreak-and-screen-time-allies-or-foes.ashx\n• UNDP News Supplement, Special Edition, The Peace Building in Lebanon, The Dangers of Video Game   \n  Addiction, in English, French, and Arabic, Issue no 21, May 2019.",
+        "metadata": {
+          "doc_title": "Nazir Hawi",
+          "section": "O: FNAS 1 .46",
+          "heading": "Articles for Internet and T echnology Addiction Institute",
+          "entities": [],
+          "type": "course_document",
+          "keywords": [],
+          "source": "data\\raw\\Nazir Hawi.pdf"
+        }
+      }
+    },
+    {
+      "id": 52,
+      "payload": {
+        "text": "• UNDP News Supplement, Special Edition, The Peace Building in Lebanon, The Dangers of Video Game   \n  Addiction, in English, French, and Arabic, Issue no 21, May 2019.\n  http://www.lb.undp.org/content/lebanon/en/home/presscenter/news-letters/2019/PB21/07 .html\n  http://www.lb.undp.org/content/lebanon/ar/home/presscenter/news-letters/2019/pb21/07 .html\n• المومو\t...\tبین\tالحقیقة\tوالخیال\n  March 19, 2019 Tayyar.org https://www.tayyar.org/News/Lebanon/272877\n• L ’Orient LE JOUR: Oui à la technologie, mais avec modération, Samedi 08 décembre 2018\n  https://www.lorientlejour.com/article/1147343/oui-a-la-technologie-mais-avec-moderation.html\n• Annahar Newspaper: \t\n\t\t\t\t“التأدیب\tاإللكتروني\tمن\tاألھل\tال\tيحقّق\tالنتائج\tالمرجوة“\t:\tاستخدام\tاألجھزة\tالذكیة\tیزداد\tلدى\tتالمذة\tالمدارس \n\t25-11-2015.\n• Annahar Newspaper: \tسوؤال\tالختِبار\tإدمان\tاإلنترنت\tباللغة\tالعربیةّّ ٠٢\n  23-09-2013.\n• Annahar Newspaper:  المراھقون\tوإدمان\tاإلنترنت\tفي\tلِبنان\t \n  8-06-2012.\nTV Reports",
+        "metadata": {
+          "doc_title": "Nazir Hawi",
+          "section": "O: FNAS 1 .46",
+          "heading": "Specialized Reports",
+          "entities": [],
+          "type": "course_document",
+          "keywords": [],
+          "source": "data\\raw\\Nazir Hawi.pdf"
+        }
+      }
+    },
+    {
+      "id": 53,
+      "payload": {
+        "text": "25-11-2015.\n• Annahar Newspaper: \tسوؤال\tالختِبار\tإدمان\tاإلنترنت\tباللغة\tالعربیةّّ ٠٢\n  23-09-2013.\n• Annahar Newspaper:  المراھقون\tوإدمان\tاإلنترنت\tفي\tلِبنان\t \n  8-06-2012.\nTV Reports\n• MBC, Hamsa Program, ؟ما\tھو\tتأثیر\tالتكنولوجیا\tعلى\tالمراھقین , March 31, 2019.\n  https://shahid.mbc.net/ar/shows/  68 -كلیب1- -الموسم- ھمسة/  clip-355043\n• Al-Arabiya, Special Mission, 25 minutes, Technology Addiction, Saturday, April 2, 2016 @9:30pm. Rerun on:   \n Mon Apr 4 at 7:05 pm and Friday April 8 at 9:30 am. http://vid.alarabiya.net/2016/04/02/SpMi0204/   \n  SpMi0204___SpMi0204_video.mp4?versionId=9OAnJDkbKNJTHLwsqM34aqAyB9UCC5.J.\n• OTV, Agenda, “Negative implications of Technology Addiction” , Thursday, March 03, 2016 @ 7:30.\n   https://www.youtube.com/watch?v=ChNeVRcJVMQ.\n• MTV Prime Time News, Interview on E-Discipline @ 8pm, 8 am, 3pm, Nov 4, 2015.\n• MTV Prime Time News, Interview on Internet Addiction @ 8pm, 8 am, 3pm, July 7 , 2015.\nReviewer\n• Computers and Education.",
+        "metadata": {
+          "doc_title": "Nazir Hawi",
+          "section": "O: FNAS 1 .46",
+          "heading": "Specialized Reports",
+          "entities": [],
+          "type": "course_document",
+          "keywords": [],
+          "source": "data\\raw\\Nazir Hawi.pdf"
+        }
+      }
+    },
+    {
+      "id": 54,
+      "payload": {
+        "text": "• MTV Prime Time News, Interview on Internet Addiction @ 8pm, 8 am, 3pm, July 7 , 2015.\nReviewer\n• Computers and Education.\n• Computers in Human Behavior.\n• Cyberpsychology, Behavior, and Social Networking.\n• Studies in Higher Education.",
+        "metadata": {
+          "doc_title": "Nazir Hawi",
+          "section": "O: FNAS 1 .46",
+          "heading": "TV Reports",
+          "entities": [
+            "networking"
+          ],
+          "type": "course_document",
+          "keywords": [],
+          "source": "data\\raw\\Nazir Hawi.pdf"
+        }
+      }
+    },
+    {
+      "id": 55,
+      "payload": {
+        "text": "Services to be provided:\n1- Academic Assistance\nCourse Information – Details on courses, Majors, syllabus, and prerequisites.\nMajors: you can find it in admission guide PDF\nWhat majors does the university offer?\nWhat are the available faculties university have?\nWhat majors does the faculty of engineering have?\nCan you list all the undergraduate majors available?\nCan you tell me the required prerequisites for the Computer Science major?\nCan you list all the undergraduate majors available?\nHow many credits does a computer science major have?\nWhat is the prerequisite to take course csc 226?\nCourses & prerequisites: major prerequisite document courses PDF\nWhere can I find the full list of courses for my major?\nHow many credit hours does [Course Name] have\nHow many elective courses do I need to complete my program?\nClass Schedules – Timetable updates and reminders.\nTimes: class timetable PDF\nWhen does the fall semester start and end?",
+        "metadata": {
+          "doc_title": "Word Document",
+          "section": null,
+          "heading": null,
+          "entities": [],
+          "type": "course_document",
+          "keywords": [
+            "prerequisites",
+            "syllabus",
+            "credit",
+            "schedule"
+          ],
+          "source": "data\\raw\\Copy of Questions for Academic Assistance.docx"
+        }
+      }
+    },
+    {
+      "id": 56,
+      "payload": {
+        "text": "How many elective courses do I need to complete my program?\nClass Schedules – Timetable updates and reminders.\nTimes: class timetable PDF\nWhen does the fall semester start and end?\nCan I see the class csc 226 schedule for the upcoming semester?\nWhat are the lecture times for [Course Name]?\nHow can I find out which days my classes are held?\nWhen does the fall semester final exams starts?\nRegarding reminder, this should be done by a software\nWhen is the exam schedule released?\nCan you remind me of the registration deadline?\nCan I get notified about upcoming exams?\nWill I get reminders about class cancellations or schedule changes?\nWill you alert me if a course I want to register for opens up?\nExam Alerts & Deadlines – Deadlines and schedules.\nExam Schedules: Exam Schedule PDF\nWhen will the final exam schedule be released?\nWhat time is my [Course Name] exam?\nAre exams held online or on campus?\nWhere will my exam csc 226 be held?\nCan you send me reminders about my exam dates?",
+        "metadata": {
+          "doc_title": "Word Document",
+          "section": "Services to be provided:",
+          "heading": "Majors: you can find it in admission guide PDF",
+          "entities": [],
+          "type": "course_document",
+          "keywords": [
+            "exam",
+            "schedule"
+          ],
+          "source": "data\\raw\\Copy of Questions for Academic Assistance.docx"
+        }
+      }
+    },
+    {
+      "id": 57,
+      "payload": {
+        "text": "What time is my [Course Name] exam?\nAre exams held online or on campus?\nWhere will my exam csc 226 be held?\nCan you send me reminders about my exam dates?\nWe can have a PDF for deadline for registrations\nStudy Resources – Links to notes, and past exams.\nWe can create small file service where it contain each course name and previous exams\nWhere can I find study materials for my courses?\nDo you have previous exam papers I can practice with?\nIs there a place to access course lecture slides or notes?\nCan you suggest resources to help me study for [Course Name]?\nAre there any recommended textbooks for my major?\nRefer to the excel sheet: Course_Study_Materials\nStudents can ask the system questions related to their studies and they will get the reply with the reference from the books or valid resources.\nLibrary -  Book availability and borrowing process.\nPreferably to have a small DB for POC purposes to show the capability. Also when a student rents a book and DB will be updated.",
+        "metadata": {
+          "doc_title": "Word Document",
+          "section": "Services to be provided:",
+          "heading": "Exam Schedules: Exam Schedule PDF",
+          "entities": [],
+          "type": "course_document",
+          "keywords": [
+            "exam"
+          ],
+          "source": "data\\raw\\Copy of Questions for Academic Assistance.docx"
+        }
+      }
+    },
+    {
+      "id": 58,
+      "payload": {
+        "text": "Library -  Book availability and borrowing process.\nPreferably to have a small DB for POC purposes to show the capability. Also when a student rents a book and DB will be updated.\nHow can I check if a book is available in the library?\nWhat’s the process to borrow a book from the library?\nWhat is the borrowing duration for students?\nIs book 1948 available for renting?\nWhat is the cost for renting book “1984”?\nHow much does the book “who moved my cheese” cost?\nRefer to the excel sheet: books_catalog\nProfessors details: professor details, office hours, and teaching courses. Schedule meeting with the professor before going\nRefer to the PDFs: Nazir Hawi, Hoda Maalof\nWho is teaching [Course Name] this semester?\nHow can I find a professor’s “Hoda Maalouf” contact information? \nWhat are Professor [Name]’s office hours?\nWhere is Professor [Name]’s office located?\nCan I schedule a meeting with my professor?\nWhat courses is Professor [Name] currently teaching?",
+        "metadata": {
+          "doc_title": "Word Document",
+          "section": "Services to be provided:",
+          "heading": "We can have a PDF for deadline for registrations",
+          "entities": [],
+          "type": "course_document",
+          "keywords": [
+            "schedule"
+          ],
+          "source": "data\\raw\\Copy of Questions for Academic Assistance.docx"
+        }
+      }
+    },
+    {
+      "id": 59,
+      "payload": {
+        "text": "What are Professor [Name]’s office hours?\nWhere is Professor [Name]’s office located?\nCan I schedule a meeting with my professor?\nWhat courses is Professor [Name] currently teaching?\nWe can add also under each instructor the courses he/she teaches and timings\nVoice to text feature: provide a mechanics to record instructor voice, take notes, and summarize important notes using AI",
+        "metadata": {
+          "doc_title": "Word Document",
+          "section": "Services to be provided:",
+          "heading": "We can have a PDF for deadline for registrations",
+          "entities": [],
+          "type": "course_document",
+          "keywords": [
+            "schedule"
+          ],
+          "source": "data\\raw\\Copy of Questions for Academic Assistance.docx"
+        }
+      }
+    },
+    {
+      "id": 60,
+      "payload": {
+        "text": "1. Project Objectives\nProvide students with instant, accurate answers to common questions about courses, schedules, examinations, study materials, library resources, and faculty information.\nShowcase bilingual (English/Arabic) support while acknowledging that English answers may initially be of higher fidelity because the reference material is primarily in English.\nValidate the end‑to‑end technical workflow which includes data ingestion, vector indexing, tool/agent orchestration, and conversational UI.",
+        "metadata": {
+          "doc_title": "Word Document",
+          "section": null,
+          "heading": null,
+          "entities": [],
+          "type": "course_document",
+          "keywords": [
+            "exam",
+            "schedule"
+          ],
+          "source": "data\\raw\\Final Proposal_.docx"
+        }
+      }
+    },
+    {
+      "id": 61,
+      "payload": {
+        "text": "2. Services To Be Provided\n- Academic Assistance\nCourse Information – Details on courses, Majors, syllabus, and prerequisites.\nMajors: you can find it in admission guide PDF\nWhat majors does the university offer?\nWhat are the available faculties university have?\nWhat majors does the faculty of engineering have?\nCan you list all the undergraduate majors available?\nCan you tell me the required prerequisites for the Computer Science major?\nCan you list all the undergraduate majors available?\nHow many credits does a computer science major have?\nWhat is the prerequisite to take course csc 226?\nClass Schedules – Timetable updates and reminders.\nTimes: class timetable PDF\nWhen does the fall semester start and end?\nCan I see the class csc 226 schedule for the upcoming semester?\nWhat are the lecture times for [Course Name]?\nWhen does the fall semester final exams starts?\nExam Alerts & Deadlines – Deadlines and schedules.\nExam Schedules: Exam Schedule PDF",
+        "metadata": {
+          "doc_title": "Word Document",
+          "section": null,
+          "heading": "1. Project Objectives",
+          "entities": [],
+          "type": "course_document",
+          "keywords": [
+            "prerequisites",
+            "syllabus",
+            "exam",
+            "credit",
+            "schedule"
+          ],
+          "source": "data\\raw\\Final Proposal_.docx"
+        }
+      }
+    },
+    {
+      "id": 62,
+      "payload": {
+        "text": "What are the lecture times for [Course Name]?\nWhen does the fall semester final exams starts?\nExam Alerts & Deadlines – Deadlines and schedules.\nExam Schedules: Exam Schedule PDF\nWhen will the final exam schedule be released?\nWhat time is my [Course Name] exam?\nAre exams held online or on campus?\nWhere will my exam csc 226 be held?\nWe can have a PDF for deadline for registrations\nStudy Resources – Links to notes, and past exams.\nWe can create small file service where it contain each course name and previous exams\nWhere can I find study materials for my courses?\nDo you have previous exam papers I can practice with?\nIs there a place to access course lecture slides or notes?\nCan you suggest resources to help me study for [Course Name]?\nAre there any recommended textbooks for my major?\nRefer to the excel sheet: Course_Study_Materials\nStudents can ask the system questions related to their studies and they will get the reply with the reference from the books or valid resources.",
+        "metadata": {
+          "doc_title": "Word Document",
+          "section": null,
+          "heading": "2. Services To Be Provided",
+          "entities": [],
+          "type": "course_document",
+          "keywords": [
+            "exam",
+            "schedule"
+          ],
+          "source": "data\\raw\\Final Proposal_.docx"
+        }
+      }
+    },
+    {
+      "id": 63,
+      "payload": {
+        "text": "Refer to the excel sheet: Course_Study_Materials\nStudents can ask the system questions related to their studies and they will get the reply with the reference from the books or valid resources.\nLibrary -  Book availability and borrowing process.\nPreferably to have a small DB for POC purposes to show the capability. Also when a student rents a book and DB will be updated.\nHow can I check if a book is available in the library?\nWhat’s the process to borrow a book from the library?\nWhat is the borrowing duration for students?\nIs book 1948 available for renting?\nWhat is the cost for renting book “1984”?\nHow much does the book “who moved my cheese” cost?\nRefer to the excel sheet: books_catalog\nProfessors details: professor details, office hours, and teaching courses. Schedule meeting with the professor before going\nRefer to the PDFs: Nazir Hawi, Hoda Maalof\nWho is teaching [Course Name] this semester?\nHow can I find a professor’s “Hoda Maalouf” contact information?",
+        "metadata": {
+          "doc_title": "Word Document",
+          "section": null,
+          "heading": "2. Services To Be Provided",
+          "entities": [],
+          "type": "course_document",
+          "keywords": [
+            "schedule"
+          ],
+          "source": "data\\raw\\Final Proposal_.docx"
+        }
+      }
+    },
+    {
+      "id": 64,
+      "payload": {
+        "text": "Refer to the PDFs: Nazir Hawi, Hoda Maalof\nWho is teaching [Course Name] this semester?\nHow can I find a professor’s “Hoda Maalouf” contact information? \nWhat are Professor [Name]’s office hours?\nWhere is Professor [Name]’s office located?\nCan I schedule a meeting with my professor?\nWhat courses is Professor [Name] currently teaching?\nWe can add also under each instructor the courses he/she teaches and timings",
+        "metadata": {
+          "doc_title": "Word Document",
+          "section": null,
+          "heading": "2. Services To Be Provided",
+          "entities": [],
+          "type": "course_document",
+          "keywords": [
+            "schedule"
+          ],
+          "source": "data\\raw\\Final Proposal_.docx"
+        }
+      }
+    },
+    {
+      "id": 65,
+      "payload": {
+        "text": "Voice to text feature: provide a mechanics to record instructor voice, take notes, and summarize important notes using AI \n\n\n\n\n3. Data Sources & Assumptions\nDummy data (PDFs, Excel files, and sample databases) are provided at the shared Google Drive link. These artefacts will form the knowledge base for the POC only.\nTo control scope, documents with complex layouts (images, graphs, or tables) will be excluded at this stage.\nA lightweight relational schema will be created to simulate live services such as library inventory or class timetables.\nDrive Link: https://drive.google.com/drive/folders/1K4TtQF_TaMbJ9wTHRejgaaHbtj68L0xB?usp=sharing\n\n4. Project Milestones\n\n\n5. API Keys Needed \n\nOpenAI API key\nOpenrouter API key\nQdrant API key\nQdrant Cluster URL\n\n6. Out‑of‑Scope Items\nIntegration with live production databases or authentication systems.\nSupport for documents containing complex visual layouts (until a later phase).\nMobile application packaging.\n7. Final Deliverables",
+        "metadata": {
+          "doc_title": "Word Document",
+          "section": null,
+          "heading": "2. Services To Be Provided",
+          "entities": [
+            "database"
+          ],
+          "type": "course_document",
+          "keywords": [
+            "schedule"
+          ],
+          "source": "data\\raw\\Final Proposal_.docx"
+        }
+      }
+    },
+    {
+      "id": 66,
+      "payload": {
+        "text": "Standalone chatbot deployed on streamlit \nChatbot is able to answer questions defined in the scope above\nScripts used for data ingestion and preprocessing\nComplete source code for the chatbot",
+        "metadata": {
+          "doc_title": "Word Document",
+          "section": null,
+          "heading": "7. Final Deliverables",
+          "entities": [],
+          "type": "course_document",
+          "keywords": [],
+          "source": "data\\raw\\Final Proposal_.docx"
+        }
+      }
+    },
+    {
+      "id": 67,
+      "payload": {
+        "text": "Data from: Course_Study_Materials.csv\n\nTable contains 10 rows and 3 columns.\nColumns: Course Name, Study Material, Previous Exams Link",
+        "metadata": {
+          "doc_title": "Course_Study_Materials",
+          "section": null,
+          "heading": null,
+          "entities": [],
+          "type": "tabular_data",
+          "keywords": [
+            "exam"
+          ],
+          "source": "data\\raw\\Course_Study_Materials.csv"
+        }
+      }
+    },
+    {
+      "id": 68,
+      "payload": {
+        "text": "Sample data (showing 10 of 10 rows):\nRow 1: Course Name: Introduction to Computer Science | Study Material: Start with CS50 Harvard's Introduction to Computer Science. Watch each lecture weekly, complete problem sets, and use the official notes for revision. Supplement with interactive platforms like Codecademy or freeCodeCamp to practice programming basics in C and Python. | Previous Exams Link: https://example.com/exams/cs101\nRow 2: Course Name: Data Structures and Algorithms | Study Material: Begin by reading 'Introduction to Algorithms' (CLRS) alongside solving problems on LeetCode. Watch visual tutorials on YouTube (e.g., Abdul Bari’s playlist). Focus weekly on one data structure or algorithm and implement it in code. | Previous Exams Link: https://example.com/exams/dsa",
+        "metadata": {
+          "doc_title": "Course_Study_Materials",
+          "section": "Previous Exams Link",
+          "heading": "Previous Exams Link",
+          "entities": [
+            "data structures",
+            "algorithms",
+            "programming"
+          ],
+          "type": "tabular_data",
+          "keywords": [
+            "exam"
+          ],
+          "source": "data\\raw\\Course_Study_Materials.csv"
+        }
+      }
+    },
+    {
+      "id": 69,
+      "payload": {
+        "text": "Row 3: Course Name: Database Systems | Study Material: Follow the book 'Database System Concepts' by Silberschatz. Start with relational models, then move to SQL queries. Practice with MySQL or PostgreSQL. Use DB diagram tools for ER modeling exercises. | Previous Exams Link: https://example.com/exams/db\nRow 4: Course Name: Operating Systems | Study Material: Use 'Modern Operating Systems' by Tanenbaum. Study one module per week (e.g., processes, threads, memory). Simulate OS concepts using tools like OS Simulator or writing simple process schedulers in C. | Previous Exams Link: https://example.com/exams/os\nRow 5: Course Name: Computer Networks | Study Material: Read 'Computer Networking: A Top-Down Approach' by Kurose. Follow with Packet Tracer labs to simulate networking setups. Use NPTEL or Cisco tutorials for hands-on labs. | Previous Exams Link: https://example.com/exams/networks",
+        "metadata": {
+          "doc_title": "Course_Study_Materials",
+          "section": "Previous Exams Link",
+          "heading": "Previous Exams Link",
+          "entities": [
+            "database",
+            "networking"
+          ],
+          "type": "tabular_data",
+          "keywords": [
+            "exam",
+            "schedule"
+          ],
+          "source": "data\\raw\\Course_Study_Materials.csv"
+        }
+      }
+    },
+    {
+      "id": 70,
+      "payload": {
+        "text": "Row 6: Course Name: Software Engineering | Study Material: Start with Sommerville's 'Software Engineering'. Study software development life cycles, UML diagrams, and Agile principles. Practice by managing a small project using tools like Trello and GitHub. | Previous Exams Link: https://example.com/exams/se\nRow 7: Course Name: Web Development | Study Material: Begin with HTML/CSS on freeCodeCamp, then move to JavaScript. Practice with simple projects (e.g., portfolio website). Study responsive design using MDN Docs and frameworks like Bootstrap. | Previous Exams Link: https://example.com/exams/web\nRow 8: Course Name: Artificial Intelligence | Study Material: Follow 'AI: A Modern Approach' for concepts. Take the Stanford AI course online. Focus on search algorithms, logic, and machine learning basics. Apply knowledge by building small AI games or agents. | Previous Exams Link: https://example.com/exams/ai",
+        "metadata": {
+          "doc_title": "Course_Study_Materials",
+          "section": "Previous Exams Link",
+          "heading": "Previous Exams Link",
+          "entities": [
+            "algorithms",
+            "software engineering",
+            "artificial intelligence"
+          ],
+          "type": "tabular_data",
+          "keywords": [
+            "exam"
+          ],
+          "source": "data\\raw\\Course_Study_Materials.csv"
+        }
+      }
+    },
+    {
+      "id": 71,
+      "payload": {
+        "text": "Row 9: Course Name: Machine Learning | Study Material: Start with Andrew Ng's ML course on Coursera. Practice with scikit-learn on small datasets. Learn concepts like overfitting, bias-variance, and model evaluation using hands-on notebooks. | Previous Exams Link: https://example.com/exams/ml\nRow 10: Course Name: Cybersecurity | Study Material: Begin with 'Kali Linux Revealed' for penetration testing. Follow up with Cybrary modules on ethical hacking. Practice on platforms like TryHackMe or Hack The Box. Cover encryption and secure protocols. | Previous Exams Link: https://example.com/exams/cybersecurity",
+        "metadata": {
+          "doc_title": "Course_Study_Materials",
+          "section": "Previous Exams Link",
+          "heading": "Previous Exams Link",
+          "entities": [],
+          "type": "tabular_data",
+          "keywords": [
+            "exam"
+          ],
+          "source": "data\\raw\\Course_Study_Materials.csv"
+        }
+      }
+    }
+  ]
+}
