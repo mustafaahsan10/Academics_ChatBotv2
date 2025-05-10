@@ -1,86 +1,96 @@
 # University Assistant Chatbot
 
-A bilingual (English/Arabic) university assistant chatbot built with Streamlit, LangChain, and Qdrant. It provides answers to common university questions about courses, schedules, exams, faculty information, and library resources.
+A comprehensive university assistant chatbot system with RAG (Retrieval Augmented Generation) capabilities to answer questions about courses, schedules, faculty, admission requirements, and more.
 
 ## Features
 
-- **Academic Information**: Get details on courses, majors, prerequisites, class schedules, exams, etc.
-- **Faculty Info**: Access professor details, office hours, teaching courses, etc.
-- **Library Resources**: Check book availability, borrowing process, etc.
+- **Hybrid Search**: Combines vector similarity with keyword and heading matching to provide more accurate responses
+- **Document Structure Awareness**: Preserves document hierarchies and headings for contextual understanding
+- **Multi-language Support**: Currently supports English and Arabic interfaces
+- **Various Data Source Handling**: Process PDFs, DOCXs, TXTs, CSVs, and Excel files
+- **Pre-processed Data Support**: Can ingest both raw and pre-processed structured data
+- **Rich Metadata**: Extracts and utilizes headings, keywords, and entities for improved retrieval
 
-## Setup Instructions
+## System Components
 
-### 1. Clone the Repository
+### Data Ingestion
 
-```bash
-git clone <repository-url>
-cd university-assistant-chatbot
+- `ingest_data.py`: Process raw document files (PDF, DOCX, TXT, Excel, CSV) and extract structured data
+- `ingest_processed.py`: Ingest pre-processed structured data from the `data/processed` directory
+
+### Chatbot Core
+
+- `utils/chatbot.py`: Contains the core RAG implementation with hybrid search capabilities
+- `app.py`: Streamlit-based user interface for interacting with the chatbot
+
+### Utilities
+
+- `delete_collection.py`: Delete collections from Qdrant
+- `export_chunks.py`: Export processed chunks from the vector database
+- `test_search.py`: Test search functionality independently
+
+## Setup and Usage
+
+### Environment Setup
+
+1. Create a `.env` file based on the `env_template.txt`
+2. Install dependencies:
+   ```
+   pip install -r requirements.txt
+   ```
+
+### Data Ingestion
+
+For raw data:
+```
+python ingest_data.py --data_dir data/raw --recreate
 ```
 
-### 2. Install Dependencies
-
-```bash
-pip install -r requirements.txt
+For pre-processed data:
+```
+python ingest_processed.py --data_dir data/processed
 ```
 
-### 3. Set Up Environment Variables
+### Running the Application
 
-1. Rename `env_template.txt` to `.env`
-2. Add your API keys:
-   - OPENAI_API_KEY: Your OpenAI API key
-   - OPENROUTER_API_KEY: Your Openrouter API key
-   - QDRANT_API_KEY: Your Qdrant API key
-   - QDRANT_URL: Your Qdrant Cluster URL
-
-### 4. Prepare Data
-
-1. Place your university data files in the `data/raw` directory:
-   - PDFs (course catalogs, admission guides, faculty info)
-   - Excel files (course materials, book catalogs)
-   - DOC/DOCX files
-   - TXT files
-
-### 5. Ingest Data to Vector Database
-
-Run the data ingestion script to process files and upload embeddings to Qdrant:
-
-```bash
-python ingest_data.py
 ```
-
-### 6. Run the Application
-
-Start the Streamlit app:
-
-```bash
 streamlit run app.py
 ```
 
-The application will be available at http://localhost:8501
+## Hybrid Search Architecture
 
-## Project Structure
+The system implements a sophisticated hybrid search approach that combines:
 
-```
-university-assistant-chatbot/
-├── app.py                   # Main Streamlit application
-├── ingest_data.py           # Data ingestion and vectorization script
-├── requirements.txt         # Python dependencies
-├── env_template.txt         # Template for environment variables
-├── README.md                # This file
-├── utils/
-│   └── chatbot.py           # Chatbot implementation with RAG
-└── data/
-    ├── raw/                 # Raw data files (PDFs, Excel, etc.)
-    └── processed/           # Processed data (if needed)
-```
+1. **Vector Similarity**: Semantic similarity using OpenAI embeddings
+2. **Keyword Matching**: Exact/partial matches of keywords in text
+3. **Heading Matching**: Finding matches within document headings
+4. **Entity Matching**: Extracting and matching specific entities like course codes
 
-## Usage
+The search results are combined and re-ranked based on a weighted scoring system:
+- Vector similarity (70% base weight)
+- Keyword matches (30% base weight)
+- Heading matches (20% boost per match)
+- Entity matches (30% boost per match)
 
-1. Select your preferred language (English or Arabic) from the sidebar
-2. Type your university-related questions in the chat input
+## Data Structure
 
-## Limitations
+### Raw Data Processing
 
-- The chatbot can only answer questions based on the data provided
-- Arabic responses might have lower fidelity initially as most reference material is in English
-- Documents with complex layouts (images, graphs, tables) might not be processed correctly 
+Raw documents are processed to extract:
+- Document text content
+- Headings and document structure
+- Metadata like document type, keywords, etc.
+
+### Processed Data Format
+
+The processed data directory contains JSON-structured files with:
+- Heading information
+- Text content
+- Keywords and entities
+
+## Future Enhancements
+
+- Support for more languages
+- Improved entity extraction
+- Personalized search based on user profiles
+- Integration with university systems for real-time data 

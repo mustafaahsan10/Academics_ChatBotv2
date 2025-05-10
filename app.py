@@ -24,13 +24,22 @@ def get_chatbot():
 def main():
     st.title("🎓 University Assistant")
     
-    # Sidebar with language selection
+    # Sidebar with language selection and search options
     with st.sidebar:
         st.subheader("Settings")
         language = st.selectbox("Language / اللغة", ["English", "Arabic"])
+        
+        # Advanced search options (expandable)
+        with st.expander("Advanced Search Options"):
+            st.write("These settings control how the assistant searches for information.")
+            search_method = st.radio(
+                "Search Method",
+                ["Hybrid (Default)", "Vector Only", "Keyword Only"],
+                index=0
+            )
     
     st.subheader("University Information Assistant")
-    st.write("Ask me anything about courses, schedules, exams, faculty, or library resources!")
+    st.write("Ask me anything about courses, schedules, exams, faculty, library resources, admission, or tuition!")
     
     chatbot = get_chatbot()
     
