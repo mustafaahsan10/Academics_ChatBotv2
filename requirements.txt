@@ -10,3 +10,4 @@ python-docx
 PyPDF2
 nltk
 tabulate
+requests

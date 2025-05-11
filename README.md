@@ -10,6 +10,8 @@ A comprehensive university assistant chatbot system with RAG (Retrieval Augmente
 - **Various Data Source Handling**: Process PDFs, DOCXs, TXTs, CSVs, and Excel files
 - **Pre-processed Data Support**: Can ingest both raw and pre-processed structured data
 - **Rich Metadata**: Extracts and utilizes headings, keywords, and entities for improved retrieval
+- **Multiple AI Models**: Support for various models via OpenRouter and OpenAI, with a convenient dropdown selector
+- **Conversation History**: Maintains chat history for contextual understanding in conversations
 
 ## System Components
 
@@ -34,6 +36,8 @@ A comprehensive university assistant chatbot system with RAG (Retrieval Augmente
 ### Environment Setup
 
 1. Create a `.env` file based on the `env_template.txt`
+   - You'll need to provide your OpenAI API key
+   - For using multiple models, you'll also need an OpenRouter API key
 2. Install dependencies:
    ```
    pip install -r requirements.txt
@@ -93,4 +97,6 @@ The processed data directory contains JSON-structured files with:
 - Support for more languages
 - Improved entity extraction
 - Personalized search based on user profiles
-- Integration with university systems for real-time data 
+- Integration with university systems for real-time data
+- More AI models integration and fine-tuning options
+- Advanced conversation history management with summarization 

@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 import json
 from pathlib import Path
 from langchain_openai import ChatOpenAI
-from langchain_core.messages import HumanMessage, SystemMessage
+from langchain_core.messages import HumanMessage, SystemMessage, AIMessage
 from langchain_openai import OpenAIEmbeddings
 from qdrant_client import QdrantClient
 from qdrant_client.http import models as qdrant_models
@@ -15,14 +15,14 @@ from typing import List, Dict, Any, Optional, Tuple
 load_dotenv()
 
 class UniversityChatbot:
-    def __init__(self):
+    def __init__(self, model_name):
         """Initialize the University Chatbot with necessary components"""
-        # Initialize language model
-        self.llm = ChatOpenAI(
-            api_key=os.getenv("OPENAI_API_KEY"),
-            model_name="gpt-4o-mini",
-            temperature=0.2
-        )
+        # Store model name but don't initialize LLM yet
+        self.model_name = model_name
+        self._llm = None
+        
+        # Store conversation history
+        self.conversation_history = []
         
         # Initialize embeddings model
         self.embeddings = OpenAIEmbeddings(api_key=os.getenv("OPENAI_API_KEY"))
@@ -67,6 +67,53 @@ class UniversityChatbot:
             "admission": r"\b(admission|apply|application|enroll|registration)\b",
             "financial": r"\b(tuition|fee|cost|price|scholarship|financial aid)\b"
         }
+    
+    # Property to lazy-initialize the LLM
+    @property
+    def llm(self):
+        if self._llm is None:
+            print(f"Initializing LLM with model: {self.model_name}")
+            self._llm = self._initialize_llm(self.model_name)
+        return self._llm
+    
+    def _initialize_llm(self, model_name):
+        """Initialize the appropriate LLM based on the model name"""
+        # Check if we should use OpenRouter
+
+        print("Model Name:",model_name)
+        if model_name.startswith("openrouter/"):
+            # Extract the actual model identifier from openrouter prefix
+            actual_model = model_name.replace("openrouter/", "")
+            return ChatOpenAI(
+                model=actual_model,
+                temperature=0.2,
+                openai_api_key=os.getenv("OPENROUTER_API_KEY"),
+                openai_api_base="https://openrouter.ai/api/v1"
+            )
+        else:
+            # Use standard OpenAI models
+            return ChatOpenAI(
+                api_key=os.getenv("OPENAI_API_KEY"),
+                model_name=model_name,
+                temperature=0.2
+            )
+    
+    def set_model(self, model_name):
+        """Update the model being used"""
+        self.model_name = model_name
+        self._llm = None  # Clear the LLM so it will be recreated with the new model
+        
+    def add_to_history(self, role, content):
+        """Add a message to the conversation history"""
+        self.conversation_history.append({"role": role, "content": content})
+    
+    def get_history(self):
+        """Get the current conversation history"""
+        return self.conversation_history
+    
+    def clear_history(self):
+        """Clear the conversation history"""
+        self.conversation_history = []
     
     def _classify_query(self, query):
         """Classify the query to optimize retrieval"""
@@ -442,9 +489,10 @@ class UniversityChatbot:
     
     def get_response(self, query, language="English"):
         """
-        Generate a response to a user query using enhanced RAG
+        Generate a response to a user query using enhanced RAG with conversation history
         """
         try:
+            print(f"Using model: {self.model_name}")
             # Retrieve relevant context
             context = self._retrieve_context(query)
             
@@ -455,14 +503,31 @@ class UniversityChatbot:
             # Format the system message with context
             system_content = self.system_prompts[language].format(context=context)
             
-            # Generate response using langchain
-            messages = [
-                SystemMessage(content=system_content),
-                HumanMessage(content=query)
-            ]
+            # Add the current query to conversation history
+            self.add_to_history("user", query)
             
+            # Generate response using langchain with full conversation history
+            messages = [SystemMessage(content=system_content)]
+            
+            # Add conversation history (limited to last 10 messages for context window management)
+            history = self.conversation_history[:-1]  # Exclude the message we just added
+            for msg in history[-10:]:  # Only use last 10 messages to avoid context overflow
+                if msg["role"] == "user":
+                    messages.append(HumanMessage(content=msg["content"]))
+                elif msg["role"] == "assistant":
+                    messages.append(AIMessage(content=msg["content"]))
+            
+            # Add the current query
+            messages.append(HumanMessage(content=query))
+            
+            # Generate the response
             response = self.llm.generate([messages])
-            return response.generations[0][0].text
+            response_text = response.generations[0][0].text
+            
+            # Add the assistant response to conversation history
+            self.add_to_history("assistant", response_text)
+            
+            return response_text
         except Exception as e:
             print(f"Error generating response: {e}")
             if language == "English":
