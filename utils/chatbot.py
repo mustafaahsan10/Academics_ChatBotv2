@@ -2,9 +2,9 @@ import os
 from dotenv import load_dotenv
 import json
 from pathlib import Path
-from langchain.chat_models import ChatOpenAI
-from langchain.schema import HumanMessage, SystemMessage
-from langchain.embeddings import OpenAIEmbeddings
+from langchain_openai import ChatOpenAI
+from langchain_core.messages import HumanMessage, SystemMessage
+from langchain_openai import OpenAIEmbeddings
 from qdrant_client import QdrantClient
 from qdrant_client.http import models as qdrant_models
 import re
@@ -20,7 +20,7 @@ class UniversityChatbot:
         # Initialize language model
         self.llm = ChatOpenAI(
             api_key=os.getenv("OPENAI_API_KEY"),
-            model_name="gpt-4o-mini ",
+            model_name="gpt-4o-mini",
             temperature=0.2
         )
         
@@ -231,105 +231,70 @@ class UniversityChatbot:
         
     def _hybrid_search(self, query: str, top_k: int = 5) -> List[Dict]:
         """
-        Perform hybrid search combining vector similarity with keyword and heading matching
+        Perform hybrid search combining vector similarity with metadata filtering
         """
         try:
+            print("Starting hybrid search...")
             # 1. Vector similarity search
             query_embedding = self.embeddings.embed_query(query)
+            print("=========================1======================")
             
             # 2. Classify query and create metadata filter
             query_type, confidence = self._classify_query(query)
-            metadata_filter = self._create_metadata_filter(query_type)
+            print(f"Query type: {query_type}, confidence: {confidence}")
             
-            # 3. Extract entities and keywords
+            # Create a simpler metadata filter that doesn't use text search
+            # Only filter on exact match fields that are likely indexed
+            if query_type != "general":
+                metadata_filter = qdrant_models.Filter(
+                    should=[
+                        qdrant_models.FieldCondition(
+                            key="metadata.type", 
+                            match=qdrant_models.MatchValue(value=f"{query_type}_document")
+                        )
+                    ]
+                )
+            else:
+                metadata_filter = None
+                
+            print("=========================2======================")
+            
+            # 3. Extract entities and keywords for debugging only
             entities = self._extract_entities_from_query(query)
             keywords = self._extract_keywords_from_query(query)
+            print(f"Keywords: {keywords}")
+            print(f"Entities: {entities}")
             
-            # 4. Perform vector search (with filter if available)
-            if metadata_filter:
-                vector_results = self.qdrant_client.search(
-                    collection_name="university_data",
-                    query_vector=query_embedding,
-                    query_filter=metadata_filter,
-                    limit=top_k * 2  # Get more results for re-ranking
-                )
-            else:
-                vector_results = self.qdrant_client.search(
-                    collection_name="university_data",
-                    query_vector=query_embedding,
-                    limit=top_k * 2  # Get more results for re-ranking
-                )
-            
-            # 5. Keyword-based search if we have specific entities or keywords
-            if keywords or entities:
-                # Create a keyword filter for heading and text matching
-                keyword_conditions = []
-                
-                # Add keyword conditions for text content
-                for keyword in keywords:
-                    if len(keyword) >= 4:  # Only use longer keywords for text search
-                        keyword_conditions.append(
-                            qdrant_models.FieldCondition(
-                                key="text",
-                                match=qdrant_models.MatchText(text=keyword)
-                            )
-                        )
-                
-                # Add heading match conditions
-                for keyword in keywords:
-                    if len(keyword) >= 3:  # Shorter words can be okay for headings
-                        keyword_conditions.append(
-                            qdrant_models.FieldCondition(
-                                key="metadata.heading",
-                                match=qdrant_models.MatchText(text=keyword)
-                            )
-                        )
-                
-                # Add entity conditions
-                if "course_codes" in entities:
-                    for course_code in entities["course_codes"]:
-                        keyword_conditions.append(
-                            qdrant_models.FieldCondition(
-                                key="text",
-                                match=qdrant_models.MatchText(text=course_code)
-                            )
-                        )
-                
-                if keyword_conditions:
-                    keyword_filter = qdrant_models.Filter(
-                        should=keyword_conditions
-                    )
-                    
-                    # Perform keyword search
-                    keyword_results = self.qdrant_client.search(
-                        collection_name="university_data",
-                        query_vector=query_embedding,  # Still use embedding for ordering
-                        query_filter=keyword_filter,
-                        limit=top_k  # Get top_k results
-                    )
-                else:
-                    keyword_results = []
-            else:
-                keyword_results = []
-            
-            # 6. Combine and re-rank results
-            combined_results = self._combine_and_rerank_results(
-                query, vector_results, keyword_results, keywords, entities
+            # 4. Perform vector search with minimal filtering to avoid index errors
+            print("=========================4======================")
+            vector_results = self.qdrant_client.search(
+                collection_name="university_data",
+                query_vector=query_embedding,
+                query_filter=metadata_filter,  # May be None
+                limit=top_k
             )
             
-            return combined_results[:top_k]
+            print(f"Found {len(vector_results)} results via vector search")
+            print("=========================6======================")
+            
+            # Just return the vector results - we'll implement better filtering later
+            # when Qdrant is properly configured
+            return vector_results
             
         except Exception as e:
             print(f"Error in hybrid search: {e}")
-            # Fall back to basic vector search if hybrid search fails
+            # Fall back to basic vector search without any filters
             try:
+                print("Attempting fallback search...")
                 fallback_results = self.qdrant_client.search(
                     collection_name="university_data",
                     query_vector=query_embedding,
                     limit=top_k
                 )
+                print(f"Fallback search found {len(fallback_results)} results")
                 return fallback_results
-            except:
+            except Exception as e:
+                print(f"Fallback search also failed: {e}")
                 return []
     
     def _combine_and_rerank_results(
@@ -418,17 +383,36 @@ class UniversityChatbot:
     
     def _retrieve_context(self, query, top_k=5):
         """
-        Retrieve relevant context from the vector database using hybrid search
+        Retrieve relevant context from the vector database using search
         """
         try:
-            # Perform hybrid search
+            print("Retrieving context...")
+            # Perform search
             search_results = self._hybrid_search(query, top_k)
+            
+            if not search_results:
+                print("No search results found")
+                return ""
+                
+            print(f"Processing {len(search_results)} search results")
             
             # Extract and format the results with metadata context
             contexts = []
             for hit in search_results:
-                text = hit["payload"].get("text", "")
-                metadata = hit["payload"].get("metadata", {})
+                # Handle ScoredPoint objects (which aren't subscriptable)
+                if hasattr(hit, 'payload'):
+                    # This is a ScoredPoint object directly from Qdrant
+                    payload = hit.payload
+                    score = hit.score
+                else:
+                    # This is a dictionary
+                    payload = hit["payload"]
+                    score = hit.get("score", 0)
+                
+                print(f"Processing result with score: {score}")
+                
+                text = payload.get("text", "")
+                metadata = payload.get("metadata", {})
                 
                 # Add source information
                 source_info = ""
@@ -448,7 +432,10 @@ class UniversityChatbot:
                 context_item = f"{source_info}{entity_info}\n{text}"
                 contexts.append(context_item)
             
-            return "\n\n---\n\n".join(contexts)
+            combined_context = "\n\n---\n\n".join(contexts)
+            print(f"Generated context with {len(contexts)} sections")
+            return combined_context
+            
         except Exception as e:
             print(f"Error retrieving context: {e}")
             return ""
