@@ -1,0 +1,230 @@
+[
+  {
+    "id": "BSCS_Course_CSC226_002",
+    "heading": "Course Schedule: CSC 226 - Introduction to Database",
+    "program": "Bachelor of Science in Computer Science",
+    "course_code": "CSC 226",
+    "course_name": "Introduction to Database",
+    "sessions": [
+      {"day": "Sunday", "time_slot": "08:00-09:30"},
+      {"day": "Monday", "time_slot": "08:00-09:30"}
+    ],
+    "text": "The course CSC 226, titled 'Introduction to Database', for the Bachelor of Science in Computer Science program, is scheduled as follows: Sunday from 08:00 to 09:30, Monday from 08:00 to 09:30.",
+    "keywords": ["CSC 226", "Introduction to Database", "schedule", "timetable", "class times", "BSCS", "Sunday", "Monday", "08:00-09:30"]
+  },
+  {
+    "id": "BSCS_Course_CSC385_003",
+    "heading": "Course Schedule: CSC 385 - Internet Computing",
+    "program": "Bachelor of Science in Computer Science",
+    "course_code": "CSC 385",
+    "course_name": "Internet Computing",
+    "sessions": [
+      {"day": "Tuesday", "time_slot": "08:00-09:30"},
+      {"day": "Wednesday", "time_slot": "08:00-09:30"}
+    ],
+    "text": "The course CSC 385, titled 'Internet Computing', for the Bachelor of Science in Computer Science program, is scheduled as follows: Tuesday from 08:00 to 09:30, Wednesday from 08:00 to 09:30.",
+    "keywords": ["CSC 385", "Internet Computing", "schedule", "timetable", "class times", "BSCS", "Tuesday", "Wednesday", "08:00-09:30"]
+  },
+  {
+    "id": "BSCS_Course_CSC405_004",
+    "heading": "Course Schedule: CSC 405 - Systems Integration",
+    "program": "Bachelor of Science in Computer Science",
+    "course_code": "CSC 405",
+    "course_name": "Systems Integration",
+    "sessions": [
+      {"day": "Thursday", "time_slot": "08:00-09:30"}
+    ],
+    "text": "The course CSC 405, titled 'Systems Integration', for the Bachelor of Science in Computer Science program, is scheduled as follows: Thursday from 08:00 to 09:30.",
+    "keywords": ["CSC 405", "Systems Integration", "schedule", "timetable", "class times", "BSCS", "Thursday", "08:00-09:30"]
+  },
+  {
+    "id": "BSCS_Course_CSC305_005",
+    "heading": "Course Schedule: CSC 305 - System Analysis and Design",
+    "program": "Bachelor of Science in Computer Science",
+    "course_code": "CSC 305",
+    "course_name": "System Analysis and Design",
+    "sessions": [
+      {"day": "Sunday", "time_slot": "09:30-11:00"},
+      {"day": "Monday", "time_slot": "09:30-11:00"}
+    ],
+    "text": "The course CSC 305, titled 'System Analysis and Design', for the Bachelor of Science in Computer Science program, is scheduled as follows: Sunday from 09:30 to 11:00, Monday from 09:30 to 11:00.",
+    "keywords": ["CSC 305", "System Analysis and Design", "schedule", "timetable", "class times", "BSCS", "Sunday", "Monday", "09:30-11:00"]
+  },
+  {
+    "id": "BSCS_Course_CSC345_006",
+    "heading": "Course Schedule: CSC 345 - Fundamentals of Computer Network Management",
+    "program": "Bachelor of Science in Computer Science",
+    "course_code": "CSC 345",
+    "course_name": "Fundamentals of Computer Network Management",
+    "sessions": [
+      {"day": "Tuesday", "time_slot": "09:30-11:00"},
+      {"day": "Wednesday", "time_slot": "09:30-11:00"}
+    ],
+    "text": "The course CSC 345, titled 'Fundamentals of Computer Network Management', for the Bachelor of Science in Computer Science program, is scheduled as follows: Tuesday from 09:30 to 11:00, Wednesday from 09:30 to 11:00.",
+    "keywords": ["CSC 345", "Fundamentals of Computer Network Management", "schedule", "timetable", "class times", "BSCS", "Tuesday", "Wednesday", "09:30-11:00"]
+  },
+  {
+    "id": "BSCS_Course_CSC425_007",
+    "heading": "Course Schedule: CSC 425 - Data Communications and Computer Networks",
+    "program": "Bachelor of Science in Computer Science",
+    "course_code": "CSC 425",
+    "course_name": "Data Communications and Computer Networks",
+    "sessions": [
+      {"day": "Thursday", "time_slot": "09:30-11:00"}
+    ],
+    "text": "The course CSC 425, titled 'Data Communications and Computer Networks', for the Bachelor of Science in Computer Science program, is scheduled as follows: Thursday from 09:30 to 11:00.",
+    "keywords": ["CSC 425", "Data Communications and Computer Networks", "schedule", "timetable", "class times", "BSCS", "Thursday", "09:30-11:00"]
+  },
+  {
+    "id": "BSCS_Course_CSC312_008",
+    "heading": "Course Schedule: CSC 312 - Computer Architecture",
+    "program": "Bachelor of Science in Computer Science",
+    "course_code": "CSC 312",
+    "course_name": "Computer Architecture",
+    "sessions": [
+      {"day": "Sunday", "time_slot": "11:00-12:30"},
+      {"day": "Monday", "time_slot": "11:00-12:30"}
+    ],
+    "text": "The course CSC 312, titled 'Computer Architecture', for the Bachelor of Science in Computer Science program, is scheduled as follows: Sunday from 11:00 to 12:30, Monday from 11:00 to 12:30.",
+    "keywords": ["CSC 312", "Computer Architecture", "schedule", "timetable", "class times", "BSCS", "Sunday", "Monday", "11:00-12:30"]
+  },
+  {
+    "id": "BSCS_Course_CSC317_009",
+    "heading": "Course Schedule: CSC 317 - Information Assurance and Security",
+    "program": "Bachelor of Science in Computer Science",
+    "course_code": "CSC 317",
+    "course_name": "Information Assurance and Security",
+    "sessions": [
+      {"day": "Tuesday", "time_slot": "11:00-12:30"},
+      {"day": "Wednesday", "time_slot": "11:00-12:30"}
+    ],
+    "text": "The course CSC 317, titled 'Information Assurance and Security', for the Bachelor of Science in Computer Science program, is scheduled as follows: Tuesday from 11:00 to 12:30, Wednesday from 11:00 to 12:30.",
+    "keywords": ["CSC 317", "Information Assurance and Security", "schedule", "timetable", "class times", "BSCS", "Tuesday", "Wednesday", "11:00-12:30"]
+  },
+  {
+    "id": "BSCS_Course_CSC446_010",
+    "heading": "Course Schedule: CSC 446 - Applied Database Systems",
+    "program": "Bachelor of Science in Computer Science",
+    "course_code": "CSC 446",
+    "course_name": "Applied Database Systems",
+    "sessions": [
+      {"day": "Thursday", "time_slot": "11:00-12:30"}
+    ],
+    "text": "The course CSC 446, titled 'Applied Database Systems', for the Bachelor of Science in Computer Science program, is scheduled as follows: Thursday from 11:00 to 12:30.",
+    "keywords": ["CSC 446", "Applied Database Systems", "schedule", "timetable", "class times", "BSCS", "Thursday", "11:00-12:30"]
+  },
+  {
+    "id": "BSCS_Course_CSC316_011",
+    "heading": "Course Schedule: CSC 316 - Fundamentals of Computer Security",
+    "program": "Bachelor of Science in Computer Science",
+    "course_code": "CSC 316",
+    "course_name": "Fundamentals of Computer Security",
+    "sessions": [
+      {"day": "Sunday", "time_slot": "12:30-14:00"},
+      {"day": "Monday", "time_slot": "12:30-14:00"}
+    ],
+    "text": "The course CSC 316, titled 'Fundamentals of Computer Security', for the Bachelor of Science in Computer Science program, is scheduled as follows: Sunday from 12:30 to 14:00, Monday from 12:30 to 14:00.",
+    "keywords": ["CSC 316", "Fundamentals of Computer Security", "schedule", "timetable", "class times", "BSCS", "Sunday", "Monday", "12:30-14:00"]
+  },
+  {
+    "id": "BSCS_Course_CSC414_012",
+    "heading": "Course Schedule: CSC 414 - Applied Operating Systems",
+    "program": "Bachelor of Science in Computer Science",
+    "course_code": "CSC 414",
+    "course_name": "Applied Operating Systems",
+    "sessions": [
+      {"day": "Tuesday", "time_slot": "12:30-14:00"},
+      {"day": "Wednesday", "time_slot": "12:30-14:00"}
+    ],
+    "text": "The course CSC 414, titled 'Applied Operating Systems', for the Bachelor of Science in Computer Science program, is scheduled as follows: Tuesday from 12:30 to 14:00, Wednesday from 12:30 to 14:00.",
+    "keywords": ["CSC 414", "Applied Operating Systems", "schedule", "timetable", "class times", "BSCS", "Tuesday", "Wednesday", "12:30-14:00"]
+  },
+  {
+    "id": "BSCS_Course_CSC463_013",
+    "heading": "Course Schedule: CSC 463 - Advanced Software Development",
+    "program": "Bachelor of Science in Computer Science",
+    "course_code": "CSC 463",
+    "course_name": "Advanced Software Development",
+    "sessions": [
+      {"day": "Thursday", "time_slot": "12:30-14:00"}
+    ],
+    "text": "The course CSC 463, titled 'Advanced Software Development', for the Bachelor of Science in Computer Science program, is scheduled as follows: Thursday from 12:30 to 14:00.",
+    "keywords": ["CSC 463", "Advanced Software Development", "schedule", "timetable", "class times", "BSCS", "Thursday", "12:30-14:00"]
+  },
+  {
+    "id": "BSCS_Course_MTH110_014",
+    "heading": "Course Schedule: MTH 110 - Pre-Calculus Mathematics",
+    "program": "Bachelor of Science in Computer Science",
+    "course_code": "MTH 110",
+    "course_name": "Pre-Calculus Mathematics",
+    "sessions": [
+      {"day": "Sunday", "time_slot": "14:00-15:30"},
+      {"day": "Monday", "time_slot": "14:00-15:30"}
+    ],
+    "text": "The course MTH 110, titled 'Pre-Calculus Mathematics', for the Bachelor of Science in Computer Science program, is scheduled as follows: Sunday from 14:00 to 15:30, Monday from 14:00 to 15:30.",
+    "keywords": ["MTH 110", "Pre-Calculus Mathematics", "schedule", "timetable", "class times", "BSCS", "Sunday", "Monday", "14:00-15:30"]
+  },
+  {
+    "id": "BSCS_Course_CSC450_015",
+    "heading": "Course Schedule: CSC 450 - Human-Computer Interaction",
+    "program": "Bachelor of Science in Computer Science",
+    "course_code": "CSC 450",
+    "course_name": "Human-Computer Interaction",
+    "sessions": [
+      {"day": "Tuesday", "time_slot": "14:00-15:30"},
+      {"day": "Wednesday", "time_slot": "14:00-15:30"}
+    ],
+    "text": "The course CSC 450, titled 'Human-Computer Interaction', for the Bachelor of Science in Computer Science program, is scheduled as follows: Tuesday from 14:00 to 15:30, Wednesday from 14:00 to 15:30.",
+    "keywords": ["CSC 450", "Human-Computer Interaction", "schedule", "timetable", "class times", "BSCS", "Tuesday", "Wednesday", "14:00-15:30"]
+  },
+  {
+    "id": "BSCS_Course_CSC490_016",
+    "heading": "Course Schedule: CSC 490 - Senior Study",
+    "program": "Bachelor of Science in Computer Science",
+    "course_code": "CSC 490",
+    "course_name": "Senior Study",
+    "sessions": [
+      {"day": "Thursday", "time_slot": "14:00-15:30"}
+    ],
+    "text": "The course CSC 490, titled 'Senior Study', for the Bachelor of Science in Computer Science program, is scheduled as follows: Thursday from 14:00 to 15:30.",
+    "keywords": ["CSC 490", "Senior Study", "schedule", "timetable", "class times", "BSCS", "Thursday", "14:00-15:30"]
+  },
+  {
+    "id": "BSCS_Course_COM201_017",
+    "heading": "Course Schedule: COM 201 - Public Speaking",
+    "program": "Bachelor of Science in Computer Science",
+    "course_code": "COM 201",
+    "course_name": "Public Speaking",
+    "sessions": [
+      {"day": "Sunday", "time_slot": "15:30-17:00"},
+      {"day": "Monday", "time_slot": "15:30-17:00"}
+    ],
+    "text": "The course COM 201, titled 'Public Speaking', for the Bachelor of Science in Computer Science program, is scheduled as follows: Sunday from 15:30 to 17:00, Monday from 15:30 to 17:00.",
+    "keywords": ["COM 201", "Public Speaking", "schedule", "timetable", "class times", "BSCS", "Sunday", "Monday", "15:30-17:00"]
+  },
+  {
+    "id": "BSCS_Course_CSC480_018",
+    "heading": "Course Schedule: CSC 480 - Internship",
+    "program": "Bachelor of Science in Computer Science",
+    "course_code": "CSC 480",
+    "course_name": "Internship",
+    "sessions": [
+      {"day": "Tuesday", "time_slot": "15:30-17:00"},
+      {"day": "Wednesday", "time_slot": "15:30-17:00"}
+    ],
+    "text": "The course CSC 480, titled 'Internship', for the Bachelor of Science in Computer Science program, is scheduled as follows: Tuesday from 15:30 to 17:00, Wednesday from 15:30 to 17:00.",
+    "keywords": ["CSC 480", "Internship", "schedule", "timetable", "class times", "BSCS", "Tuesday", "Wednesday", "15:30-17:00"]
+  },
+  {
+    "id": "BSCS_Course_ENG101_019",
+    "heading": "Course Schedule: ENG 101 - English Composition",
+    "program": "Bachelor of Science in Computer Science",
+    "course_code": "ENG 101",
+    "course_name": "English Composition",
+    "sessions": [
+      {"day": "Thursday", "time_slot": "15:30-17:00"}
+    ],
+    "text": "The course ENG 101, titled 'English Composition', for the Bachelor of Science in Computer Science program, is scheduled as follows: Thursday from 15:30 to 17:00.",
+    "keywords": ["ENG 101", "English Composition", "schedule", "timetable", "class times", "BSCS", "Thursday", "15:30-17:00"]
+  }
+]

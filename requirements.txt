@@ -11,3 +11,4 @@ PyPDF2
 nltk
 tabulate
 requests
+pydantic_ai
