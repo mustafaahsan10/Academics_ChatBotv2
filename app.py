@@ -38,7 +38,7 @@ AVAILABLE_MODELS = {
     "Anthropic Claude 3 Haiku($0.25/M)": "anthropic/claude-3-haiku",
     "Anthropic Claude 3 Sonnet($3/M)": "anthropic/claude-3-sonnet",
     "Anthropic Claude 3 Opus($15/M)": "anthropic/claude-3-opus",
-    "Google Gemini 2.0 Flash($0.10/M)": "google/gemini-2.0-flash-001",
+    "Google Gemini 2.0 Flash($0.10/M)": "google/gemini-2.0-flash-exp",
 }
 
 # Define which models should use OpenRouter instead of OpenAI API
@@ -46,7 +46,7 @@ OPENROUTER_MODELS = [
     "anthropic/claude-3-haiku",
     "anthropic/claude-3-sonnet",
     "anthropic/claude-3-opus",
-    "google/gemini-2.0-flash-001",
+    "google/gemini-2.0-flash-exp",
 ]
 
 # Module map

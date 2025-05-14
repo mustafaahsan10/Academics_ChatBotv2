@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "Course Name": "Introduction to Computer Science",
+    "Study Material": "Start with CS50 Harvard's Introduction to Computer Science. Watch each lecture weekly, complete problem sets, and use the official notes for revision. Supplement with interactive platforms like Codecademy or freeCodeCamp to practice programming basics in C and Python.",
+    "Exam Links": "https://example.com/exams/cs101"
+  },
+  {
+    "id": 2,
+    "Course Name": "Data Structures and Algorithms",
+    "Study Material": "Begin by reading 'Introduction to Algorithms' (CLRS) alongside solving problems on LeetCode. Watch visual tutorials on YouTube (e.g., Abdul Bari’s playlist). Focus weekly on one data structure or algorithm and implement it in code.",
+    "Exam Links": "https://example.com/exams/dsa"
+  },
+  {
+    "id": 3,
+    "Course Name": "Database Systems",
+    "Study Material": "Follow the book 'Database System Concepts' by Silberschatz. Start with relational models, then move to SQL queries. Practice with MySQL or PostgreSQL. Use DB diagram tools for ER modeling exercises.",
+    "Exam Links": "https://example.com/exams/db"
+  },
+  {
+    "id": 4,
+    "Course Name": "Operating Systems",
+    "Study Material": "Use 'Modern Operating Systems' by Tanenbaum. Study one module per week (e.g., processes, threads, memory). Simulate OS concepts using tools like OS Simulator or writing simple process schedulers in C.",
+    "Exam Links": "https://example.com/exams/os"
+  },
+  {
+    "id": 5,
+    "Course Name": "Computer Networks",
+    "Study Material": "Read 'Computer Networking: A Top-Down Approach' by Kurose. Follow with Packet Tracer labs to simulate networking setups. Use NPTEL or Cisco tutorials for hands-on labs.",
+    "Exam Links": "https://example.com/exams/networks"
+  },
+  {
+    "id": 6,
+    "Course Name": "Software Engineering",
+    "Study Material": "Start with Sommerville's 'Software Engineering'. Study software development life cycles, UML diagrams, and Agile principles. Practice by managing a small project using tools like Trello and GitHub.",
+    "Exam Links": "https://example.com/exams/se"
+  },
+  {
+    "id": 7,
+    "Course Name": "Web Development",
+    "Study Material": "Begin with HTML/CSS on freeCodeCamp, then move to JavaScript. Practice with simple projects (e.g., portfolio website). Study responsive design using MDN Docs and frameworks like Bootstrap.",
+    "Exam Links": "https://example.com/exams/web"
+  },
+  {
+    "id": 8,
+    "Course Name": "Artificial Intelligence",
+    "Study Material": "Follow 'AI: A Modern Approach' for concepts. Take the Stanford AI course online. Focus on search algorithms, logic, and machine learning basics. Apply knowledge by building small AI games or agents.",
+    "Exam Links": "https://example.com/exams/ai"
+  },
+  {
+    "id": 9,
+    "Course Name": "Machine Learning",
+    "Study Material": "Start with Andrew Ng's ML course on Coursera. Practice with scikit-learn on small datasets. Learn concepts like overfitting, bias-variance, and model evaluation using hands-on notebooks.",
+    "Exam Links": "https://example.com/exams/ml"
+  },
+  {
+    "id": 10,
+    "Course Name": "Cybersecurity",
+    "Study Material": "Begin with 'Kali Linux Revealed' for penetration testing. Follow up with Cybrary modules on ethical hacking. Practice on platforms like TryHackMe or Hack The Box. Cover encryption and secure protocols.",
+    "Exam Links": "https://example.com/exams/cybersecurity"
+  }
+]

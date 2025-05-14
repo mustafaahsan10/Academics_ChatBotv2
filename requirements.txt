@@ -12,3 +12,4 @@ nltk
 tabulate
 requests
 pydantic_ai
+langgraph

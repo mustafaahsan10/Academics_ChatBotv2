@@ -12,6 +12,10 @@ import re
 from qdrant_client import QdrantClient
 from qdrant_client.http import models as qdrant_models
 
+# Import our custom Agent SDK template
+from agent_sdk_template import Agent as LangGraphAgent
+from agent_sdk_template import AgentConfig, Tool, ToolParameter
+
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -276,6 +280,71 @@ def search_course_info(request: CourseSearchRequest) -> CourseSearchResult:
             context="Error searching for course information."
         )
 
+# Function to create a LangGraph-based agent with OpenRouter
+def create_langgraph_agent():
+    """
+    Create an agent using our custom LangGraph-based Agent SDK template with OpenRouter
+    """
+    # Get model from Streamlit session state
+    model_id = "gpt-4o-mini"  # Default model
+    if "model" in st.session_state:
+        model_id = st.session_state.model
+
+    # Create our search tool using the LangGraph Tool format
+    search_tool = Tool(
+        name="search_course_info",
+        description="Search for course information based on the query",
+        parameters=[
+            ToolParameter(
+                name="query",
+                description="The query to search for course information",
+                type="string",
+                required=True
+            ),
+            ToolParameter(
+                name="language",
+                description="The language to respond in (English or Arabic)",
+                type="string",
+                required=False,
+                default="English"
+            )
+        ],
+        function=lambda query, language="English": search_course_info(
+            CourseSearchRequest(query=query, language=language)
+        ).context
+    )
+    
+    # System instructions for the agent
+    system_instructions = """You are a knowledgeable university assistant specializing in course information.
+Your goal is to provide accurate, helpful information about courses, their content, programs, majors, 
+and academic requirements.
+
+You have access to a search_course_info tool that can find information about university courses, degree programs, 
+academic requirements, and available majors. Always use this tool to look up information before answering questions.
+
+When responding to queries:
+1. Be specific about program names and degree requirements
+2. Include important information found in the search results
+3. Format your answers in a clear, structured way
+4. If information is missing or uncertain, clearly state this
+
+IMPORTANT: Respond in English by default. Only respond in Arabic if explicitly instructed to do so with "(Please respond in Arabic)" in the query.
+
+Remember that students rely on your accuracy for their academic planning, so be specific and clear.
+"""
+    
+    # Create agent configuration
+    config = AgentConfig(
+        api_key=os.environ.get("OPENROUTER_API_KEY", ""),
+        model=model_id,
+        temperature=0.7,
+        tools=[search_tool],
+        instructions=system_instructions
+    )
+    
+    # Create and return the agent
+    return LangGraphAgent(config)
+
 # Function to get an AI agent with the dynamically selected model
 def get_course_agent():
     """
@@ -289,40 +358,50 @@ def get_course_agent():
     
     if "model" in st.session_state:
         model_id = st.session_state.model
-        # Check if we should use OpenRouter
-        if "use_openrouter" in st.session_state and st.session_state.use_openrouter:
-            use_openrouter = True
+        # Check if we should use OpenRouter based on session state
+        if "use_openrouter" in st.session_state:
+            use_openrouter = st.session_state.use_openrouter
     
     logger.info(f"Using model: {model_id} for course information with tools")
-    if use_openrouter:
-        logger.info(f"Using OpenRouter API for model: {model_id}")
     
-    # Create the agent with tools
-    # Use the appropriate API configuration based on whether it's an OpenRouter model
-    course_agent = pydantic_ai.Agent(
-        model=model_id,
-        tools=[search_course_info],
-        system_prompt="""You are a knowledgeable university assistant specializing in course information.
-    Your goal is to provide accurate, helpful information about courses, their content, programs, majors, 
-    and academic requirements.
+    # If using OpenRouter, return our custom LangGraph agent
+    if use_openrouter:
+        logger.info(f"Using LangGraph agent with OpenRouter for model: {model_id}")
+        return None  # We'll handle this separately
+    else:
+        # For standard OpenAI models, use pydantic_ai
+        logger.info(f"Using pydantic_ai agent with OpenAI for model: {model_id}")
+        
+        # System prompt for pydantic_ai agent
+        system_prompt = """You are a knowledgeable university assistant specializing in course information.
+Your goal is to provide accurate, helpful information about courses, their content, programs, majors, 
+and academic requirements.
 
-    You have access to a search_course_info tool that can find information about university courses, degree programs, 
-    academic requirements, and available majors. Always use this tool to look up information before answering questions.
+You have access to a search_course_info tool that can find information about university courses, degree programs, 
+academic requirements, and available majors. Always use this tool to look up information before answering questions.
 
-    When responding to queries:
-    1. Be specific about program names and degree requirements
-    2. Include important information found in the search results
-    3. Format your answers in a clear, structured way
-    4. If information is missing or uncertain, clearly state this
+When responding to queries:
+1. Be specific about program names and degree requirements
+2. Include important information found in the search results
+3. Format your answers in a clear, structured way
+4. If information is missing or uncertain, clearly state this
 
-    For Arabic queries, respond in fluent Arabic. For English queries, respond in clear English.
+IMPORTANT: Respond in English by default. Only respond in Arabic if explicitly instructed to do so with "(Please respond in Arabic)" in the query.
 
-    Remember that students rely on your accuracy for their academic planning, so be specific and clear.
-    """,
-        openai_api_key=openrouter_api_key if use_openrouter else openai_api_key,
-        openai_api_base="https://openrouter.ai/api/v1" if use_openrouter else None
-    )
-    return course_agent
+Remember that students rely on your accuracy for their academic planning, so be specific and clear.
+"""
+
+        # Create the agent with tools for OpenAI
+        api_config = {
+            "model": model_id,
+            "tools": [search_course_info],
+            "system_prompt": system_prompt,
+            "openai_api_key": openai_api_key
+        }
+        
+        # Create the pydantic_ai agent with the appropriate config
+        course_agent = pydantic_ai.Agent(**api_config)
+        return course_agent
 
 async def get_course_response(query: str, language: str = "English") -> str:
     """
@@ -336,113 +415,42 @@ async def get_course_response(query: str, language: str = "English") -> str:
         Formatted response string
     """
     try:
-        # Check if OpenRouter should be used
-        use_openrouter = False
+        # Get model information from session state
         model_id = "gpt-4o-mini"  # Default model
+        use_openrouter = False
         
         if "model" in st.session_state:
             model_id = st.session_state.model
             if "use_openrouter" in st.session_state:
                 use_openrouter = st.session_state.use_openrouter
                 
-        logger.info(f"Processing query with model: {model_id}, using OpenRouter: {use_openrouter}")
+        logger.info(f"Processing query with model: {model_id}, using OpenRouter: {use_openrouter}, language: {language}")
         
         # Prepare user message with language preference
         user_message = query
         if language.lower() == "arabic":
             user_message = f"{query} (Please respond in Arabic)"
+        else:
+            # Explicitly request English response
+            user_message = f"{query} (Please respond in English)"
         
         if use_openrouter:
-            # Use direct OpenRouter API call
-            import requests
-            import json
+            # Use our LangGraph-based Agent with OpenRouter
+            logger.info(f"Using LangGraph agent with OpenRouter for model: {model_id}")
+            langgraph_agent = create_langgraph_agent()
             
-            # Get the search results first
-            search_request = CourseSearchRequest(query=query, language=language)
-            search_result = search_course_info(search_request)
-            context = search_result.context
-            
-            # Prepare system message with context
-            system_message = """You are a knowledgeable university assistant specializing in course information.
-Your goal is to provide accurate, helpful information about courses, their content, programs, majors, 
-and academic requirements based on the following information:
-
-""" + context + """
-
-When responding to queries:
-1. Be specific about program names and degree requirements
-2. Include important information found in the search results
-3. Format your answers in a clear, structured way
-4. If information is missing or uncertain, clearly state this
-
-For Arabic queries, respond in fluent Arabic. For English queries, respond in clear English.
-"""
-            
-            # Get OpenRouter API key
-            openrouter_api_key = os.getenv("OPENROUTER_API_KEY")
-            if not openrouter_api_key:
-                logger.error("OPENROUTER_API_KEY not found in environment variables")
-                raise ValueError("OpenRouter API key not found")
-            
-            # Make direct API call to OpenRouter
-            api_url = "https://openrouter.ai/api/v1/chat/completions"
-            headers = {
-                "Authorization": f"Bearer {openrouter_api_key}",
-                "Content-Type": "application/json",
-                "HTTP-Referer": "https://university-chatbot.com",  # Replace with your actual site URL
-                "X-Title": "University Chatbot"  # Replace with your actual site name
-            }
-            
-            # Format the model name for OpenRouter
-            # Claude models need "anthropic/" prefix, and Gemini needs "google/" prefix
-            if model_id == "claude-3-haiku" or model_id == "claude-3-sonnet" or model_id == "claude-3-opus":
-                openrouter_model = f"anthropic/{model_id}"
-            elif model_id == "gemini-2.0-flash-001":
-                openrouter_model = f"google/{model_id}"
-            else:
-                openrouter_model = model_id
-                
-            logger.info(f"Using OpenRouter model: {openrouter_model}")
-            
-            # Prepare payload
-            payload = {
-                "model": openrouter_model,
-                "messages": [
-                    {"role": "system", "content": system_message},
-                    {"role": "user", "content": user_message}
-                ]
-            }
-            
-            # Make the API request
-            try:
-                response = requests.post(api_url, headers=headers, data=json.dumps(payload))
-                
-                # Check if request was successful
-                if response.status_code == 200:
-                    response_data = response.json()
-                    if "choices" in response_data and len(response_data["choices"]) > 0:
-                        return response_data["choices"][0]["message"]["content"]
-                    else:
-                        logger.error(f"Unexpected response format: {response_data}")
-                        raise ValueError("Invalid response format from OpenRouter")
-                else:
-                    logger.error(f"OpenRouter API error: {response.status_code} - {response.text}")
-                    raise ValueError(f"OpenRouter API error: {response.status_code}")
-                    
-            except Exception as e:
-                logger.error(f"Error making OpenRouter API call: {e}")
-                # Fall back to using pydantic_ai agent with OpenAI model
-                logger.info("Falling back to standard OpenAI model")
-                # Clear the OpenRouter flag to use standard OpenAI
-                use_openrouter = False
-                model_id = "gpt-4o-mini"  # Use a reliable fallback model
-        
-        # Standard approach using pydantic_ai Agent
-        logger.info(f"Using pydantic_ai agent with model: {model_id}")
-        course_agent = get_course_agent()
-        response = await course_agent.run(user_message)
-        logger.info(f"Received response type: {type(response)}")
-        return response.output
+            # Run the agent and get the response
+            result = langgraph_agent.run(user_message)
+            response = result["response"]
+            logger.info(f"Received LangGraph agent response")
+            return response
+        else:
+            # Use pydantic_ai agent for OpenAI models
+            logger.info(f"Using pydantic_ai agent with model: {model_id}")
+            course_agent = get_course_agent()
+            response = await course_agent.run(user_message)
+            logger.info(f"Received response type: {type(response)}")
+            return response.output
         
     except Exception as e:
         import traceback

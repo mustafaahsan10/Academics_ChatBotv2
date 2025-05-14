@@ -1,4 +1,5 @@
 import os
+import sys
 import json
 import argparse
 from pathlib import Path
@@ -8,6 +9,12 @@ import logging
 from langchain_openai import OpenAIEmbeddings
 from qdrant_client.models import PointStruct
 
+# Add the project root directory to the Python path
+# This allows the script to find modules in the parent directories
+project_root = str(Path(__file__).parent.parent.parent.absolute())
+sys.path.insert(0, project_root)
+
+# Now import from utils
 from utils.qdrant_helper import qdrant_manager
 
 # Configure logging
@@ -45,8 +52,8 @@ def load_resource_files(data_dir: str) -> List[Dict[str, Any]]:
     documents = []
     data_path = Path(data_dir)
     
-    # Look for the study_resources.json file
-    file_path = data_path / "study_resources.json"
+    # Look for the study_resource.json file (updated filename)
+    file_path = data_path / "study_resource.json"
     
     if not file_path.exists():
         logger.warning(f"Study resources data file not found at {file_path}")
@@ -59,24 +66,22 @@ def load_resource_files(data_dir: str) -> List[Dict[str, Any]]:
         
         # Process each resource as a separate document
         for i, resource in enumerate(resources):
-            # Add an ID if not present
-            if "id" not in resource:
-                resource["id"] = f"resource-{i}"
+            # Map the fields from the actual JSON structure
+            mapped_resource = {
+                "id": resource.get("id", f"resource-{i}"),
+                "title": f"Study Material for {resource.get('Course Name', '')}",
+                "course_name": resource.get("Course Name", ""),
+                "resource_type": "Study Guide",
+                "description": resource.get("Study Material", ""),
+                "exam_links": resource.get("Exam Links", ""),
+            }
             
-            # Ensure text field exists for embedding
-            if "text" not in resource:
-                # Construct a text representation
-                title = resource.get("title", "")
-                course = resource.get("course_code", "") + " " + resource.get("course_name", "")
-                resource_type = resource.get("resource_type", "")
-                author = resource.get("author", "")
-                description = resource.get("description", "")
-                
-                text = f"Title: {title}. Course: {course}. Type: {resource_type}. Author: {author}. Description: {description}"
-                resource["text"] = text
+            # Generate text field for embedding
+            text = f"Course: {mapped_resource['course_name']}. Study Material: {mapped_resource['description']}. Exam Links: {mapped_resource['exam_links']}"
+            mapped_resource["text"] = text
             
             # Enhance metadata
-            enhanced_resource = enhance_resource_metadata(resource)
+            enhanced_resource = enhance_resource_metadata(mapped_resource)
             documents.append(enhanced_resource)
         
         logger.info(f"Added {len(documents)} resource documents")
@@ -109,27 +114,47 @@ def enhance_resource_metadata(item: Dict[str, Any]) -> Dict[str, Any]:
     if "keywords" not in enhanced:
         enhanced["keywords"] = []
     
-    # Add relevant keywords based on resource type
-    resource_type = enhanced.get("resource_type", "").lower()
-    if resource_type:
-        if resource_type not in enhanced["keywords"]:
-            enhanced["keywords"].append(resource_type)
+    # Add relevant keywords based on course name
+    course_name = enhanced.get("course_name", "").lower()
+    if course_name:
+        # Add the course name as a keyword
+        if course_name not in enhanced["keywords"]:
+            enhanced["keywords"].append(course_name)
         
-        if "resource" not in enhanced["keywords"]:
-            enhanced["keywords"].append("resource")
+        # Extract important terms from course name
+        course_terms = course_name.split()
+        for term in course_terms:
+            if len(term) > 3 and term not in enhanced["keywords"]:  # Only add substantial terms
+                enhanced["keywords"].append(term)
         
-        if "textbook" in resource_type and "textbook" not in enhanced["keywords"]:
-            enhanced["keywords"].append("textbook")
+        # Add "study material" as a keyword
+        if "study material" not in enhanced["keywords"]:
+            enhanced["keywords"].append("study material")
             
-        if "notes" in resource_type and "notes" not in enhanced["keywords"]:
-            enhanced["keywords"].append("notes")
+        # Add specific course-related keywords
+        if "computer" in course_name and "computer science" not in enhanced["keywords"]:
+            enhanced["keywords"].append("computer science")
             
-        if "slides" in resource_type and "slides" not in enhanced["keywords"]:
-            enhanced["keywords"].append("slides")
-    
-    # Add title as a keyword if it exists
-    if "title" in enhanced and enhanced["title"] and enhanced["title"] not in enhanced["keywords"]:
-        enhanced["keywords"].append(enhanced["title"])
+        if "data" in course_name and "data structures" not in enhanced["keywords"]:
+            enhanced["keywords"].append("data structures")
+            
+        if "algorithm" in course_name and "algorithms" not in enhanced["keywords"]:
+            enhanced["keywords"].append("algorithms")
+            
+        if "database" in course_name and "database" not in enhanced["keywords"]:
+            enhanced["keywords"].append("database")
+            
+        if "web" in course_name and "web development" not in enhanced["keywords"]:
+            enhanced["keywords"].append("web development")
+            
+        if "machine" in course_name and "machine learning" not in enhanced["keywords"]:
+            enhanced["keywords"].append("machine learning")
+            
+        if "artificial" in course_name and "ai" not in enhanced["keywords"]:
+            enhanced["keywords"].append("ai")
+            
+        if "cyber" in course_name and "cybersecurity" not in enhanced["keywords"]:
+            enhanced["keywords"].append("cybersecurity")
     
     return enhanced
 
