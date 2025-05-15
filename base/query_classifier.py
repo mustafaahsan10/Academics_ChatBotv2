@@ -32,7 +32,7 @@ Your task is to analyze user queries and route them to the most appropriate modu
 
 Available modules:
 1. course_information - For queries about course content, prerequisites, credit hours, descriptions, faculty structure, departments, majors, degree programs, university academic structure
-2. class_schedules - For queries about when and where classes meet, timetables, room numbers
+2. class_schedules - For queries about when and where classes meet, timetables, room numbers, semester start/end dates, lecture times, final exam schedules
 3. exam_alerts - For queries about exam dates, deadlines, assignment due dates, assessments
 4. study_resources - For queries about textbooks, study materials, library resources, online resources
 5. professors - For queries about specific faculty members, office hours, contact details, research interests
@@ -54,6 +54,15 @@ For example:
 - "How many credits does a Computer Science major have?" → course_information (high confidence)
 - "What undergraduate programs are available?" → course_information (high confidence)
 - "What degrees are offered in the Business faculty?" → course_information (high confidence)
+- "When does the fall semester start and end?" → class_schedules (high confidence)
+- "Can I see the class CSC 226 schedule for the upcoming semester?" → class_schedules (high confidence)
+- "What are the lecture times for Database Systems?" → class_schedules (high confidence)
+- "When does the fall semester final exams start?" → class_schedules (high confidence)
+- "Who is teaching CSC 226 this semester?" → professors (high confidence)
+- "How can I find Professor Hoda Maalouf's contact information?" → professors (high confidence)
+- "What are Professor Nazir Hawi's office hours?" → professors (high confidence)
+- "Where is Professor Johnson's office located?" → professors (high confidence)
+- "What courses is Professor Smith currently teaching?" → professors (high confidence)
 
 Always include your reasoning for why you selected a particular module.
 """

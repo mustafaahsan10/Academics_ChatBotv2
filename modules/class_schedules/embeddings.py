@@ -19,7 +19,7 @@ load_dotenv()
 
 # Constants
 COLLECTION_NAME = "class_schedules"
-DATA_DIR = "data/schedules"
+DATA_DIR = "data/processed/Class_Schedule.json"
 EMBEDDING_MODEL = "text-embedding-3-small"  # Using OpenAI's small embedding model
 EMBEDDING_DIMENSION = 1536  # Dimension for text-embedding-3-small
 
@@ -32,30 +32,25 @@ def parse_arguments():
     parser.add_argument("--model", default=EMBEDDING_MODEL, help="Embedding model to use")
     return parser.parse_args()
 
-def load_schedule_files(data_dir: str) -> List[Dict[str, Any]]:
+def load_schedule_files(data_path: str) -> List[Dict[str, Any]]:
     """
-    Load all class schedule files from the specified directory
+    Load class schedule data from the specified path
     
     Args:
-        data_dir: Directory containing schedule data files
+        data_path: Path to the schedule data file or directory
         
     Returns:
         List of schedule document dictionaries
     """
     documents = []
-    data_path = Path(data_dir)
+    path = Path(data_path)
     
-    # Get all JSON files in the directory
-    json_files = list(data_path.glob("**/*.json"))
-    
-    if not json_files:
-        logger.warning(f"No schedule files found in {data_dir}")
-        return []
-    
-    for file_path in json_files:
+    # Check if the path is a file or directory
+    if path.is_file():
+        # Direct file path provided
         try:
-            logger.info(f"Processing: {file_path}")
-            with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+            logger.info(f"Processing file: {path}")
+            with open(path, 'r', encoding='utf-8', errors='ignore') as f:
                 content = f.read()
             
             # Parse JSON content
@@ -64,74 +59,147 @@ def load_schedule_files(data_dir: str) -> List[Dict[str, Any]]:
                 
                 # Handle different JSON structures
                 if isinstance(items, list):
-                    for item in items:
-                        # Extract and enhance schedule information
-                        enhanced_item = enhance_schedule_metadata(item)
-                        documents.append(enhanced_item)
+                    documents.extend(items)
+                    logger.info(f"Added {len(items)} schedule documents from {path}")
                 elif isinstance(items, dict):
-                    if "chunks" in items:
-                        # Handle export format
-                        for chunk in items["chunks"]:
-                            enhanced_chunk = enhance_schedule_metadata(chunk)
-                            documents.append(enhanced_chunk)
+                    if "schedules" in items and isinstance(items["schedules"], list):
+                        # Handle nested structure
+                        documents.extend(items["schedules"])
+                        logger.info(f"Added {len(items['schedules'])} schedule documents from {path}")
                     else:
-                        enhanced_item = enhance_schedule_metadata(items)
-                        documents.append(enhanced_item)
+                        # Single document
+                        documents.append(items)
+                        logger.info(f"Added 1 schedule document from {path}")
+                    
             except json.JSONDecodeError:
-                logger.error(f"Error parsing JSON in {file_path}")
-                continue
-            
-            logger.info(f"Added {len(documents)} schedule documents from {file_path}")
-            
+                logger.error(f"Error parsing JSON in {path}")
+                
         except Exception as e:
-            logger.error(f"Error processing {file_path}: {e}")
+            logger.error(f"Error processing file {path}: {e}")
+    
+    else:
+        # Directory path provided
+        json_files = [file for file in path.glob("**/*.json") if "Class_Schedule" in file.name]
+        
+        if not json_files:
+            logger.warning(f"No schedule files found in {data_path}")
+            return []
+        
+        for file_path in json_files:
+            try:
+                logger.info(f"Processing: {file_path}")
+                with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+                    content = f.read()
+                
+                # Parse JSON content
+                try:
+                    items = json.loads(content)
+                    
+                    # Handle different JSON structures
+                    if isinstance(items, list):
+                        for item in items:
+                            # Ensure the document structure matches what we expect
+                            if all(field in item for field in ["id", "heading", "course_code", "course_name", "sessions", "text", "keywords"]):
+                                documents.append(item)
+                            else:
+                                logger.warning(f"Skipping item with incomplete fields: {item.get('id', 'unknown')}")
+                    elif isinstance(items, dict):
+                        if "schedules" in items and isinstance(items["schedules"], list):
+                            # Handle nested structure
+                            for schedule in items["schedules"]:
+                                documents.append(schedule)
+                        else:
+                            # Single document
+                            documents.append(items)
+                except json.JSONDecodeError:
+                    logger.error(f"Error parsing JSON in {file_path}")
+                    continue
+                
+                logger.info(f"Added {len(documents)} schedule documents from {file_path}")
+                
+            except Exception as e:
+                logger.error(f"Error processing {file_path}: {e}")
     
     return documents
 
-def enhance_schedule_metadata(item: Dict[str, Any]) -> Dict[str, Any]:
+def prepare_schedule_document(doc: Dict[str, Any]) -> Dict[str, Any]:
     """
-    Enhance schedule metadata for better searchability
+    Prepare a schedule document for embedding by ensuring all required fields are present
+    and normalized
     
     Args:
-        item: Original schedule item
+        doc: The original schedule document
         
     Returns:
-        Enhanced schedule item with additional metadata
+        Enhanced and normalized schedule document
     """
     # Create a copy to avoid modifying the original
-    enhanced = item.copy()
+    prepared_doc = doc.copy()
     
-    # Add module identifier to the metadata
-    if "metadata" not in enhanced:
-        enhanced["metadata"] = {}
+    # Ensure required fields exist
+    required_fields = ["id", "heading", "text", "course_code", "course_name", "sessions", "keywords"]
+    for field in required_fields:
+        if field not in prepared_doc:
+            if field == "id":
+                prepared_doc["id"] = f"schedule-{hash(prepared_doc.get('heading', '') + prepared_doc.get('course_code', ''))}"
+            elif field == "keywords":
+                prepared_doc["keywords"] = []
+            elif field == "sessions":
+                prepared_doc["sessions"] = []
+            else:
+                prepared_doc[field] = ""
     
-    enhanced["metadata"]["module"] = "class_schedules"
-    enhanced["metadata"]["type"] = "schedule_document"
+    # Ensure sessions has the correct structure
+    for i, session in enumerate(prepared_doc["sessions"]):
+        if not isinstance(session, dict):
+            prepared_doc["sessions"][i] = {"day": "", "time_slot": ""}
+        else:
+            if "day" not in session:
+                session["day"] = ""
+            if "time_slot" not in session:
+                session["time_slot"] = ""
     
-    # Add searchable day and time information from sessions if present
-    if "sessions" in enhanced:
-        days = []
-        times = []
-        
-        for session in enhanced["sessions"]:
-            if "day" in session and session["day"] not in days:
-                days.append(session["day"])
-            if "time_slot" in session:
-                times.append(session["time_slot"])
-        
-        enhanced["metadata"]["days"] = days
-        enhanced["metadata"]["times"] = times
+    # Extract day and time information for searchable text
+    days_info = []
+    times_info = []
+    for session in prepared_doc["sessions"]:
+        if session["day"] and session["day"] not in days_info:
+            days_info.append(session["day"])
+        if session["time_slot"] and session["time_slot"] not in times_info:
+            times_info.append(session["time_slot"])
     
-    # Ensure keywords include schedule-related terms
-    if "keywords" in enhanced:
-        schedule_keywords = ["schedule", "timetable", "class time", "session"]
-        for keyword in schedule_keywords:
-            if keyword not in enhanced["keywords"]:
-                enhanced["keywords"].append(keyword)
-    else:
-        enhanced["keywords"] = ["schedule", "timetable", "class time", "session"]
+    # Enhance the text field with session information for better searching
+    if prepared_doc["text"] and not any(day in prepared_doc["text"] for day in days_info):
+        sessions_text = ", ".join([f"{s['day']} at {s['time_slot']}" for s in prepared_doc["sessions"] if s["day"] and s["time_slot"]])
+        if sessions_text:
+            prepared_doc["text"] += f" Sessions: {sessions_text}."
     
-    return enhanced
+    # Enhance keywords
+    existing_keywords = set(prepared_doc["keywords"])
+    
+    # Add course code and name to keywords
+    if prepared_doc["course_code"] and prepared_doc["course_code"] not in existing_keywords:
+        prepared_doc["keywords"].append(prepared_doc["course_code"])
+    
+    if prepared_doc["course_name"] and prepared_doc["course_name"] not in existing_keywords:
+        prepared_doc["keywords"].append(prepared_doc["course_name"])
+    
+    # Add days and times to keywords
+    for day in days_info:
+        if day and day not in existing_keywords:
+            prepared_doc["keywords"].append(day)
+    
+    for time in times_info:
+        if time and time not in existing_keywords:
+            prepared_doc["keywords"].append(time)
+    
+    # Add standard schedule keywords if they don't exist
+    standard_keywords = ["schedule", "timetable", "class time", "session"]
+    for keyword in standard_keywords:
+        if keyword not in existing_keywords:
+            prepared_doc["keywords"].append(keyword)
+    
+    return prepared_doc
 
 def generate_embeddings_and_upload(args, documents: List[Dict[str, Any]]):
     """
@@ -167,16 +235,19 @@ def generate_embeddings_and_upload(args, documents: List[Dict[str, Any]]):
             end_idx = min(i + batch_size, len(documents))
             batch_docs = documents[i:end_idx]
             
+            # Prepare documents
+            prepared_docs = [prepare_schedule_document(doc) for doc in batch_docs]
+            
             try:
                 # Extract text content for embeddings
-                texts = [doc.get("text", "") for doc in batch_docs]
+                texts = [doc.get("text", "") for doc in prepared_docs]
                 
                 # Generate embeddings
                 batch_embeddings = embeddings.embed_documents(texts)
                 
                 # Prepare points
                 points = []
-                for j, (doc, embedding_vector) in enumerate(zip(batch_docs, batch_embeddings)):
+                for j, (doc, embedding_vector) in enumerate(zip(prepared_docs, batch_embeddings)):
                     # Create point ID - either use the document's ID or generate one
                     point_id = doc.get("id", f"schedule-{total_points + j}")
                     
@@ -189,26 +260,27 @@ def generate_embeddings_and_upload(args, documents: List[Dict[str, Any]]):
                         except ValueError:
                             numeric_id = total_points + j
                     
-                    # Create metadata structure
-                    metadata = doc.get("metadata", {})
-                    if not metadata:
-                        metadata = {
-                            "heading": doc.get("heading", ""),
-                            "keywords": doc.get("keywords", []),
-                            "module": "class_schedules",
-                            "type": "schedule_document"
-                        }
-                    
-                    # Add additional schedule-specific fields to payload for searching
-                    payload = {
-                        "text": doc.get("text", ""),
-                        "metadata": metadata
+                    # Create metadata structure for search filtering
+                    metadata = {
+                        "module": "class_schedules",
+                        "type": "schedule_document",
+                        "heading": doc.get("heading", ""),
+                        "days": [session.get("day", "") for session in doc.get("sessions", []) if session.get("day")],
+                        "times": [session.get("time_slot", "") for session in doc.get("sessions", []) if session.get("time_slot")]
                     }
                     
-                    # Add additional schedule fields directly to payload for search
-                    for field in ["course_code", "course_name", "program", "sessions"]:
-                        if field in doc:
-                            payload[field] = doc[field]
+                    # Create payload for storage and search
+                    payload = {
+                        "id": doc.get("id", ""),
+                        "heading": doc.get("heading", ""),
+                        "text": doc.get("text", ""),
+                        "course_code": doc.get("course_code", ""),
+                        "course_name": doc.get("course_name", ""),
+                        "program": doc.get("program", ""),
+                        "sessions": doc.get("sessions", []),
+                        "keywords": doc.get("keywords", []),
+                        "metadata": metadata
+                    }
                     
                     # Create point with embedding and payload
                     points.append(
@@ -245,7 +317,7 @@ def main():
     
     # Load schedule files
     documents = load_schedule_files(args.data_dir)
-    logger.info(f"Found {len(documents)} total schedule documents/chunks")
+    logger.info(f"Found {len(documents)} total schedule documents")
     
     if not documents:
         logger.warning("No documents found. Please check the schedule data directory.")

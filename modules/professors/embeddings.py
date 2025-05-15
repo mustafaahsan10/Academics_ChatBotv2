@@ -19,99 +19,166 @@ load_dotenv()
 
 # Constants
 COLLECTION_NAME = "professors"
-DATA_DIR = "data/processed"
+DATA_FILE = "data/processed/professor_data.json"  # Direct file path
 EMBEDDING_MODEL = "text-embedding-3-small"  # Using OpenAI's small embedding model
 EMBEDDING_DIMENSION = 1536  # Dimension for text-embedding-3-small
 
 def parse_arguments():
     """Parse command line arguments"""
     parser = argparse.ArgumentParser(description="Ingest professor information into Qdrant vector database")
-    parser.add_argument("--data_dir", default=DATA_DIR, help="Directory containing faculty data files")
+    parser.add_argument("--data_path", default=DATA_FILE, help="Path to the data file or directory")
     parser.add_argument("--collection", default=COLLECTION_NAME, help="Qdrant collection name")
     parser.add_argument("--recreate", action="store_true", help="Recreate the collection if it exists")
     parser.add_argument("--model", default=EMBEDDING_MODEL, help="Embedding model to use")
     return parser.parse_args()
 
-def load_professor_files(data_dir: str) -> List[Dict[str, Any]]:
+def load_professor_files(data_path: str) -> List[Dict[str, Any]]:
     """
-    Load all professor information files from the specified directory
+    Load professor information from the specified file or directory
     
     Args:
-        data_dir: Directory containing faculty data files
+        data_path: Path to the data file or directory
         
     Returns:
         List of professor document dictionaries
     """
     documents = []
-    data_path = Path(data_dir)
+    path = Path(data_path)
     
-    # Look for the professors.json file
-    file_path = data_path / "professors.json"
+    # Check if path is a file or directory
+    if path.is_file():
+        # Process a single file
+        file_paths = [path]
+    else:
+        # Get all JSON files in the directory
+        file_paths = list(path.glob("**/*.json"))
     
-    if not file_path.exists():
-        logger.warning(f"Professor data file not found at {file_path}")
+    if not file_paths:
+        logger.warning(f"No professor files found at {data_path}")
         return []
     
-    try:
-        logger.info(f"Processing: {file_path}")
-        with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
-            professors = json.load(f)
-        
-        # Process each professor as a separate document
-        for i, professor in enumerate(professors):
-            # Add an ID if not present
-            if "id" not in professor:
-                professor["id"] = f"professor-{i}"
+    for file_path in file_paths:
+        try:
+            logger.info(f"Processing: {file_path}")
+            with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+                content = f.read()
             
-            # Ensure text field exists for embedding
-            if "text" not in professor and "heading" in professor:
-                professor["text"] = professor["heading"]
+            # Parse JSON content
+            try:
+                items = json.loads(content)
+                
+                # Handle different JSON structures - professor data is typically a list
+                if isinstance(items, list):
+                    # Process and add each professor entry
+                    for item in items:
+                        # Add a module identifier to the metadata
+                        if "metadata" not in item:
+                            item["metadata"] = {"module": "professors"}
+                        else:
+                            item["metadata"]["module"] = "professors"
+                        documents.append(item)
+                elif isinstance(items, dict):
+                    # Single document
+                    if "metadata" not in items:
+                        items["metadata"] = {"module": "professors"}
+                    else:
+                        items["metadata"]["module"] = "professors"
+                    documents.append(items)
+            except json.JSONDecodeError:
+                logger.error(f"Error parsing JSON in {file_path}")
+                continue
             
-            # Enhance metadata
-            enhanced_professor = enhance_professor_metadata(professor)
-            documents.append(enhanced_professor)
-        
-        logger.info(f"Added {len(documents)} professor documents")
-    except Exception as e:
-        logger.error(f"Error processing {file_path}: {e}")
+            logger.info(f"Added {len(documents)} professor documents from {file_path}")
+            
+        except Exception as e:
+            logger.error(f"Error processing {file_path}: {e}")
     
     return documents
 
-def enhance_professor_metadata(item: Dict[str, Any]) -> Dict[str, Any]:
+def prepare_professor_document(doc: Dict[str, Any]) -> Dict[str, Any]:
     """
-    Enhance professor metadata for better searchability
+    Prepare and enhance the professor document for embedding
     
     Args:
-        item: Original professor item
+        doc: The original professor document
         
     Returns:
-        Enhanced professor item with additional metadata
+        Enhanced professor document for better search
     """
-    # Create a copy to avoid modifying the original
-    enhanced = item.copy()
+    enhanced_doc = doc.copy()
     
-    # Add module identifier to the metadata
-    if "metadata" not in enhanced:
-        enhanced["metadata"] = {}
-    
-    enhanced["metadata"]["module"] = "professors"
-    enhanced["metadata"]["type"] = "professor_document"
-    
-    # Ensure keywords field exists
-    if "keywords" not in enhanced:
-        enhanced["keywords"] = []
-    
-    # Add relevant keywords based on professor info
-    if "heading" in enhanced and enhanced["heading"] not in enhanced["keywords"]:
-        enhanced["keywords"].append(enhanced["heading"])
-    
-    if "professor" not in enhanced["keywords"]:
-        enhanced["keywords"].append("professor")
+    # Create a concatenated text field if it doesn't exist or is empty
+    if "main_text" not in enhanced_doc or not enhanced_doc["main_text"]:
+        main_text_parts = []
         
-    if "faculty" not in enhanced["keywords"]:
-        enhanced["keywords"].append("faculty")
+        # Add professor name and title
+        if enhanced_doc.get("professor_name"):
+            main_text_parts.append(f"Professor: {enhanced_doc['professor_name']}")
+        
+        if enhanced_doc.get("professor_title"):
+            main_text_parts.append(f"Title: {enhanced_doc['professor_title']}")
+        
+        # Add contact info
+        if enhanced_doc.get("email"):
+            main_text_parts.append(f"Email: {enhanced_doc['email']}")
+        
+        if enhanced_doc.get("phone"):
+            main_text_parts.append(f"Phone: {enhanced_doc['phone']}")
+        
+        if enhanced_doc.get("office_location"):
+            main_text_parts.append(f"Office Location: {enhanced_doc['office_location']}")
+        
+        # Add university and department
+        if enhanced_doc.get("university"):
+            main_text_parts.append(f"University: {enhanced_doc['university']}")
+        
+        if enhanced_doc.get("faculty_department_institute"):
+            main_text_parts.append(f"Department: {enhanced_doc['faculty_department_institute']}")
+        
+        # Add work title for publications
+        if enhanced_doc.get("work_title"):
+            main_text_parts.append(f"Work: {enhanced_doc['work_title']}")
+        
+        # Join everything
+        enhanced_doc["main_text"] = " ".join(main_text_parts)
     
-    return enhanced
+    # Create a heading field if it doesn't exist
+    if "heading" not in enhanced_doc or not enhanced_doc["heading"]:
+        if enhanced_doc.get("professor_name"):
+            enhanced_doc["heading"] = enhanced_doc["professor_name"]
+            if enhanced_doc.get("professor_title"):
+                enhanced_doc["heading"] += f", {enhanced_doc['professor_title']}"
+        elif enhanced_doc.get("work_title"):
+            enhanced_doc["heading"] = enhanced_doc["work_title"]
+    
+    # Ensure the text field exists for embedding
+    if "text" not in enhanced_doc or not enhanced_doc["text"]:
+        enhanced_doc["text"] = enhanced_doc.get("main_text", "")
+    
+    # Make sure keywords field exists
+    if "keywords" not in enhanced_doc:
+        enhanced_doc["keywords"] = []
+    
+    # Add important keywords
+    keywords = set(enhanced_doc["keywords"])
+    
+    # Add professor name to keywords
+    if enhanced_doc.get("professor_name") and enhanced_doc["professor_name"] not in keywords:
+        keywords.add(enhanced_doc["professor_name"])
+    
+    # Add chunk type as keyword
+    if enhanced_doc.get("chunk_type") and enhanced_doc["chunk_type"] not in keywords:
+        keywords.add(enhanced_doc["chunk_type"])
+    
+    # Add standard professor keywords if they don't exist
+    standard_keywords = ["professor", "faculty", "instructor", "teacher", "academic", "contact", "office"]
+    for keyword in standard_keywords:
+        if keyword not in keywords:
+            keywords.add(keyword)
+    
+    enhanced_doc["keywords"] = list(keywords)
+    
+    return enhanced_doc
 
 def generate_embeddings_and_upload(args, documents: List[Dict[str, Any]]):
     """
@@ -147,16 +214,19 @@ def generate_embeddings_and_upload(args, documents: List[Dict[str, Any]]):
             end_idx = min(i + batch_size, len(documents))
             batch_docs = documents[i:end_idx]
             
+            # Prepare documents for embedding
+            prepared_docs = [prepare_professor_document(doc) for doc in batch_docs]
+            
             try:
                 # Extract text content for embeddings
-                texts = [doc.get("text", "") for doc in batch_docs]
+                texts = [doc.get("text", "") or doc.get("main_text", "") for doc in prepared_docs]
                 
                 # Generate embeddings
                 batch_embeddings = embeddings.embed_documents(texts)
                 
                 # Prepare points
                 points = []
-                for j, (doc, embedding_vector) in enumerate(zip(batch_docs, batch_embeddings)):
+                for j, (doc, embedding_vector) in enumerate(zip(prepared_docs, batch_embeddings)):
                     # Create point ID - either use the document's ID or generate one
                     point_id = doc.get("id", f"professor-{total_points + j}")
                     
@@ -169,15 +239,39 @@ def generate_embeddings_and_upload(args, documents: List[Dict[str, Any]]):
                         except ValueError:
                             numeric_id = total_points + j
                     
-                    # Create metadata structure
-                    metadata = doc.get("metadata", {})
+                    # Create enhanced metadata structure for search filtering
+                    metadata = {
+                        "module": "professors",
+                        "type": doc.get("chunk_type", "professor_document"),
+                        "professor_name": doc.get("professor_name", ""),
+                        "heading": doc.get("heading", ""),
+                        "keywords": doc.get("keywords", [])
+                    }
+                    
+                    # Create payload with all relevant fields
+                    payload = {
+                        "id": doc.get("id", ""),
+                        "heading": doc.get("heading", ""),
+                        "text": doc.get("text", "") or doc.get("main_text", ""),
+                        "professor_name": doc.get("professor_name", ""),
+                        "professor_title": doc.get("professor_title", ""),
+                        "university": doc.get("university", ""),
+                        "faculty_department_institute": doc.get("faculty_department_institute", ""),
+                        "office_location": doc.get("office_location", ""),
+                        "phone": doc.get("phone", ""),
+                        "email": doc.get("email", ""),
+                        "work_title": doc.get("work_title", ""),
+                        "keywords": doc.get("keywords", []),
+                        "chunk_type": doc.get("chunk_type", ""),
+                        "metadata": metadata
+                    }
                     
                     # Create point with embedding and payload
                     points.append(
                         PointStruct(
                             id=numeric_id,
                             vector=embedding_vector,
-                            payload=doc  # Store the entire document as payload
+                            payload=payload
                         )
                     )
                 
@@ -205,12 +299,12 @@ def main():
     # Parse command line arguments
     args = parse_arguments()
     
-    # Load professor files
-    documents = load_professor_files(args.data_dir)
-    logger.info(f"Found {len(documents)} total professor documents/chunks")
+    # Load professor files - now works with either a file or directory
+    documents = load_professor_files(args.data_path)
+    logger.info(f"Found {len(documents)} total professor documents")
     
     if not documents:
-        logger.warning("No documents found. Please check the faculty data directory.")
+        logger.warning("No documents found. Please check the file path or directory.")
         return
     
     # Generate embeddings and upload to Qdrant
