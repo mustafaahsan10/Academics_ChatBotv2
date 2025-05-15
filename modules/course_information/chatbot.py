@@ -27,9 +27,9 @@ OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "")
 class CourseQueryContext(BaseModel):
     """Context for a course information query"""
     user_query: str = Field(..., description="The user's original query about course information")
-    course_code: Optional[str] = Field(None, description="Course code mentioned in the query (e.g., 'CSC 226')")
-    course_name: Optional[str] = Field(None, description="Course name mentioned in the query")
-    keywords: List[str] = Field(default_factory=list, description="Important keywords extracted from the query")
+    processed_query: str = Field("", description="The processed query with stopwords removed")
+    keywords_matches: List[Dict] = Field(default_factory=list, description="Matches found in the keywords field")
+    heading_matches: List[Dict] = Field(default_factory=list, description="Matches found in the heading field")
     context: Optional[str] = Field(None, description="Context information retrieved from search")
     response_language: str = Field("English", description="Language to respond in (English or Arabic)")
 
@@ -54,74 +54,162 @@ qdrant_client = QdrantClient(
 )
 
 # Helper functions for search
-def extract_keywords(query: str) -> List[str]:
-    """Extract keywords from the query"""
+def process_query(query: str) -> str:
+    """Process the query to remove stopwords and prepare for search"""
     stopwords = ["the", "a", "an", "is", "are", "was", "were", "be", "been", "in", 
                  "on", "at", "to", "for", "with", "by", "about", "like", "how", 
-                 "what", "when", "where", "why", "who", "which"]
+                 "what", "when", "where", "why", "who", "which", "can", "you", "tell",
+                 "me", "list", "all", "available", "have", "does"]
     
+    # Convert to lowercase and tokenize
     words = re.findall(r'\b\w+\b', query.lower())
+    
+    # Remove stopwords and short words
     keywords = [word for word in words if word not in stopwords and len(word) > 2]
     
-    return keywords
+    # Join back into a string
+    processed_query = " ".join(keywords)
+    
+    logger.info(f"Processed query: '{processed_query}' from original: '{query}'")
+    return processed_query
 
-def extract_course_code(query: str) -> Optional[str]:
-    """Extract course code from query"""
-    course_pattern = r'\b([A-Z]{2,4})\s?(\d{3}[A-Z]?)\b'
-    course_matches = re.findall(course_pattern, query)
-    if course_matches:
-        return f"{course_matches[0][0]} {course_matches[0][1]}"
-    return None
+def extract_terms_of_interest(query: str) -> List[str]:
+    """Extract important academic terms from the query"""
+    academic_terms = [
+        "major", "majors", "program", "programs", "degree", "degrees", "faculty", "faculties",
+        "undergraduate", "graduate", "credits", "credit", "course", "courses", "prerequisite",
+        "prerequisites", "requirement", "requirements", "engineering", "business", "science",
+        "arts", "humanities", "law", "nursing", "health", "computer", "architecture"
+    ]
+    
+    # Look for these terms in the query
+    found_terms = []
+    for term in academic_terms:
+        if term in query.lower().split():
+            found_terms.append(term)
+    
+    return found_terms
 
-def hybrid_search(query: str, top_k: int = 5) -> List[Dict]:
-    """Perform hybrid search with Qdrant"""
+def hierarchical_search(query: str, top_k: int = 5) -> List[Dict]:
+    """
+    Perform hierarchical search by first using vector search and then
+    post-processing to prioritize results with matching keywords and headings
+    """
     try:
-        logger.info("Starting hybrid search...")
+        logger.info(f"Starting hierarchical search for query: {query}")
         
-        # Get query embedding
-        query_embedding = embeddings.embed_query(query)
+        # Process the query
+        processed_query = process_query(query)
+        terms_of_interest = extract_terms_of_interest(query)
         
-        # Extract potential filter terms
-        keywords = extract_keywords(query)
-        course_code = extract_course_code(query)
+        logger.info(f"Processed query: '{processed_query}', terms: {terms_of_interest}")
         
-        # Prepare metadata filter
-        metadata_filter = None
-        if course_code:
-            metadata_filter = qdrant_models.Filter(
-                must=[
-                    qdrant_models.FieldCondition(
-                        key="metadata.course_code",
-                        match=qdrant_models.MatchValue(value=course_code)
-                    )
-                ]
-            )
-        elif "engineering" in query.lower():
-            metadata_filter = qdrant_models.Filter(
-                should=[
-                    qdrant_models.FieldCondition(
-                        key="metadata.keywords",
-                        match=qdrant_models.MatchAny(any=["engineering", "Faculty of Engineering", "FE"])
-                    )
-                ]
-            )
+        # Get query embedding for vector search
+        query_embedding = embeddings.embed_query(processed_query)
         
-        # Vector search with optional filter
-        search_results = qdrant_client.search(
+        # Get a larger initial result set for reranking
+        initial_results = qdrant_client.search(
             collection_name=COLLECTION_NAME,
             query_vector=query_embedding,
-            query_filter=metadata_filter,
-            limit=top_k
+            limit=25  # Get more results for post-filtering
         )
         
-        logger.info(f"Found {len(search_results)} results in hybrid search")
-        return search_results
+        logger.info(f"Found {len(initial_results)} results in vector search")
+        
+        if not initial_results:
+            logger.info("No results found")
+            return []
+        
+        # Post-process results to implement hierarchical search
+        # We'll examine the results and boost those with keyword/heading matches
+        enhanced_results = []
+        
+        for result in initial_results:
+            payload = result.payload
+            metadata = payload.get("metadata", {})
+            
+            # Initialize score components
+            base_score = result.score
+            keyword_boost = 0.0
+            heading_boost = 0.0
+            
+            # 1. Check for matches in keywords
+            keywords = metadata.get("keywords", [])
+            if isinstance(keywords, list) and keywords:
+                # Look for matches between query terms and keywords
+                for term in processed_query.split():
+                    # Check if term appears in any keyword
+                    if any(term.lower() in kw.lower() for kw in keywords):
+                        keyword_boost += 0.1
+                
+                # Extra boost for terms of interest
+                for term in terms_of_interest:
+                    if any(term.lower() in kw.lower() for kw in keywords):
+                        keyword_boost += 0.2
+            
+            # 2. Check for matches in heading
+            heading = metadata.get("heading", "")
+            if heading:
+                # Look for matches between query terms and heading
+                heading_lower = heading.lower()
+                for term in processed_query.split():
+                    if term.lower() in heading_lower:
+                        heading_boost += 0.15
+                
+                # Extra boost for terms of interest in heading
+                for term in terms_of_interest:
+                    if term.lower() in heading_lower:
+                        heading_boost += 0.25
+            
+            # 3. Calculate final score with boosts
+            final_score = base_score * (1.0 + keyword_boost + heading_boost)
+            
+            # Create enhanced result with new score
+            enhanced_result = {
+                "id": result.id,
+                "payload": payload,
+                "score": final_score,
+                "vector": result.vector if hasattr(result, "vector") else None,
+                "boosts": {
+                    "keyword_boost": keyword_boost,
+                    "heading_boost": heading_boost
+                }
+            }
+            
+            enhanced_results.append(enhanced_result)
+        
+        # Sort by enhanced score
+        enhanced_results.sort(key=lambda x: x["score"], reverse=True)
+        
+        # Return top_k results
+        top_results = enhanced_results[:top_k]
+        
+        # Convert back to format expected by the rest of the code
+        final_results = []
+        for result in top_results:
+            # Create a ScoredPoint-like object
+            class ScoredPoint:
+                def __init__(self, id, payload, score):
+                    self.id = id
+                    self.payload = payload
+                    self.score = score
+            
+            scored_point = ScoredPoint(
+                id=result["id"],
+                payload=result["payload"],
+                score=result["score"]
+            )
+            
+            final_results.append(scored_point)
+        
+        logger.info(f"Returned {len(final_results)} results after hierarchical boost")
+        return final_results
         
     except Exception as e:
-        logger.error(f"Error in hybrid search: {e}")
+        logger.error(f"Error in hierarchical search: {e}")
         # Fall back to basic vector search
         try:
-            logger.info("Attempting fallback search...")
+            logger.info("Attempting fallback vector search...")
             fallback_results = qdrant_client.search(
                 collection_name=COLLECTION_NAME,
                 query_vector=query_embedding,
@@ -136,7 +224,7 @@ def hybrid_search(query: str, top_k: int = 5) -> List[Dict]:
 def format_search_results(results) -> str:
     """Format search results into a context string"""
     if not results:
-        return "No specific information found."
+        return "No specific information found related to your query."
     
     context_parts = []
     for i, hit in enumerate(results):
@@ -144,13 +232,19 @@ def format_search_results(results) -> str:
         text = payload.get("text", "")
         metadata = payload.get("metadata", {})
         
-        # Format section info
-        section_info = ""
+        # Format heading info
+        heading_info = ""
         if metadata.get("heading"):
-            section_info = f"Section: {metadata['heading']}\n"
+            heading_info = f"Section: {metadata['heading']}\n"
         
-        # Format content
-        context_parts.append(f"{section_info}{text}")
+        # Format keywords for context
+        keywords_info = ""
+        if metadata.get("keywords") and isinstance(metadata.get("keywords"), list):
+            keywords = metadata.get("keywords")
+            keywords_info = f"Keywords: {', '.join(keywords)}\n"
+        
+        # Format content with score
+        context_parts.append(f"{heading_info}{keywords_info}\nContent: {text}\n(Relevance Score: {hit.score:.2f})")
     
     return "\n\n---\n\n".join(context_parts)
 
@@ -166,8 +260,8 @@ def search_course_info(request: CourseSearchRequest) -> CourseSearchResult:
         Results matching the search query
     """
     try:
-        # Perform hybrid search
-        search_results = hybrid_search(request.query, top_k=5)
+        # Perform hierarchical search
+        search_results = hierarchical_search(request.query, top_k=5)
         
         # Format the results
         context = format_search_results(search_results)
@@ -189,39 +283,44 @@ def get_course_agent():
     """
     # Get model from Streamlit session state if available, otherwise use default
     model_id = "gpt-4o-mini"  # Default model
+    use_openrouter = False
+    openrouter_api_key = os.getenv("OPENROUTER_API_KEY")
+    openai_api_key = os.getenv("OPENAI_API_KEY")
     
     if "model" in st.session_state:
-        # Check if the model is from OpenRouter
-        selected_model = st.session_state.model
-        if selected_model.startswith("openrouter/"):
-            # For OpenRouter models - remove the prefix for compatibility
-            model_id = selected_model.replace("openrouter/", "")
-        else:
-            # For OpenAI models
-            model_id = selected_model
+        model_id = st.session_state.model
+        # Check if we should use OpenRouter
+        if "use_openrouter" in st.session_state and st.session_state.use_openrouter:
+            use_openrouter = True
     
     logger.info(f"Using model: {model_id} for course information with tools")
+    if use_openrouter:
+        logger.info(f"Using OpenRouter API for model: {model_id}")
     
     # Create the agent with tools
+    # Use the appropriate API configuration based on whether it's an OpenRouter model
     course_agent = pydantic_ai.Agent(
         model=model_id,
         tools=[search_course_info],
         system_prompt="""You are a knowledgeable university assistant specializing in course information.
-Your goal is to provide accurate, helpful information about courses, their content, and related details.
+    Your goal is to provide accurate, helpful information about courses, their content, programs, majors, 
+    and academic requirements.
 
-You have access to a search_course_info tool that can find information about university courses, degree programs, 
-and academic requirements. Always use this tool to look up information before answering questions.
+    You have access to a search_course_info tool that can find information about university courses, degree programs, 
+    academic requirements, and available majors. Always use this tool to look up information before answering questions.
 
-When responding to queries about courses:
-1. Be specific about course codes and official course names
-2. Include important information found in the search results
-3. Format your answers in a clear, structured way
-4. If information is missing or uncertain, clearly state this
+    When responding to queries:
+    1. Be specific about program names and degree requirements
+    2. Include important information found in the search results
+    3. Format your answers in a clear, structured way
+    4. If information is missing or uncertain, clearly state this
 
-For Arabic queries, respond in fluent Arabic. For English queries, respond in clear English.
+    For Arabic queries, respond in fluent Arabic. For English queries, respond in clear English.
 
-Remember that students rely on your accuracy for their academic planning, so be specific and clear.
-"""
+    Remember that students rely on your accuracy for their academic planning, so be specific and clear.
+    """,
+        openai_api_key=openrouter_api_key if use_openrouter else openai_api_key,
+        openai_api_base="https://openrouter.ai/api/v1" if use_openrouter else None
     )
     return course_agent
 
@@ -237,23 +336,112 @@ async def get_course_response(query: str, language: str = "English") -> str:
         Formatted response string
     """
     try:
-        # Get the course agent with tools
-        course_agent = get_course_agent()
+        # Check if OpenRouter should be used
+        use_openrouter = False
+        model_id = "gpt-4o-mini"  # Default model
+        
+        if "model" in st.session_state:
+            model_id = st.session_state.model
+            if "use_openrouter" in st.session_state:
+                use_openrouter = st.session_state.use_openrouter
+                
+        logger.info(f"Processing query with model: {model_id}, using OpenRouter: {use_openrouter}")
         
         # Prepare user message with language preference
         user_message = query
         if language.lower() == "arabic":
             user_message = f"{query} (Please respond in Arabic)"
         
-        # Call the agent with the query
-        logger.info(f"Calling course agent with query: {query}, language: {language}")
+        if use_openrouter:
+            # Use direct OpenRouter API call
+            import requests
+            import json
+            
+            # Get the search results first
+            search_request = CourseSearchRequest(query=query, language=language)
+            search_result = search_course_info(search_request)
+            context = search_result.context
+            
+            # Prepare system message with context
+            system_message = """You are a knowledgeable university assistant specializing in course information.
+Your goal is to provide accurate, helpful information about courses, their content, programs, majors, 
+and academic requirements based on the following information:
+
+""" + context + """
+
+When responding to queries:
+1. Be specific about program names and degree requirements
+2. Include important information found in the search results
+3. Format your answers in a clear, structured way
+4. If information is missing or uncertain, clearly state this
+
+For Arabic queries, respond in fluent Arabic. For English queries, respond in clear English.
+"""
+            
+            # Get OpenRouter API key
+            openrouter_api_key = os.getenv("OPENROUTER_API_KEY")
+            if not openrouter_api_key:
+                logger.error("OPENROUTER_API_KEY not found in environment variables")
+                raise ValueError("OpenRouter API key not found")
+            
+            # Make direct API call to OpenRouter
+            api_url = "https://openrouter.ai/api/v1/chat/completions"
+            headers = {
+                "Authorization": f"Bearer {openrouter_api_key}",
+                "Content-Type": "application/json",
+                "HTTP-Referer": "https://university-chatbot.com",  # Replace with your actual site URL
+                "X-Title": "University Chatbot"  # Replace with your actual site name
+            }
+            
+            # Format the model name for OpenRouter
+            # Claude models need "anthropic/" prefix, and Gemini needs "google/" prefix
+            if model_id == "claude-3-haiku" or model_id == "claude-3-sonnet" or model_id == "claude-3-opus":
+                openrouter_model = f"anthropic/{model_id}"
+            elif model_id == "gemini-2.0-flash-001":
+                openrouter_model = f"google/{model_id}"
+            else:
+                openrouter_model = model_id
+                
+            logger.info(f"Using OpenRouter model: {openrouter_model}")
+            
+            # Prepare payload
+            payload = {
+                "model": openrouter_model,
+                "messages": [
+                    {"role": "system", "content": system_message},
+                    {"role": "user", "content": user_message}
+                ]
+            }
+            
+            # Make the API request
+            try:
+                response = requests.post(api_url, headers=headers, data=json.dumps(payload))
+                
+                # Check if request was successful
+                if response.status_code == 200:
+                    response_data = response.json()
+                    if "choices" in response_data and len(response_data["choices"]) > 0:
+                        return response_data["choices"][0]["message"]["content"]
+                    else:
+                        logger.error(f"Unexpected response format: {response_data}")
+                        raise ValueError("Invalid response format from OpenRouter")
+                else:
+                    logger.error(f"OpenRouter API error: {response.status_code} - {response.text}")
+                    raise ValueError(f"OpenRouter API error: {response.status_code}")
+                    
+            except Exception as e:
+                logger.error(f"Error making OpenRouter API call: {e}")
+                # Fall back to using pydantic_ai agent with OpenAI model
+                logger.info("Falling back to standard OpenAI model")
+                # Clear the OpenRouter flag to use standard OpenAI
+                use_openrouter = False
+                model_id = "gpt-4o-mini"  # Use a reliable fallback model
         
-        # Run the agent with the query - the agent will use the search_course_info tool as needed
+        # Standard approach using pydantic_ai Agent
+        logger.info(f"Using pydantic_ai agent with model: {model_id}")
+        course_agent = get_course_agent()
         response = await course_agent.run(user_message)
-        
         logger.info(f"Received response type: {type(response)}")
-        
-        # Return the response
         return response.output
         
     except Exception as e:

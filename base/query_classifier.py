@@ -31,11 +31,13 @@ classifier_agent = pydantic_ai.Agent(
 Your task is to analyze user queries and route them to the most appropriate module.
 
 Available modules:
-1. course_information - For queries about course content, prerequisites, credit hours, descriptions, etc.
+1. course_information - For queries about course content, prerequisites, credit hours, descriptions, faculty structure, departments, majors, degree programs, university academic structure
 2. class_schedules - For queries about when and where classes meet, timetables, room numbers
 3. exam_alerts - For queries about exam dates, deadlines, assignment due dates, assessments
 4. study_resources - For queries about textbooks, study materials, library resources, online resources
-5. professors - For queries about faculty information, office hours, contact details, research interests
+5. professors - For queries about specific faculty members, office hours, contact details, research interests
+
+IMPORTANT: Questions about faculties, departments, majors, and degree programs should go to course_information module, NOT the professors module. The professors module is only for queries about specific faculty members/instructors.
 
 Analyze each query carefully to determine which module is most appropriate. Some queries may have multiple aspects,
 but choose the primary intent. If a query is ambiguous, choose the most likely module and indicate a lower confidence score.
@@ -46,7 +48,12 @@ For example:
 - "Is there an assignment due in Biology this week?" → exam_alerts (high confidence)
 - "Where can I find the textbook for Economics 101?" → study_resources (high confidence)
 - "What are Professor Johnson's office hours?" → professors (high confidence)
-- "Can you tell me about the Computer Science department?" → course_information (medium confidence)
+- "Can you tell me about the Computer Science department?" → course_information (high confidence)
+- "What majors does the Faculty of Engineering offer?" → course_information (high confidence)
+- "What are the available faculties at the university?" → course_information (high confidence)
+- "How many credits does a Computer Science major have?" → course_information (high confidence)
+- "What undergraduate programs are available?" → course_information (high confidence)
+- "What degrees are offered in the Business faculty?" → course_information (high confidence)
 
 Always include your reasoning for why you selected a particular module.
 """

@@ -35,11 +35,19 @@ AVAILABLE_MODELS = {
     "OpenAI GPT-4o Mini($0.15/M)": "gpt-4o-mini",
     "OpenAI GPT-4.1 Mini($0.40/M)": "gpt-4.1-mini",
     "OpenAI GPT-4.1-nano($0.10/M)": "gpt-4.1-nano",
-    "Anthropic Claude 3 Haiku($0.25/M)": "openrouter/anthropic/claude-3-haiku",
-    "Anthropic Claude 3 Sonnet($3/M)": "openrouter/anthropic/claude-3-sonnet",
-    "Anthropic Claude 3 Opus($15/M)": "openrouter/anthropic/claude-3-opus",
-    "Google Gemini 2.0 Flash($0.10/M)": "openrouter/google/gemini-2.0-flash-001",
+    "Anthropic Claude 3 Haiku($0.25/M)": "anthropic/claude-3-haiku",
+    "Anthropic Claude 3 Sonnet($3/M)": "anthropic/claude-3-sonnet",
+    "Anthropic Claude 3 Opus($15/M)": "anthropic/claude-3-opus",
+    "Google Gemini 2.0 Flash($0.10/M)": "google/gemini-2.0-flash-001",
 }
+
+# Define which models should use OpenRouter instead of OpenAI API
+OPENROUTER_MODELS = [
+    "anthropic/claude-3-haiku",
+    "anthropic/claude-3-sonnet",
+    "anthropic/claude-3-opus",
+    "google/gemini-2.0-flash-001",
+]
 
 # Module map
 MODULES = {
@@ -142,9 +150,10 @@ def main():
         
         selected_model_id = AVAILABLE_MODELS[selected_model_name]
         
-        # Store model ID in session state
+        # Store model ID and whether it's an OpenRouter model in session state
         if "model" not in st.session_state or st.session_state.model != selected_model_id:
             st.session_state.model = selected_model_id
+            st.session_state.use_openrouter = selected_model_id in OPENROUTER_MODELS
         
         # Clear conversation button
         if st.button("Clear Conversation"):
