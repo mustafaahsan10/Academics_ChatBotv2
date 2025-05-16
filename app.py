@@ -16,6 +16,9 @@ from modules.exam_alerts.chatbot import get_exam_response_sync
 from modules.study_resources.chatbot import get_resource_response_sync
 from modules.professors.chatbot import get_professor_response_sync
 
+# Import the general response handler
+from base.general_response import get_general_response_sync
+
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -35,18 +38,18 @@ AVAILABLE_MODELS = {
     "OpenAI GPT-4o Mini($0.15/M)": "gpt-4o-mini",
     "OpenAI GPT-4.1 Mini($0.40/M)": "gpt-4.1-mini",
     "OpenAI GPT-4.1-nano($0.10/M)": "gpt-4.1-nano",
-    "Anthropic Claude 3 Haiku($0.25/M)": "anthropic/claude-3-haiku",
-    "Anthropic Claude 3 Sonnet($3/M)": "anthropic/claude-3-sonnet",
-    "Anthropic Claude 3 Opus($15/M)": "anthropic/claude-3-opus",
-    "Google Gemini 2.0 Flash($0.10/M)": "google/gemini-2.0-flash-exp",
+    "Anthropic Claude 3 Haiku($0.25/M)": "claude-3-haiku",
+    "Anthropic Claude 3 Sonnet($3/M)": "claude-3-sonnet",
+    "Anthropic Claude 3 Opus($15/M)": "claude-3-opus",
+    "Google Gemini 2.0 Flash($0.10/M)": "gemini-2.0-flash-001",
 }
 
 # Define which models should use OpenRouter instead of OpenAI API
 OPENROUTER_MODELS = [
-    "anthropic/claude-3-haiku",
-    "anthropic/claude-3-sonnet",
-    "anthropic/claude-3-opus",
-    "google/gemini-2.0-flash-exp",
+    "claude-3-haiku",
+    "claude-3-sonnet",
+    "claude-3-opus",
+    "gemini-2.0-flash-001",
 ]
 
 # Module map
@@ -75,6 +78,11 @@ MODULES = {
         "name": "Professors",
         "get_response": get_professor_response_sync,
         "description": "Faculty information, office hours, and contact details"
+    },
+    "general_response": {
+        "name": "General Information",
+        "get_response": get_general_response_sync,
+        "description": "General university information and casual conversation"
     }
 }
 
@@ -98,7 +106,7 @@ def get_module_response(query: str, language: str = "English") -> str:
         
         logger.info(f"Query classified as '{module_name}' with confidence {confidence}")
         
-        # If low confidence, provide a notice about uncertainty
+        # If low confidence, provide a notice
         prefix = ""
         if confidence < 0.5:
             if language.lower() == "arabic":
@@ -119,11 +127,9 @@ def get_module_response(query: str, language: str = "English") -> str:
             return prefix + response + debug_info
         else:
             # Fallback to general response if module not found
-            if language.lower() == "arabic":
-                return "عذرًا، لم أتمكن من فهم سؤالك. هل يمكنك إعادة صياغته أو تقديم مزيد من التفاصيل؟"
-            else:
-                return "I'm sorry, I couldn't understand your question. Could you rephrase it or provide more details?"
-    
+            logger.warning(f"Module '{module_name}' not found, falling back to general response")
+            return get_general_response_sync(query, language)
+            
     except Exception as e:
         logger.error(f"Error generating response: {e}")
         if language.lower() == "arabic":

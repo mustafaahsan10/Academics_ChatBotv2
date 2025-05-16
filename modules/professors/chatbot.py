@@ -6,8 +6,9 @@ from typing import List, Dict, Any, Optional
 import pydantic_ai
 from pydantic import BaseModel, Field
 from pathlib import Path
-import streamlit as st
 import re
+import streamlit as st
+
 from langchain_openai import OpenAIEmbeddings
 from qdrant_client import QdrantClient
 from qdrant_client.http import models as qdrant_models
@@ -23,7 +24,17 @@ load_dotenv()
 COLLECTION_NAME = "professors"
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "")
 
-# Professor search request and response models
+# Define models for the pydantic AI agent
+class ProfessorQueryContext(BaseModel):
+    """Simplified context for professor queries"""
+    user_query: str = Field(..., description="The user's original query about professors")
+    professor_name: Optional[str] = Field(None, description="Professor name mentioned in the query")
+    course_name: Optional[str] = Field(None, description="Course name mentioned in the query")
+    keywords: List[str] = Field(default_factory=list, description="Important keywords extracted from the query")
+    search_results: Optional[List[Dict[Any, Any]]] = Field(None, description="Relevant professor information retrieved")
+    response_language: str = Field("English", description="Language to respond in (English or Arabic)")
+
+# Define models for the search tool
 class ProfessorSearchRequest(BaseModel):
     """Request parameters for searching professor information"""
     query: str = Field(..., description="The query to search for professor information")
@@ -32,16 +43,6 @@ class ProfessorSearchRequest(BaseModel):
 class ProfessorSearchResult(BaseModel):
     """Result from searching professor information"""
     context: str = Field(..., description="Context information retrieved from search")
-
-# Define dependency class for the Pydantic AI agent
-class ProfessorQueryContext(BaseModel):
-    """Simplified context for professor queries"""
-    user_query: str = Field(..., description="The user's original query about professors")
-    professor_name: Optional[str] = Field(None, description="Professor name mentioned in the query")
-    course_code: Optional[str] = Field(None, description="Course code mentioned in the query")
-    keywords: List[str] = Field(default_factory=list, description="Important keywords extracted from the query")
-    search_results: Optional[List[Dict[Any, Any]]] = Field(None, description="Relevant professor information retrieved")
-    response_language: str = Field("English", description="Language to respond in (English or Arabic)")
 
 # Define output model for the agent
 class ProfessorResponse(BaseModel):
@@ -62,7 +63,7 @@ def process_query(query: str) -> str:
     stopwords = ["the", "a", "an", "is", "are", "was", "were", "be", "been", "in", 
                  "on", "at", "to", "for", "with", "by", "about", "like", "how", 
                  "what", "when", "where", "why", "who", "which", "can", "you", "tell",
-                 "me", "list", "all", "available", "have", "does", "find"]
+                 "me", "list", "all", "available", "have", "does"]
     
     # Convert to lowercase and tokenize
     words = re.findall(r'\b\w+\b', query.lower())
@@ -80,45 +81,46 @@ def extract_professor_entities(query: str) -> Dict[str, Any]:
     """Extract professor-related entities from the query"""
     entities = {
         "professor_name": None,
-        "course_code": None,
+        "course_name": None,
         "keywords": []
     }
     
-    # Look for professor names with titles (Dr., Professor, etc.)
+    # Look for professor name pattern (e.g., "Professor Smith", "Dr. Johnson")
     professor_patterns = [
-        r'(?:Dr\.|Professor|Prof\.?)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)',  # Match titles with names
-        r'(?:professor|prof|teacher|instructor|faculty)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)',  # Match role with names
-        r'([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*?)(?:\s+office|\'s\s+office|\s+contact|\s+email)'  # Names with office/contact
+        r'professor\s+([A-Za-z\s\.]+?)(?:\s|$|\'s|\?|\.)',
+        r'prof\.\s+([A-Za-z\s\.]+?)(?:\s|$|\'s|\?|\.)',
+        r'dr\.\s+([A-Za-z\s\.]+?)(?:\s|$|\'s|\?|\.)'
     ]
     
     for pattern in professor_patterns:
         matches = re.findall(pattern, query, re.IGNORECASE)
         if matches:
             entities["professor_name"] = matches[0].strip()
-            entities["keywords"].append(entities["professor_name"].lower())
+            entities["keywords"].append(entities["professor_name"])
             break
     
-    # Check for quotes that might contain a name
-    quote_pattern = r'["\'](.*?)["\']'
-    quote_matches = re.findall(quote_pattern, query)
-    if quote_matches and not entities["professor_name"]:
-        potential_name = quote_matches[0].strip()
-        # Check if it looks like a name (starts with capital, contains space)
-        if re.match(r'^[A-Z][a-z]+(\s+[A-Z][a-z]+)+$', potential_name):
-            entities["professor_name"] = potential_name
-            entities["keywords"].append(potential_name.lower())
+    # Check for specific professor names mentioned without titles
+    common_professors = ["Hoda Maalouf", "Nazir Hawi"]
+    for name in common_professors:
+        if name.lower() in query.lower():
+            entities["professor_name"] = name
+            entities["keywords"].append(name)
     
-    # Look for course codes (e.g., CSC 226, MTH110)
-    course_code_pattern = r'\b([A-Z]{2,4})\s*(\d{3}[A-Z0-9]*)\b'
-    course_code_matches = re.findall(course_code_pattern, query, re.IGNORECASE)
-    if course_code_matches:
-        # Format as "CSC 226"
-        entities["course_code"] = f"{course_code_matches[0][0].upper()} {course_code_matches[0][1]}"
-        entities["keywords"].append(entities["course_code"].lower())
+    # Look for course names or codes - simplified pattern
+    course_patterns = [
+        r'(?:course|class|teach(?:es|ing)?)\s+([A-Za-z0-9\s\-]+?)(?:\s|$|\?|\.)',
+        r'([A-Z]{2,4}\s*\d{3}[A-Za-z0-9]*)'  # Course codes like CSC 226
+    ]
     
-    # Add professor related keywords
-    professor_keywords = ["professor", "contact", "email", "office", "faculty", "instructor", 
-                        "hours", "teaching", "research", "department", "courses"]
+    for pattern in course_patterns:
+        matches = re.findall(pattern, query, re.IGNORECASE)
+        if matches:
+            entities["course_name"] = matches[0].strip()
+            entities["keywords"].append(entities["course_name"])
+            break
+    
+    # Add professor-related keywords
+    professor_keywords = ["contact", "email", "phone", "office", "hours", "research", "publication", "biography", "teaching"]
     query_words = query.lower().split()
     for keyword in professor_keywords:
         if keyword in query_words:
@@ -153,7 +155,7 @@ def hierarchical_search(query: str, top_k: int = None) -> List[Dict]:
         initial_results = qdrant_client.search(
             collection_name=COLLECTION_NAME,
             query_vector=query_embedding,
-            limit=100  # Get more potential matches
+            limit=100  # Increased from 25 to get more potential matches
         )
         
         logger.info(f"Found {len(initial_results)} results in vector search")
@@ -171,62 +173,59 @@ def hierarchical_search(query: str, top_k: int = None) -> List[Dict]:
             # Initialize score components
             base_score = result.score
             professor_name_boost = 0.0
-            course_code_boost = 0.0
-            chunk_type_boost = 0.0
-            keyword_boost = 0.0
+            course_name_boost = 0.0
             heading_boost = 0.0
+            keyword_boost = 0.0
             
-            # 1. Check for professor name match - strong boost
+            # 1. Check for professor name match
             if entities["professor_name"] and "professor_name" in payload:
-                query_name = entities["professor_name"].lower()
-                result_name = payload["professor_name"].lower()
+                if entities["professor_name"].lower() in payload["professor_name"].lower():
+                    professor_name_boost = 0.5  # Strong boost for exact professor name match
+            
+            # Also check for professor name in heading
+            if entities["professor_name"] and "heading" in payload:
+                if entities["professor_name"].lower() in payload["heading"].lower():
+                    professor_name_boost = 0.4
+            
+            # 2. Check for course name match
+            if entities["course_name"] and "text" in payload:
+                if entities["course_name"].lower() in payload["text"].lower():
+                    course_name_boost = 0.3
+            
+            # 3. Check for heading matches with query keywords
+            if "heading" in payload:
+                heading_lower = payload["heading"].lower()
                 
-                if query_name == result_name:
-                    professor_name_boost = 0.7  # Exact match
-                elif query_name in result_name or result_name in query_name:
-                    professor_name_boost = 0.5  # Partial match
-                # Also check last name only match
-                elif query_name.split()[-1] == result_name.split()[-1]:
-                    professor_name_boost = 0.4  # Last name match
+                # Look for important sections like "contact information", "office hours", etc.
+                if "contact" in processed_query and "contact" in heading_lower:
+                    heading_boost += 0.4
+                elif "hour" in processed_query and "hour" in heading_lower:
+                    heading_boost += 0.4
+                elif "office" in processed_query and "office" in heading_lower:
+                    heading_boost += 0.4
+                elif "biography" in processed_query and "biography" in heading_lower:
+                    heading_boost += 0.4
+                elif "research" in processed_query and "research" in heading_lower:
+                    heading_boost += 0.3
+                elif "publication" in processed_query and "publication" in heading_lower:
+                    heading_boost += 0.3
+                elif "journal" in processed_query and "journal" in heading_lower:
+                    heading_boost += 0.3
+                
+                # General heading match
+                for term in processed_query.split():
+                    if term.lower() in heading_lower:
+                        heading_boost += 0.1
             
-            # 2. Check for course code match
-            if entities["course_code"] and "text" in payload:
-                if entities["course_code"].lower() in payload["text"].lower():
-                    course_code_boost = 0.2
-            
-            # 3. Boost based on chunk type - ContactInformation should rank higher for contact queries
-            if "chunk_type" in payload:
-                chunk_type = payload["chunk_type"]
-                # Check if query is asking for contact information
-                if any(word in processed_query for word in ["contact", "email", "phone", "office", "location", "hours"]):
-                    if chunk_type == "ContactInformation":
-                        chunk_type_boost = 0.6
-                    elif chunk_type == "Biography":
-                        chunk_type_boost = 0.3
-                # Check if query is asking about publications
-                elif any(word in processed_query for word in ["publication", "paper", "research", "journal", "conference"]):
-                    if chunk_type in ["JournalArticle", "ConferenceProceeding", "BookChapterOrBook"]:
-                        chunk_type_boost = 0.5
-                # Check if query is about biography
-                elif any(word in processed_query for word in ["background", "bio", "about", "experience", "education"]):
-                    if chunk_type == "Biography":
-                        chunk_type_boost = 0.6
-            
-            # 4. Check for matches in keywords
+            # 4. Check for keywords match
             if "keywords" in payload and isinstance(payload["keywords"], list):
                 for keyword in processed_query.split():
                     if any(keyword.lower() in kw.lower() for kw in payload["keywords"]):
                         keyword_boost += 0.05
             
-            # 5. Check for matches in heading
-            if "heading" in payload:
-                for term in processed_query.split():
-                    if term.lower() in payload["heading"].lower():
-                        heading_boost += 0.1
-            
             # Calculate final score with boosts
-            final_score = base_score * (1.0 + professor_name_boost + course_code_boost + 
-                                      chunk_type_boost + keyword_boost + heading_boost)
+            final_score = base_score * (1.0 + professor_name_boost + course_name_boost + 
+                                       heading_boost + keyword_boost)
             
             # Create enhanced result with new score
             enhanced_result = {
@@ -235,10 +234,9 @@ def hierarchical_search(query: str, top_k: int = None) -> List[Dict]:
                 "score": final_score,
                 "boosts": {
                     "professor_name_boost": professor_name_boost,
-                    "course_code_boost": course_code_boost,
-                    "chunk_type_boost": chunk_type_boost,
-                    "keyword_boost": keyword_boost,
-                    "heading_boost": heading_boost
+                    "course_name_boost": course_name_boost,
+                    "heading_boost": heading_boost,
+                    "keyword_boost": keyword_boost
                 }
             }
             
@@ -297,81 +295,33 @@ def format_professor_results(results) -> str:
         return "No specific information found related to your query."
     
     context_parts = []
-    
-    # Group results by professor name
-    professor_data = {}
-    for hit in results:
+    for i, hit in enumerate(results):
         payload = hit.payload
-        professor_name = payload.get("professor_name", "Unknown")
         
-        if professor_name not in professor_data:
-            professor_data[professor_name] = []
+        # Format the professor information in a readable way
+        prof_info = ""
         
-        professor_data[professor_name].append({
-            "payload": payload,
-            "score": hit.score
-        })
-    
-    # Format each professor's information
-    for professor_name, items in professor_data.items():
-        # Sort items by score within each professor
-        items.sort(key=lambda x: x["score"], reverse=True)
+        # Add heading information
+        if "heading" in payload:
+            prof_info += f"Section: {payload['heading']}\n\n"
         
-        # Create a comprehensive profile for the professor
-        profile_parts = [f"Professor: {professor_name}"]
+        # Add text content
+        if "text" in payload:
+            prof_info += f"{payload['text']}\n\n"
         
-        # Extract contact information first (if available)
-        contact_info = None
-        for item in items:
-            if item["payload"].get("chunk_type") == "ContactInformation":
-                contact_info = item["payload"]
-                break
+        # Add keywords if available
+        if "keywords" in payload and isinstance(payload["keywords"], list):
+            keywords = payload["keywords"]
+            prof_info += f"Keywords: {', '.join(keywords)}\n"
         
-        if contact_info:
-            if contact_info.get("professor_title"):
-                profile_parts.append(f"Title: {contact_info['professor_title']}")
-            
-            if contact_info.get("email"):
-                profile_parts.append(f"Email: {contact_info['email']}")
-            
-            if contact_info.get("phone"):
-                profile_parts.append(f"Phone: {contact_info['phone']}")
-            
-            if contact_info.get("office_location"):
-                profile_parts.append(f"Office Location: {contact_info['office_location']}")
-                
-            if contact_info.get("faculty_department_institute"):
-                profile_parts.append(f"Department: {contact_info['faculty_department_institute']}")
-        
-        # Extract biography (if available)
-        biography = None
-        for item in items:
-            if item["payload"].get("chunk_type") == "Biography":
-                biography = item["payload"]
-                break
-        
-        if biography and biography.get("main_text"):
-            profile_parts.append("\nBiography:")
-            profile_parts.append(biography["main_text"])
-        
-        # Add publications if relevant to the query
-        publications = [item for item in items if item["payload"].get("chunk_type") in 
-                        ["JournalArticle", "ConferenceProceeding", "BookChapterOrBook"]]
-        
-        if publications and len(publications) > 0:
-            profile_parts.append("\nSelected Publications:")
-            for i, pub in enumerate(publications[:3]):  # Limit to top 3 publications
-                if pub["payload"].get("work_title"):
-                    pub_info = pub["payload"]["work_title"]
-                    if pub["payload"].get("publication_year"):
-                        pub_info += f" ({pub['payload']['publication_year']})"
-                    profile_parts.append(f"- {pub_info}")
+        # Add document source if available
+        if "document_source" in payload:
+            prof_info += f"Source: {payload['document_source']}\n"
         
         # Add relevance score
-        profile_parts.append(f"\n(Relevance Score: {items[0]['score']:.2f})")
+        prof_info += f"(Relevance Score: {hit.score:.2f})"
         
-        # Join all parts
-        context_parts.append("\n".join(profile_parts))
+        context_parts.append(prof_info)
     
     return "\n\n---\n\n".join(context_parts)
 
@@ -387,7 +337,7 @@ def search_professor_info(request: ProfessorSearchRequest) -> ProfessorSearchRes
         Results matching the search query
     """
     try:
-        # Perform hierarchical search
+        # Perform hierarchical search - return all results
         search_results = hierarchical_search(request.query, top_k=None)
         
         # Format the results
@@ -432,14 +382,15 @@ def get_professor_agent():
 Your goal is to provide accurate information about professors, their courses, and contact details.
 
 You have access to a search_professor_info tool that can find information about faculty members,
-including their contact details, office hours, publications, and courses they teach.
+their contact details, office hours, biographies, research interests, and publications.
 Always use this tool to look up information before answering questions.
 
 When responding:
 1. Be specific about professor names and titles
 2. Include course codes when mentioning which courses they teach
 3. Provide clear and accurate information based on the search results
-4. If information is missing or uncertain, clearly state this
+
+IMPORTANT: If the search results don't contain relevant information or if no information was found, DO NOT mention this limitation to the user. Instead, provide a helpful general response based on common knowledge about university professors and faculty. Never say phrases like "I don't have information on this" or "this isn't in my database". Always maintain a helpful tone and try to address the user's query as best as possible.
 
 For Arabic queries, respond in fluent Arabic. For English queries, respond in clear English.
 
@@ -499,7 +450,8 @@ When responding:
 1. Be specific about professor names and titles
 2. Include course codes when mentioning which courses they teach
 3. Provide clear and accurate information based on the search results
-4. If information is missing or uncertain, clearly state this
+
+IMPORTANT: If the search results don't contain relevant information or if no information was found, DO NOT mention this limitation to the user. Instead, provide a helpful general response based on common knowledge about university professors and faculty. Never say phrases like "I don't have information on this" or "this isn't in my database". Always maintain a helpful tone and try to address the user's query as best as possible.
 
 For Arabic queries, respond in fluent Arabic. For English queries, respond in clear English.
 """

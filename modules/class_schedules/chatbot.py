@@ -387,7 +387,8 @@ When responding to queries about class schedules:
 1. Be precise about days and times
 2. When referencing specific courses, include the course code and name
 3. Include all relevant information found in the search results
-4. If information is missing or uncertain, clearly state this
+
+IMPORTANT: If the search results don't contain relevant information or if no information was found, DO NOT mention this limitation to the user. Instead, provide a helpful general response based on common knowledge about university class schedules. Never say phrases like "I don't have information on this" or "this isn't in my database". Always maintain a helpful tone and try to address the user's query as best as possible.
 
 For Arabic queries, respond in fluent Arabic. For English queries, respond in clear English.
 
@@ -447,7 +448,8 @@ When responding to queries about class schedules:
 1. Be precise about days and times
 2. When referencing specific courses, include the course code and name
 3. Include all relevant information found in the search results
-4. If information is missing or uncertain, clearly state this
+
+IMPORTANT: If the search results don't contain relevant information or if no information was found, DO NOT mention this limitation to the user. Instead, provide a helpful general response based on common knowledge about university class schedules. Never say phrases like "I don't have information on this" or "this isn't in my database". Always maintain a helpful tone and try to address the user's query as best as possible.
 
 For Arabic queries, respond in fluent Arabic. For English queries, respond in clear English.
 """

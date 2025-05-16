@@ -17,7 +17,7 @@ class QueryClassification(BaseModel):
     """Classification of a user query to determine which module should handle it"""
     user_query: str = Field(..., description="The original user query")
     module: str = Field(..., description="The module that should handle this query", 
-                       examples=["course_information", "class_schedules", "exam_alerts", "study_resources", "professors"])
+                       examples=["course_information", "class_schedules", "exam_alerts", "study_resources", "professors", "general_response"])
     confidence: float = Field(..., ge=0.0, le=1.0, description="Confidence level of this classification (0.0 to 1.0)")
     reasoning: str = Field(..., description="Explanation of why this module was selected")
     extracted_entities: Optional[dict] = Field(None, description="Key entities extracted from the query")
@@ -36,6 +36,7 @@ Available modules:
 3. exam_alerts - For queries about exam dates, deadlines, assignment due dates, assessments
 4. study_resources - For queries about textbooks, study materials, library resources, online resources
 5. professors - For queries about specific faculty members, office hours, contact details, research interests
+6. general_response - For greetings, casual conversation, general questions, thank you messages, and any queries that don't fit the academic categories above
 
 IMPORTANT: Questions about faculties, departments, majors, and degree programs should go to course_information module, NOT the professors module. The professors module is only for queries about specific faculty members/instructors.
 
@@ -58,11 +59,23 @@ For example:
 - "Can I see the class CSC 226 schedule for the upcoming semester?" → class_schedules (high confidence)
 - "What are the lecture times for Database Systems?" → class_schedules (high confidence)
 - "When does the fall semester final exams start?" → class_schedules (high confidence)
-- "Who is teaching CSC 226 this semester?" → professors (high confidence)
+- "Who is teaching Database Systems this semester?" → professors (high confidence)
 - "How can I find Professor Hoda Maalouf's contact information?" → professors (high confidence)
-- "What are Professor Nazir Hawi's office hours?" → professors (high confidence)
+- "What are Professor Smith's office hours?" → professors (high confidence)
 - "Where is Professor Johnson's office located?" → professors (high confidence)
-- "What courses is Professor Smith currently teaching?" → professors (high confidence)
+- "What courses is Professor Davis currently teaching?" → professors (high confidence)
+- "When will the final exam schedule be released?" → exam_alerts (high confidence)
+- "What time is my Database Systems exam?" → exam_alerts (high confidence)
+- "Are exams held online or on campus?" → exam_alerts (high confidence)
+- "Where will my exam for CSC 226 be held?" → exam_alerts (high confidence)
+- "When is the deadline for the final project in CS350?" → exam_alerts (high confidence)
+- "How much time do I have for the midterm exam?" → exam_alerts (high confidence)
+- "Hello, how are you today?" → general_response (high confidence)
+- "Thank you for your help!" → general_response (high confidence)
+- "What's your name?" → general_response (high confidence)
+- "Can you help me with something?" → general_response (high confidence)
+- "Tell me a joke" → general_response (high confidence)
+- "What can this chatbot do?" → general_response (high confidence)
 
 Always include your reasoning for why you selected a particular module.
 """
@@ -84,7 +97,7 @@ async def classify_query(query: str) -> QueryClassification:
         classification = result.output
         
         # Ensure module is one of the allowed values
-        allowed_modules = ["course_information", "class_schedules", "exam_alerts", "study_resources", "professors"]
+        allowed_modules = ["course_information", "class_schedules", "exam_alerts", "study_resources", "professors", "general_response"]
         if classification.module not in allowed_modules:
             # Default to course_information if invalid module
             classification.module = "course_information"

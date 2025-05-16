@@ -68,6 +68,13 @@ def load_course_files(data_path: str) -> List[Dict[str, Any]]:
             # Parse JSON content
             try:
                 items = json.loads(content)
+                logger.info(f"Loaded JSON with {len(items)} items from {file_path}")
+                
+                # Diagnostic logs
+                if isinstance(items, list):
+                    logger.info(f"File contains a list with {len(items)} items")
+                    logger.info(f"First item ID: {items[0].get('id', 'No ID')}")
+                    logger.info(f"Last item ID: {items[-1].get('id', 'No ID')}")
                 
                 # Handle different JSON structures
                 if isinstance(items, list):
@@ -103,6 +110,7 @@ def load_course_files(data_path: str) -> List[Dict[str, Any]]:
         except Exception as e:
             logger.error(f"Error processing {file_path}: {e}")
     
+    logger.info(f"Total documents loaded: {len(documents)}")
     return documents
 
 def generate_embeddings_and_upload(args, documents: List[Dict[str, Any]]):
@@ -170,6 +178,16 @@ def generate_embeddings_and_upload(args, documents: List[Dict[str, Any]]):
                             "module": "course_information",
                             "type": "course_document"
                         }
+                        
+                        # Add course details if available
+                        course_details = doc.get("course_details")
+                        if course_details:
+                            metadata["course_details"] = course_details
+                            
+                        # Add prerequisite details if available
+                        prerequisite_details = doc.get("prerequisite_details")
+                        if prerequisite_details:
+                            metadata["prerequisite_details"] = prerequisite_details
                     
                     # Create point with embedding, payload with text and metadata
                     points.append(

@@ -9,7 +9,7 @@ load_dotenv()
 def main():
     """Delete a collection from Qdrant"""
     parser = argparse.ArgumentParser(description="Delete a collection from Qdrant")
-    parser.add_argument("--collection", default="university_data", help="Qdrant collection name to delete")
+    parser.add_argument("--collection", default="course_information", help="Qdrant collection name to delete")
     parser.add_argument("--confirm", action="store_true", help="Skip confirmation prompt")
     args = parser.parse_args()
     

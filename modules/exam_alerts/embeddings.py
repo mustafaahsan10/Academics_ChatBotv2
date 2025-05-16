@@ -19,7 +19,7 @@ load_dotenv()
 
 # Constants
 COLLECTION_NAME = "exam_alerts"
-DATA_DIR = "data/processed"
+DATA_DIR = "data/processed/exam_data.json"
 EMBEDDING_MODEL = "text-embedding-3-small"  # Using OpenAI's small embedding model
 EMBEDDING_DIMENSION = 1536  # Dimension for text-embedding-3-small
 
@@ -32,57 +32,53 @@ def parse_arguments():
     parser.add_argument("--model", default=EMBEDDING_MODEL, help="Embedding model to use")
     return parser.parse_args()
 
-def load_exam_files(data_dir: str) -> List[Dict[str, Any]]:
+def load_exam_files(data_path: str) -> List[Dict[str, Any]]:
     """
-    Load all exam information files from the specified directory
+    Load exam information files from the specified path
     
     Args:
-        data_dir: Directory containing exam data files
+        data_path: Path to the exam data file
         
     Returns:
         List of exam document dictionaries
     """
     documents = []
-    data_path = Path(data_dir)
+    path = Path(data_path)
     
-    # Look for the exams_deadlines.json file
-    file_path = data_path / "exams_deadlines.json"
-    
-    if not file_path.exists():
-        logger.warning(f"Exam data file not found at {file_path}")
+    if not path.exists():
+        logger.warning(f"Exam data file not found at {path}")
         return []
     
     try:
-        logger.info(f"Processing: {file_path}")
-        with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+        logger.info(f"Processing: {path}")
+        with open(path, 'r', encoding='utf-8', errors='ignore') as f:
             exams = json.load(f)
         
         # Process each exam as a separate document
         for i, exam in enumerate(exams):
-            # Add an ID if not present
-            if "id" not in exam:
-                exam["id"] = f"exam-{i}"
+            # Normalize data structure
+            normalized_exam = {
+                "id": exam.get("id", f"exam-{i}"),
+                "course_code": exam.get("Course Code", ""),
+                "course_name": exam.get("Course Name", ""),
+                "date": exam.get("Exam Date", ""),
+                "time": exam.get("Exam Time", ""),
+                "location": exam.get("Location", "Not specified"),
+                "type": exam.get("Type", "Final Exam"),
+                "text": exam.get("Text", "")
+            }
             
             # Ensure text field exists for embedding
-            if "text" not in exam:
-                # Construct a text representation
-                course = exam.get("course_code", "") + " " + exam.get("course_name", "")
-                exam_type = exam.get("type", "")
-                date = exam.get("date", "")
-                location = exam.get("location", "")
-                instructor = exam.get("instructor", "")
-                notes = exam.get("notes", "")
-                
-                text = f"Course: {course}. Type: {exam_type}. Date: {date}. Location: {location}. Instructor: {instructor}. Notes: {notes}"
-                exam["text"] = text
+            if not normalized_exam["text"]:
+                normalized_exam["text"] = f"Course: {normalized_exam['course_code']} {normalized_exam['course_name']}. Date: {normalized_exam['date']}. Time: {normalized_exam['time']}. Location: {normalized_exam['location']}. Type: {normalized_exam['type']}."
             
             # Enhance metadata
-            enhanced_exam = enhance_exam_metadata(exam)
+            enhanced_exam = enhance_exam_metadata(normalized_exam)
             documents.append(enhanced_exam)
         
         logger.info(f"Added {len(documents)} exam documents")
     except Exception as e:
-        logger.error(f"Error processing {file_path}: {e}")
+        logger.error(f"Error processing {path}: {e}")
     
     return documents
 
@@ -106,26 +102,44 @@ def enhance_exam_metadata(item: Dict[str, Any]) -> Dict[str, Any]:
     enhanced["metadata"]["module"] = "exam_alerts"
     enhanced["metadata"]["type"] = "exam_document"
     
-    # Ensure keywords field exists
+    # Create or update keywords list
     if "keywords" not in enhanced:
         enhanced["keywords"] = []
     
-    # Add relevant keywords based on exam type
+    # Add course code and name to keywords
+    course_code = enhanced.get("course_code")
+    course_name = enhanced.get("course_name")
+    
+    if course_code and course_code not in enhanced["keywords"]:
+        enhanced["keywords"].append(course_code)
+    
+    if course_name and course_name not in enhanced["keywords"]:
+        enhanced["keywords"].append(course_name)
+    
+    # Add exam type to keywords
     exam_type = enhanced.get("type", "").lower()
-    if exam_type:
+    if exam_type and exam_type not in enhanced["keywords"]:
         enhanced["keywords"].append(exam_type)
-        
-        if "exam" not in enhanced["keywords"]:
-            enhanced["keywords"].append("exam")
-        
-        if "final" in exam_type and "final exam" not in enhanced["keywords"]:
-            enhanced["keywords"].append("final exam")
-        
-        if "midterm" in exam_type and "midterm exam" not in enhanced["keywords"]:
-            enhanced["keywords"].append("midterm exam")
-        
-        if "quiz" in exam_type and "quiz" not in enhanced["keywords"]:
-            enhanced["keywords"].append("quiz")
+    
+    # Add standardized keywords based on exam type
+    if "final" in exam_type and "final exam" not in enhanced["keywords"]:
+        enhanced["keywords"].append("final exam")
+    
+    if "midterm" in exam_type and "midterm exam" not in enhanced["keywords"]:
+        enhanced["keywords"].append("midterm exam")
+    
+    if "quiz" in exam_type and "quiz" not in enhanced["keywords"]:
+        enhanced["keywords"].append("quiz")
+    
+    # Add general exam-related keywords
+    standard_keywords = ["exam", "assessment", "test", "schedule"]
+    for keyword in standard_keywords:
+        if keyword not in enhanced["keywords"]:
+            enhanced["keywords"].append(keyword)
+    
+    # Add date as a keyword for filtering by date
+    if enhanced.get("date") and enhanced.get("date") not in enhanced["keywords"]:
+        enhanced["keywords"].append(enhanced.get("date"))
     
     return enhanced
 
@@ -185,15 +199,23 @@ def generate_embeddings_and_upload(args, documents: List[Dict[str, Any]]):
                         except ValueError:
                             numeric_id = total_points + j
                     
-                    # Create metadata structure
-                    metadata = doc.get("metadata", {})
-                    
                     # Create point with embedding and payload
                     points.append(
                         PointStruct(
                             id=numeric_id,
                             vector=embedding_vector,
-                            payload=doc  # Store the entire document as payload
+                            payload={
+                                "id": doc.get("id", ""),
+                                "course_code": doc.get("course_code", ""),
+                                "course_name": doc.get("course_name", ""),
+                                "date": doc.get("date", ""),
+                                "time": doc.get("time", ""),
+                                "location": doc.get("location", ""),
+                                "type": doc.get("type", ""),
+                                "text": doc.get("text", ""),
+                                "keywords": doc.get("keywords", []),
+                                "metadata": doc.get("metadata", {})
+                            }
                         )
                     )
                 

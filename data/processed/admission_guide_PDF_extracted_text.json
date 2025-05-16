@@ -3,126 +3,464 @@
     "id": 1,
     "heading": "Notre Dame University - Louaize (NDU) Admission Guide 2025-2026",
     "text": "Notre Dame University - Louaize (NDU)\nAdmission Guide 2025-2026\nAccredited by NECHE (New England Commission of Higher Education)",
-    "keywords": ["NDU", "Notre Dame University", "Admission Guide", "2025-2026", "NECHE", "Accreditation", "Louaize", "Lebanon University"]
+    "keywords": ["NDU", "Notre Dame University", "Admission Guide", "2025-2026", "NECHE", "Accreditation", "Louaize", "Lebanon University"],
+    "document_source": "NDU Admission Guide 2025-2026",
+    "course_details": null,
+    "prerequisite_details": null
   },
   {
     "id": 2,
     "heading": "NDU At a Glance",
     "text": "Internationally Accredited: NECHE accreditation and programmatic accreditation from leading bodies.\nInternational Reach:\n- 55+ Different Nationalities\n- Over 24,000 alumni worldwide\nPersonal Support: Variety of financial support and personal mentoring.\nMoUs: Agreements with multinational corporations and NGOs.\nInclusion: Initiatives promote diversity and offer tailored support. Contact: Office of Student Affairs, T: 09 208 000 Ext. 2047, E: sao@ndu.edu.lb\nWashington D.C. Office: Advances NDU mission in the U.S.A., supports American Friends of NDU (AFNDU) chapters and alumni.\nThree Campuses across Lebanon:\n- Main Campus: Zouk Mosbeh\n- North Lebanon Campus: Barsa, El Koura\n- Shouf Campus: St. Abda Monastery, Deir El-Kamar",
-    "keywords": ["NDU overview", "university facts", "accreditation", "international reach", "alumni network", "student support", "MOUs", "inclusion policy", "diversity initiatives", "Washington D.C. office", "NDU campuses", "Zouk Mosbeh", "Barsa", "El Koura", "Deir El-Kamar"]
+    "keywords": ["NDU overview", "university facts", "accreditation", "international reach", "alumni network", "student support", "MOUs", "inclusion policy", "diversity initiatives", "Washington D.C. office", "NDU campuses", "Zouk Mosbeh", "Barsa", "El Koura", "Deir El-Kamar"],
+    "document_source": "NDU Admission Guide 2025-2026",
+    "course_details": null,
+    "prerequisite_details": null
   },
   {
     "id": 3,
     "heading": "Student Life",
     "text": "Student Activities:\n- Over 30 student clubs and societies.\n- NDU Model United Nations (MUN) program promotes diversity, respect, and leadership.\n- Contact (Dept. of Student Activities): T: 09 208 000 Ext. 2348 | E: studentactivities@ndu.edu.lb\n- Contact (MUN Office): T: 09 208 000 Ext. 2048 | E: mun@ndu.edu.lb\n\nSports:\n- Multipurpose gym for fitness, martial arts, bodybuilding, dancing.\n- Sports clubs: Basketball, Volleyball, Taekwondo, Aikido, Physical Fitness, Body Building, Tennis, Swimming, Soccer, Rugby, Futsal, Table Tennis, etc.\n- Contact (Dept. of Athletics): T: 09 208 000 Ext. 2067 | E: athletics@ndu.edu.lb\n\nCommunity Services:\n- Partnerships with NGOs for community projects.\n- Students plan, adopt, and complete projects with diverse skills.\n- Contact (Dept. of Community Service and Awareness): T: 09 208 000 Ext. 2068 | E: csa@ndu.edu.lb",
-    "keywords": ["NDU student life", "extracurricular activities", "student clubs", "student societies", "Model United Nations", "MUN", "university sports", "gym facilities", "athletics department", "community service", "NGO partnerships", "student volunteering"]
+    "keywords": ["NDU student life", "extracurricular activities", "student clubs", "student societies", "Model United Nations", "MUN", "university sports", "gym facilities", "athletics department", "community service", "NGO partnerships", "student volunteering"],
+    "document_source": "NDU Admission Guide 2025-2026",
+    "course_details": null,
+    "prerequisite_details": null
   },
   {
     "id": 4,
     "heading": "Student Services",
     "text": "Housing:\n- Safe, well-maintained, reasonably priced residence for NDU students at Main Campus.\n- Services: Laundry, fully equipped kitchen, study room, TV room, internet access, full-time security.\n- Contact (Student Housing): T: 09 208 000 Ext. 2998 | E: studenthousing@ndu.edu.lb\n\nMedical & Counseling Services:\n- University Counseling Services team available to all enrolled students.\n- Contact (Medical House): T: 09 208 800 Ext. 2269 | E: medicalhouse@ndu.edu.lb\n\nStudents with Special Needs:\n- SKILD-led Learning Accommodation Service (LAS) facilitates learning accommodations.\n- Services: Support, accommodations, collaboration with faculty and administration.\n- Contact (LAS Team): T: 09 208 000 Ext. 2987 | E: las@ndu.edu.lb\n\nNDU Career Center:\n- Empowers students and alumni for career decisions and job market navigation.\n- Services: Career guidance, CV/cover letter/portfolio assistance, interview preparation, job search support, skill development workshops, personality tests, internship/networking opportunities, career fairs, job shadowing, company visits, career resources.\n- Works with ~1,500 companies and 400+ alumni leaders.\n- Contact: T: 09 208 000 Ext. 2050 | E: career@ndu.edu.lb",
-    "keywords": ["NDU student services", "university housing", "student accommodation", "dormitory", "medical services", "counseling services", "student well-being", "students with special needs", "learning accommodation", "LAS", "SKILD", "career center", "career services", "job support", "internships", "networking"]
+    "keywords": ["NDU student services", "university housing", "student accommodation", "dormitory", "medical services", "counseling services", "student well-being", "students with special needs", "learning accommodation", "LAS", "SKILD", "career center", "career services", "job support", "internships", "networking"],
+    "document_source": "NDU Admission Guide 2025-2026",
+    "course_details": null,
+    "prerequisite_details": null
   },
   {
     "id": 5,
     "heading": "Degrees Offered - Ramez G. Chagoury Faculty of Architecture, Arts & Design (FAAD)",
     "text": "Undergraduate:\n- Architecture (BArch) • : 172 cr.\n- Fashion Design (BA): 102 cr.\n- Graphic Design (BA) ○: 102 cr.\n- Interior Design (BA) • : 136 cr.\n- Musicology (BA): 99 cr.\nGraduate:\n- Design (MA): 36 cr.\n- Sustainable Architecture (MA): 30 cr.\n(Symbols: ▲ Main Campus only, • North Lebanon Campus, ○ Shouf Campus)",
-    "keywords": ["NDU FAAD degrees", "architecture programs", "arts degrees", "design programs", "fashion design major", "graphic design major", "interior design major", "musicology major", "master of design", "sustainable architecture master", "FAAD courses"]
+    "keywords": ["NDU FAAD degrees", "architecture programs", "arts degrees", "design programs", "fashion design major", "graphic design major", "interior design major", "musicology major", "master of design", "sustainable architecture master", "FAAD courses"],
+    "document_source": "NDU Admission Guide 2025-2026",
+    "course_details": null,
+    "prerequisite_details": null
   },
   {
     "id": 6,
     "heading": "Degrees Offered - Faculty of Business Administration & Economics (FBAE)",
     "text": "Undergraduate:\n- Accounting (BBA) ▲△: 92 cr.\n- Banking & Finance (BBA) ▲△: 92 cr.\n- Distribution & Logistics Management (BBA): 92 cr.\n- Economics (BS) ▲: 90 cr.\n- Entrepreneurship (BBA): 92 cr.\n- Financial Engineering (BBA) ▲△: 99 cr.\n- Hotel Management & Tourism (BHMT) (Food & Beverage Mgt, Hospitality Events Mgt, Hospitality Mgt): 103 cr.\n- Human Resources Management (BBA) •▲: 92 cr.\n- International Business Management (BBA) •○▲: 92 cr.\n- Management (BBA) •▲: 92 cr.\n- Marketing (BBA) •○▲: 92 cr.\nGraduate:\n- Master of Business Administration (MBA): General (39 cr.), Project Management (39 cr.)\n- Business Strategy (MS): 30 cr.\n- Financial Risk Management (MS): 30 cr.\n(Symbols: ▲ Main Campus only, • North Lebanon Campus, ○ Shouf Campus, △ These majors will have to be completed at NDU, Main Campus)",
-    "keywords": ["NDU FBAE degrees", "business programs", "economics programs", "accounting major", "banking and finance", "logistics management", "economics BS", "entrepreneurship BBA", "financial engineering BBA", "hotel management", "tourism degree", "human resources BBA", "international business BBA", "management BBA", "marketing BBA", "MBA programs", "business strategy MS", "financial risk MS", "FBAE courses"]
+    "keywords": ["NDU FBAE degrees", "business programs", "economics programs", "accounting major", "banking and finance", "logistics management", "economics BS", "entrepreneurship BBA", "financial engineering BBA", "hotel management", "tourism degree", "human resources BBA", "international business BBA", "management BBA", "marketing BBA", "MBA programs", "business strategy MS", "financial risk MS", "FBAE courses"],
+    "document_source": "NDU Admission Guide 2025-2026",
+    "course_details": null,
+    "prerequisite_details": null
   },
   {
     "id": 7,
     "heading": "Degrees Offered - Faculty of Engineering (FE)",
     "text": "Undergraduate:\n- Chemical Engineering (BE) ▲△: 150 cr.\n- Civil Engineering (BE) •△▲: 150 cr.\n- Computer & Communication Engineering (BE) •○▲: 150 cr.\n- Electrical Engineering (BE) •○▲: 150 cr.\n- Mechanical Engineering (BE) ▲△: 150 cr.\n- Petroleum Engineering (BE) ▲△: 150 cr.\nGraduate:\n- Civil Engineering (MS): 30 cr.\n- Electrical & Computer Engineering (MS): 30 cr.\n- Mechanical Engineering (MS): 30 cr.\n(Symbols: ▲ Main Campus only, • North Lebanon Campus, ○ Shouf Campus, △ These majors will have to be completed at NDU, Main Campus)",
-    "keywords": ["NDU FE degrees", "engineering programs", "chemical engineering major", "civil engineering major", "computer communication engineering", "electrical engineering major", "mechanical engineering major", "petroleum engineering major", "masters in engineering", "FE courses"]
+    "keywords": ["NDU FE degrees", "engineering programs", "chemical engineering major", "civil engineering major", "computer communication engineering", "electrical engineering major", "mechanical engineering major", "petroleum engineering major", "masters in engineering", "FE courses"],
+    "document_source": "NDU Admission Guide 2025-2026",
+    "course_details": null,
+    "prerequisite_details": null
   },
   {
     "id": 8,
     "heading": "Degrees Offered - Faculty of Humanities (FH)",
     "text": "Undergraduate:\n- Advertising & Marketing (BA) •○: 102 cr.\n- Basic Education (BA): 99 cr.\n- Communication Arts (BA): Journalism & Electronic Media • (102 cr.), Radio/TV •○ (103 cr.)\n- English Language (BA): 102 cr.\n- Physical Education & Sport (BA): 99 cr.\n- Psychology (BA): Clinical, Educational, Industrial (97 cr. each)\n- Translation & Interpretation (BA): 108 cr.\nTeaching Diploma (TD): 21 cr. each (Arabic Lang. & Lit., Basic Education, Chemistry, Computer Science, English Lang., Life Science, Mathematics, Physical Education & Sport, Physics)\nGraduate:\n- Education (MA): Educational Technology, School Mgt & Edu Leadership, Special Education (33 cr. each)\n- Educational Psychology (MA): 36 cr.\n- English Language & Literature (MA): Applied Linguistics & TEFL (30 cr.), Literature (30 cr.)\n- Media Studies (MA): Advertising, Electronic Journalism, TV Production & Mgt, Media Data Analytics (36 cr. each)\n- Translation (MA): 36 cr.\n(Symbols: • North Lebanon Campus, ○ Shouf Campus)",
-    "keywords": ["NDU FH degrees", "humanities programs", "advertising and marketing BA", "basic education BA", "communication arts BA", "journalism degree", "radio TV degree", "English language BA", "physical education BA", "psychology BA", "translation BA", "teaching diploma", "education MA", "educational psychology MA", "English literature MA", "media studies MA", "FH courses"]
+    "keywords": ["NDU FH degrees", "humanities programs", "advertising and marketing BA", "basic education BA", "communication arts BA", "journalism degree", "radio TV degree", "English language BA", "physical education BA", "psychology BA", "translation BA", "teaching diploma", "education MA", "educational psychology MA", "English literature MA", "media studies MA", "FH courses"],
+    "document_source": "NDU Admission Guide 2025-2026",
+    "course_details": null,
+    "prerequisite_details": null
   },
   {
     "id": 9,
     "heading": "Degrees Offered - Faculty of Law & Political Science (FLPS)",
     "text": "Undergraduate:\n- International Affairs & Diplomacy (BA): 105 cr.\n- Laws (BLaws): 140 cr.\n- Political Science (BA): 105 cr.\n- Political Science (BA) - NGOs: 105 cr.\nGraduate:\n- International Affairs & Diplomacy (MA): Int'l Affairs & Diplomacy (36 cr.), International Law (36 cr.)\n- Political Science (MA): Human Rights, NGOs, Political Science (36 cr. each)\n- Public Administration (MA): 36 cr.",
-    "keywords": ["NDU FLPS degrees", "law programs", "political science programs", "international affairs BA", "diplomacy BA", "BLaws", "political science BA NGOs", "international affairs MA", "international law MA", "human rights MA", "public administration MA", "FLPS courses"]
+    "keywords": ["NDU FLPS degrees", "law programs", "political science programs", "international affairs BA", "diplomacy BA", "BLaws", "political science BA NGOs", "international affairs MA", "international law MA", "human rights MA", "public administration MA", "FLPS courses"],
+    "document_source": "NDU Admission Guide 2025-2026",
+    "course_details": null,
+    "prerequisite_details": null
   },
   {
     "id": 10,
     "heading": "Degrees Offered - Faculty of Natural & Applied Sciences (FNAS)",
     "text": "Undergraduate:\n- Actuarial Sciences (BS): 94 cr.\n- Biochemistry (BS): 92 cr.\n- Biology (BS) •○: 92 cr.\n- Chemistry (BS): 92 cr.\n- Computer Graphics & Animation (BS) ○: 94 cr.\n- Computer Science (BS) •○: 94 cr.\n- Environmental Science (BS): 92 cr.\n- Information Technology (BS) •○: 94 cr.\n- Management Information Systems (BS) •: 94 cr.\n- Mathematics (BS): 90 cr.\n- Physics (BS) ○: 95 cr.\nGraduate:\n- Actuarial Sciences (MS): 30 cr.\n- Biology (MS): 36 cr.\n- Computer Science (MS): 30 cr.\n- Industrial Chemistry (MS): 36 cr.\n- Mathematics (MS): 33 cr.\n(Symbols: • North Lebanon Campus, ○ Shouf Campus)",
-    "keywords": ["NDU FNAS degrees", "science programs", "actuarial sciences BS", "biochemistry BS", "biology BS", "chemistry BS", "computer graphics BS", "computer science BS", "environmental science BS", "information technology BS", "MIS BS", "mathematics BS", "physics BS", "actuarial sciences MS", "biology MS", "computer science MS", "industrial chemistry MS", "mathematics MS", "FNAS courses"]
+    "keywords": ["NDU FNAS degrees", "science programs", "actuarial sciences BS", "biochemistry BS", "biology BS", "chemistry BS", "computer graphics BS", "computer science BS", "environmental science BS", "information technology BS", "MIS BS", "mathematics BS", "physics BS", "actuarial sciences MS", "biology MS", "computer science MS", "industrial chemistry MS", "mathematics MS", "FNAS courses"],
+    "document_source": "NDU Admission Guide 2025-2026",
+    "course_details": null,
+    "prerequisite_details": null
   },
   {
     "id": 11,
     "heading": "Degrees Offered - Faculty of Nursing & Health Sciences (FNHS)",
     "text": "Undergraduate:\n- Food Safety & Quality Management (BS): 93 cr.\n- Medical Laboratory Technology (BS) •○: 103 cr.\n- Nursing (BNurs): 105 cr.\n- Nutrition & Dietetics (BS) •○: 97 cr.\n- Nutrition & Dietetics - Coordinated Program (BS) •○: 102 cr.\nGraduate:\n- Food Safety & Quality Management (MS): 36 cr.\n- Human Nutrition (MS): 35 cr.\n(Symbols: • North Lebanon Campus, ○ Shouf Campus)",
-    "keywords": ["NDU FNHS degrees", "nursing programs", "health science programs", "food safety BS", "medical lab technology BS", "nursing BNurs", "nutrition and dietetics BS", "food safety MS", "human nutrition MS", "FNHS courses"]
+    "keywords": ["NDU FNHS degrees", "nursing programs", "health science programs", "food safety BS", "medical lab technology BS", "nursing BNurs", "nutrition and dietetics BS", "food safety MS", "human nutrition MS", "FNHS courses"],
+    "document_source": "NDU Admission Guide 2025-2026",
+    "course_details": null,
+    "prerequisite_details": null
   },
   {
     "id": 12,
     "heading": "Minors Offered",
     "text": "FAAD: Graphic Design (18 cr.), Photography (18 cr.)\nFBAE: Accounting, Finance, Economics, Management, Marketing Mgt, Distribution & Logistics Mgt, Human Resources Mgt (15 cr. each), Food & Beverage Mgt (19 cr.), Hospitality Mgt (18 cr.), Events Mgt (16 cr.), Entrepreneurship (15 cr.)\nFE: Engineering Management (18 cr.)\nFH: English, Advertising & Marketing, Radio & Television, Journalism, Public Relations, Philosophy, Psychology (18 cr. each), French, Physical Edu & Sport, Arabic Lang & Lit, Sociology, Romance Lang (15 cr. each), Translation (16 cr.)\nFLPS: Political Science, Int'l Affairs & Diplomacy, Public Admin, Middle Eastern Studies, Strategic Studies, Gender Studies, Peace & Conflict Studies, Euro Mediterranean Studies, American Studies (18 cr. each)\nFNAS: Geographic Info Systems, Mathematics, Physics (15 cr. each), Actuarial Sciences (18 cr.), Biology (17 cr.), Environmental Science (16 cr.)\nFNHS: Nutrition (15 cr.), Food Safety & Quality Mgt (15 cr.)",
-    "keywords": ["NDU minors", "minor programs", "FAAD minors", "FBAE minors", "FE minors", "FH minors", "FLPS minors", "FNAS minors", "FNHS minors", "interdisciplinary studies", "minor credit hours"]
+    "keywords": ["NDU minors", "minor programs", "FAAD minors", "FBAE minors", "FE minors", "FH minors", "FLPS minors", "FNAS minors", "FNHS minors", "interdisciplinary studies", "minor credit hours"],
+    "document_source": "NDU Admission Guide 2025-2026",
+    "course_details": null,
+    "prerequisite_details": null
   },
   {
     "id": 13,
     "heading": "Begin Your Journey - Application Process",
     "text": "1. Online Application: Complete at https://sis.ndu.edu.lb/iApply/\n2. Fee: USD 30 (Pay online via USD credit card or in person at NDU).\n3. Required Documents:\n   - Officially issued secondary school grades (last three academic years).\n   - Photocopy of National ID Card or Passport.\n   - One recent passport-size photo.\n   - Certified copy of Lebanese Baccalaureate Part II or its equivalent.\n4. Entrance Exams / Standardized Tests: Sit for NDU Entrance Exams or submit scores for:\n   - English Proficiency: SAT Evidence-Based Reading and Writing (EBRW), TOEFL, or IELTS.\n   - Math Aptitude: SAT Math.\n5. Exam Fees (if applicable): USD 30 per NDU test (English or Math). USD 50 for both. Fees are non-refundable.\n6. Document Submission: Must be original certified copies. Submitted documents become NDU property.",
-    "keywords": ["NDU application process", "how to apply NDU", "admission steps", "application requirements", "required documents admission", "NDU entrance exams", "SAT requirements", "TOEFL requirements", "IELTS requirements", "application fee NDU", "submit application NDU"]
+    "keywords": ["NDU application process", "how to apply NDU", "admission steps", "application requirements", "required documents admission", "NDU entrance exams", "SAT requirements", "TOEFL requirements", "IELTS requirements", "application fee NDU", "submit application NDU"],
+    "document_source": "NDU Admission Guide 2025-2026",
+    "course_details": null,
+    "prerequisite_details": null
   },
   {
     "id": 14,
     "heading": "English Proficiency Requirements",
     "text": "All applicants must demonstrate English proficiency. NDU recognizes EET, TOEFL, SAT EBRW, or IELTS.\n\nEET Score Ranges:\n- 60 and above: Accepted, ENL 213 (Sophomore Level)\n- 55-59: Accepted, ENL 110 (3 credits - Remedial)\n- 50-54: Accepted, ENL 105¹ (3 credits - Remedial)\n- 40-49: Accepted, ENL 002² (9 credits - Intensive)\n\nSAT Evidence-Based Reading and Writing Score Ranges:\n- 540 and above: Accepted, ENL 213 (Sophomore Level)\n- 490-530: Accepted, ENL 110 (3 credits - Remedial)\n- 430-480: Accepted, ENL 105¹ (3 credits - Remedial)\n- 400-420: Accepted, ENL 002² (9 credits - Intensive)\n\nTOEFL iBT Score Ranges:\n- 91 and above: Accepted, ENL 213 (Sophomore Level)\n- 79-90: Accepted, ENL 110 (3 credits - Remedial)\n- 69-78: Accepted, ENL 105¹ (3 credits - Remedial)\n- 54-68: Accepted, ENL 002² (9 credits - Intensive)\n\nIELTS Score Ranges:\n- 6.5 and above: Accepted, ENL 213 (Sophomore Level)\n- 6: Accepted, ENL 110 (3 credits - Remedial)\n- 5.5: Accepted, ENL 105¹ (3 credits - Remedial)\n- 5: Accepted, ENL 002² (9 credits - Intensive)\n\nNotes:\n¹ Any student enrolled in ENL 105, who scores a 'B' or above, will automatically pass to ENL 213.\n² Any student enrolled in ENL 002, who scores a 'B' or above, will automatically pass to ENL 110.\nStudents are advised to take/repeat tests to improve scores and reduce remedial courses.",
-    "keywords": ["NDU English proficiency", "English test requirements", "EET scores", "TOEFL iBT scores NDU", "SAT EBRW scores NDU", "IELTS scores NDU", "English remedial courses", "ENL 213", "ENL 110", "ENL 105", "ENL 002", "English language requirements admission"]
+    "keywords": ["NDU English proficiency", "English test requirements", "EET scores", "TOEFL iBT scores NDU", "SAT EBRW scores NDU", "IELTS scores NDU", "English remedial courses", "ENL 213", "ENL 110", "ENL 105", "ENL 002", "English language requirements admission"],
+    "document_source": "NDU Admission Guide 2025-2026",
+    "course_details": null,
+    "prerequisite_details": null
   },
   {
     "id": 15,
     "heading": "Additional Requirements for Freshman and Transfer Students",
     "text": "Freshman Students:\n- Submit: Official school attestation/diploma (certified), Written Authorization from Lebanese Ministry of Education (for foreign program basis), SAT Scores (upon submission).\n- Note: Requires 30 Freshman level credits. Science track allows any major; Arts track allows any major except Engineering & Computer Science.\n- Required SAT Scores: Freshman Arts: 870 | Freshman Sciences: 950 (EBRW + Math).\n\nTransfer Students:\n- Submit: Official transcript of undergraduate record, Copy of undergraduate course descriptions (certified by university).\n- Note for International Transfers: Certify official transcript at relevant country's Embassy in Lebanon AND Lebanese Ministry of Foreign Affairs.",
-    "keywords": ["NDU freshman admission", "NDU transfer student", "freshman student requirements", "transfer student requirements", "SAT scores freshman NDU", "freshman arts SAT", "freshman science SAT", "transfer credits NDU", "transcript certification", "international transfer NDU"]
+    "keywords": ["NDU freshman admission", "NDU transfer student", "freshman student requirements", "transfer student requirements", "SAT scores freshman NDU", "freshman arts SAT", "freshman science SAT", "transfer credits NDU", "transcript certification", "international transfer NDU"],
+    "document_source": "NDU Admission Guide 2025-2026",
+    "course_details": null,
+    "prerequisite_details": null
   },
   {
     "id": 16,
     "heading": "Office of Admissions Contact Information",
     "text": "Main Campus:\nT: +961 9 208 000 Ext: 2156 or 2056\nE: admission@ndu.edu.lb\n\nNorth Lebanon Campus:\nT: +961 6 416 101/2/4 Ext: 3122\nE: admission_nlc@ndu.edu.lb\n\nShouf Campus:\nT: +961 25 511 202 / 4 / 5 Ext: 4120 / 1\nE: admission_shouf@ndu.edu.lb",
-    "keywords": ["NDU admissions office", "contact admissions", "main campus admissions contact", "north lebanon campus admissions contact", "shouf campus admissions contact", "admission email NDU", "admission phone NDU"]
+    "keywords": ["NDU admissions office", "contact admissions", "main campus admissions contact", "north lebanon campus admissions contact", "shouf campus admissions contact", "admission email NDU", "admission phone NDU"],
+    "document_source": "NDU Admission Guide 2025-2026",
+    "course_details": null,
+    "prerequisite_details": null
   },
   {
     "id": 17,
     "heading": "Important Admissions Dates",
     "text": "Application Timelines:\n- Fall Semester 2025: Tuesday, Dec 10, 2024 - Tuesday, July 22, 2025\n- Spring Semester 2026: Wednesday, Oct 1, 2025 - Wednesday, Dec 3, 2025\n\nAdmission Deadlines & Dates:\n- Early Admission, Fall 2025: App Deadline: Wed. Jan. 22, 2025 | Exam: Sat. Jan. 25, 2025 | Decision: Mon. Feb. 17, 2025\n- Regular Adm. I, Fall 2025: App Deadline: Wed. March 5, 2025 | Exam: Sat. March 8, 2025 | Decision: Fri. March 28, 2025\n- Regular Adm. II, Fall 2025: App Deadline: Tues. May 20, 2025 | Exam: Fri. May 23, 2025 | Decision: Mon. June 16, 2025\n- Regular Adm. III, Fall 2025: App Deadline: Tues. July 22, 2025 | Exam: Fri. July 25, 2025 | Decision: Thurs. Aug. 21, 2025\n- Spring Semester, 2026: App Deadline: Wed. Dec. 3, 2025 | Exam: Sat. Dec. 6, 2025 | Decision: Fri. Dec. 19, 2025\n\nOpen Doors:\n- Main Campus: Friday, April 11, 2025\n- Shouf Campus: Tuesday, April 29, 2025\n- North Lebanon Campus: Tuesday, April 29, 2025",
-    "keywords": ["NDU admission dates", "application deadlines NDU", "examination dates NDU", "admission decision dates", "NDU open doors", "fall semester deadlines", "spring semester deadlines", "early admission NDU", "regular admission NDU"]
+    "keywords": ["NDU admission dates", "application deadlines NDU", "examination dates NDU", "admission decision dates", "NDU open doors", "fall semester deadlines", "spring semester deadlines", "early admission NDU", "regular admission NDU"],
+    "document_source": "NDU Admission Guide 2025-2026",
+    "course_details": null,
+    "prerequisite_details": null
   },
   {
     "id": 18,
     "heading": "Scholarships & Financial Aid",
     "text": "NDU offers Financial Aid Upon Admission, Scholarships Upon Admission, Sports Grant, and Sibling Grant. Highest percentage chosen if eligible for multiple.\n\nScholarships upon Admission:\n- Awarded for good scores on SAT or Lebanese/French/International/Technical Baccalaureate.\n- Automatically given upon score submission.\n\nSports Grant:\n- 10% for joining NDU sports team.\n- Additional 5% if team wins tournament/championship.\n- 20% discount for NDU athletes on first division/national teams.\n- Can be combined with other Financial Aid/Scholarship.\n- Elite players: 50% Sports Scouting Scholarship (first year).\n\nSibling Grant:\n- Family discount for two or more siblings enrolled simultaneously (from first semester).\n- To Apply: Access Financial Aid on SIS, click Sibling Grant, add sibling's ID. Submit Family Status Record (not older than one year) to Dept. of Financial Aid.",
-    "keywords": ["NDU scholarships", "NDU financial aid", "types of scholarships", "admission scholarships NDU", "sports grant NDU", "sibling grant NDU", "tuition discount NDU", "how to apply for sibling grant", "scholarship eligibility"]
+    "keywords": ["NDU scholarships", "NDU financial aid", "types of scholarships", "admission scholarships NDU", "sports grant NDU", "sibling grant NDU", "tuition discount NDU", "how to apply for sibling grant", "scholarship eligibility"],
+    "document_source": "NDU Admission Guide 2025-2026",
+    "course_details": null,
+    "prerequisite_details": null
   },
   {
     "id": 19,
     "heading": "Applying for Financial Aid upon Admission",
     "text": "Process for Financial Aid upon Admission:\n1. Check Online Acceptance Results: https://sis.ndu.edu.lb/OAR/\n2. Fill out Financial Aid application online with one parent (ensure completion).\n3. Schedule online appointment for interview with Dept. of Financial Aid.\n4. Attend interview (approx. 45 mins) with at least one parent.\n5. Print application, have it signed by self and parent.\n6. Submit signed application & required documents in person during interview.\n\nDeadlines for submission:\n- Fall Semester: End of June\n- Spring Semester: End of November\n\nContact: Department of Financial Aid - financialaid@ndu.edu.lb\nNote: Timely completion is crucial. Delay may impact aid.",
-    "keywords": ["NDU apply financial aid", "financial aid application process", "financial aid NDU steps", "financial aid interview", "financial aid documents", "financial aid deadlines NDU", "financialaid@ndu.edu.lb"]
+    "keywords": ["NDU apply financial aid", "financial aid application process", "financial aid NDU steps", "financial aid interview", "financial aid documents", "financial aid deadlines NDU", "financialaid@ndu.edu.lb"],
+    "document_source": "NDU Admission Guide 2025-2026",
+    "course_details": null,
+    "prerequisite_details": null
   },
   {
     "id": 20,
     "heading": "Tuition & Other Fees",
     "text": "Undergraduate Tuition (per Credit Hour USD):\n- Architecture: $440\n- Business: $395\n- Engineering: $470\n- Computer Sciences: $440\n- All Others: $380\n- Intensive Course: $2,880\n- Audit / Credit Hour per Semester: 75% of credit tuition\n\nGraduate Tuition (per Credit Hour USD):\n- Remedial: $520\n- Architecture: $670\n- Computer Science: $670\n- Business: $635\n- Engineering: $765\n- All others: $590\n- Audit / Credit Hour per Semester: 75% of credit tuition\n\nDormitory Fees (per Semester USD):\n- Shared Accommodation (Block B Female & C Male): Fall $1,200, Spring $1,200, Summer $420. Deposit $200.\n- Single Accommodation (Block B Female & C Male): Fall $1,800, Spring $1,800, Summer $650. Deposit $300.\nDeposit refundable at end of stay, less damages.\n\nDormitory Reservations: studenthousing@ndu.edu.lb\n(For more details, check link in original document)",
-    "keywords": ["NDU tuition fees", "cost of attendance NDU", "undergraduate tuition NDU", "graduate tuition NDU", "price per credit hour", "intensive course fee", "audit fee", "dormitory fees NDU", "student housing cost", "accommodation fees NDU", "studenthousing@ndu.edu.lb"]
+    "keywords": ["NDU tuition fees", "cost of attendance NDU", "undergraduate tuition NDU", "graduate tuition NDU", "price per credit hour", "intensive course fee", "audit fee", "dormitory fees NDU", "student housing cost", "accommodation fees NDU", "studenthousing@ndu.edu.lb"],
+    "document_source": "NDU Admission Guide 2025-2026",
+    "course_details": null,
+    "prerequisite_details": null
   },
   {
     "id": 21,
     "heading": "Contact Information (General)",
     "text": "Main Campus: Zouk Mosbeh, Lebanon. T: +961 9 208 000\nNorth Lebanon Campus: Barsa - Koura, Lebanon. T: +961 6 416 101/2/4\nShouf Campus: Deir El Kamar - Shouf, Lebanon. T: +961 25 511 202\nWashington DC Office: Suite 300, 1629 K Street, NW, Washington, DC 20006. T: +1 202 349 1705\nWebsite: ndu.edu.lb\nSocial Media: Facebook, X (Twitter), Instagram, YouTube, LinkedIn.",
-    "keywords": ["NDU contact information", "main campus address", "north lebanon campus address", "shouf campus address", "washington dc office address", "NDU phone numbers", "NDU website", "university contact details"]
+    "keywords": ["NDU contact information", "main campus address", "north lebanon campus address", "shouf campus address", "washington dc office address", "NDU phone numbers", "NDU website", "university contact details"],
+    "document_source": "NDU Admission Guide 2025-2026",
+    "course_details": null,
+    "prerequisite_details": null
+  },
+  {
+    "id": 22,
+    "heading": "Bachelor of Science in Computer Science - ABET Accredited Program - Major Requirements (46cr.)",
+    "text": "Bachelor of Science in Computer Science - ABET Accredited Program. Major Requirements (46cr.)",
+    "keywords": ["BSCS", "Computer Science", "ABET", "Major Requirements", "curriculum", "program structure", "46 credits"],
+    "document_source": "BSCS ABET Program Requirements",
+    "course_details": {
+      "code": null,
+      "name": "Bachelor of Science in Computer Science Major Requirements",
+      "credits": 46,
+      "description": "Overview of major requirements for the ABET accredited Bachelor of Science in Computer Science program."
+    },
+    "prerequisite_details": []
+  },
+  {
+    "id": 23,
+    "heading": "CSC 226 Introduction to Database (3 credits)",
+    "text": "CSC 226 Introduction to Database (3 credits)",
+    "keywords": ["CSC 226", "Introduction to Database", "3 credits", "database fundamentals", "data modeling", "SQL", "relational databases", "prerequisite Introduction to Programming"],
+    "document_source": "BSCS ABET Program Requirements",
+    "course_details": {
+      "code": "CSC 226",
+      "name": "Introduction to Database",
+      "credits": 3,
+      "description": "Fundamentals of database systems, data modeling, relational databases, and SQL."
+    },
+    "prerequisite_details": ["Introduction to Programming"]
+  },
+  {
+    "id": 24,
+    "heading": "CSC 305 System Analysis and Design (3 credits)",
+    "text": "CSC 305 System Analysis and Design (3 credits)",
+    "keywords": ["CSC 305", "System Analysis and Design", "3 credits", "SDLC", "requirements gathering", "system design techniques", "prerequisite CSC 226"],
+    "document_source": "BSCS ABET Program Requirements",
+    "course_details": {
+      "code": "CSC 305",
+      "name": "System Analysis and Design",
+      "credits": 3,
+      "description": "Study of system development life cycle (SDLC), requirements gathering, analysis, and design techniques."
+    },
+    "prerequisite_details": ["CSC 226 Introduction to Database"]
+  },
+  {
+    "id": 25,
+    "heading": "CSC 312 Computer Architecture (3 credits)",
+    "text": "CSC 312 Computer Architecture (3 credits)",
+    "keywords": ["CSC 312", "Computer Architecture", "3 credits", "computer systems structure", "instruction sets", "assembly language programming", "prerequisite Introduction to Computer Science"],
+    "document_source": "BSCS ABET Program Requirements",
+    "course_details": {
+      "code": "CSC 312",
+      "name": "Computer Architecture",
+      "credits": 3,
+      "description": "Organization and structure of computer systems, instruction sets, and assembly language programming."
+    },
+    "prerequisite_details": ["Introduction to Computer Science"]
+  },
+  {
+    "id": 26,
+    "heading": "CSC 316 Fundamentals of Computer Security (3 credits)",
+    "text": "CSC 316 Fundamentals of Computer Security (3 credits)",
+    "keywords": ["CSC 316", "Computer Security", "3 credits", "cryptography", "network security", "threat mitigation", "securing systems", "prerequisite CSC 312"],
+    "document_source": "BSCS ABET Program Requirements",
+    "course_details": {
+      "code": "CSC 316",
+      "name": "Fundamentals of Computer Security",
+      "credits": 3,
+      "description": "Basic concepts of securing systems, cryptography, network security, and threat mitigation."
+    },
+    "prerequisite_details": ["CSC 312 Computer Architecture"]
+  },
+  {
+    "id": 27,
+    "heading": "CSC 317 Information Assurance and Security (3 credits)",
+    "text": "CSC 317 Information Assurance and Security (3 credits)",
+    "keywords": ["CSC 317", "Information Assurance", "3 credits", "data integrity", "data availability", "confidentiality", "IT security", "prerequisite CSC 316"],
+    "document_source": "BSCS ABET Program Requirements",
+    "course_details": {
+      "code": "CSC 317",
+      "name": "Information Assurance and Security",
+      "credits": 3,
+      "description": "Strategies to ensure data integrity, availability, and confidentiality within IT environments."
+    },
+    "prerequisite_details": ["CSC 316 Fundamentals of Computer Security"]
+  },
+  {
+    "id": 28,
+    "heading": "CSC 345 Fundamentals of Computer Network Management (3 credits)",
+    "text": "CSC 345 Fundamentals of Computer Network Management (3 credits)",
+    "keywords": ["CSC 345", "Computer Network Management", "3 credits", "network protocols", "network architectures", "network troubleshooting", "prerequisite CSC 312"],
+    "document_source": "BSCS ABET Program Requirements",
+    "course_details": {
+      "code": "CSC 345",
+      "name": "Fundamentals of Computer Network Management",
+      "credits": 3,
+      "description": "Principles of managing computer networks, including protocols, architectures, and network troubleshooting."
+    },
+    "prerequisite_details": ["CSC 312 Computer Architecture"]
+  },
+  {
+    "id": 29,
+    "heading": "CSC 385 Internet Computing (3 credits)",
+    "text": "CSC 385 Internet Computing (3 credits)",
+    "keywords": ["CSC 385", "Internet Computing", "3 credits", "web applications", "internet protocols", "web development", "prerequisite CSC 226"],
+    "document_source": "BSCS ABET Program Requirements",
+    "course_details": {
+      "code": "CSC 385",
+      "name": "Internet Computing",
+      "credits": 3,
+      "description": "Technologies behind web applications, internet protocols, and web development principles."
+    },
+    "prerequisite_details": ["CSC 226 Introduction to Database"]
+  },
+  {
+    "id": 30,
+    "heading": "CSC 405 Systems Integration (3 credits)",
+    "text": "CSC 405 Systems Integration (3 credits)",
+    "keywords": ["CSC 405", "Systems Integration", "3 credits", "software integration", "system coordination", "prerequisite CSC 305"],
+    "document_source": "BSCS ABET Program Requirements",
+    "course_details": {
+      "code": "CSC 405",
+      "name": "Systems Integration",
+      "credits": 3,
+      "description": "Combining different computing systems and software applications to function as a coordinated whole."
+    },
+    "prerequisite_details": ["CSC 305 System Analysis and Design"]
+  },
+  {
+    "id": 31,
+    "heading": "CSC 414 Applied Operating Systems (3 credits)",
+    "text": "CSC 414 Applied Operating Systems (3 credits)",
+    "keywords": ["CSC 414", "Applied Operating Systems", "3 credits", "process management", "memory management", "file systems", "prerequisite CSC 312"],
+    "document_source": "BSCS ABET Program Requirements",
+    "course_details": {
+      "code": "CSC 414",
+      "name": "Applied Operating Systems",
+      "credits": 3,
+      "description": "In-depth study of operating system concepts, including process management, memory management, and file systems."
+    },
+    "prerequisite_details": ["CSC 312 Computer Architecture"]
+  },
+  {
+    "id": 32,
+    "heading": "CSC 425 Data Communications and Computer Networks (3 credits)",
+    "text": "CSC 425 Data Communications and Computer Networks (3 credits)",
+    "keywords": ["CSC 425", "Data Communications", "Computer Networks", "3 credits", "TCP/IP", "wireless communication", "network design", "prerequisite CSC 345"],
+    "document_source": "BSCS ABET Program Requirements",
+    "course_details": {
+      "code": "CSC 425",
+      "name": "Data Communications and Computer Networks",
+      "credits": 3,
+      "description": "Covers transmission methods, network design, TCP/IP protocols, and wireless communication."
+    },
+    "prerequisite_details": ["CSC 345 Fundamentals of Computer Network Management"]
+  },
+  {
+    "id": 33,
+    "heading": "CSC 446 Applied Database Systems (3 credits)",
+    "text": "CSC 446 Applied Database Systems (3 credits)",
+    "keywords": ["CSC 446", "Applied Database Systems", "3 credits", "advanced database", "database design", "application development", "prerequisite CSC 226"],
+    "document_source": "BSCS ABET Program Requirements",
+    "course_details": {
+      "code": "CSC 446",
+      "name": "Applied Database Systems",
+      "credits": 3,
+      "description": "Advanced database concepts, database design, and database-driven application development."
+    },
+    "prerequisite_details": ["CSC 226 Introduction to Database"]
+  },
+  {
+    "id": 34,
+    "heading": "CSC 450 Human-Computer Interaction (3 credits)",
+    "text": "CSC 450 Human-Computer Interaction (3 credits)",
+    "keywords": ["CSC 450", "Human-Computer Interaction", "HCI", "3 credits", "user interface design", "usability", "UX design", "prerequisite CSC 305"],
+    "document_source": "BSCS ABET Program Requirements",
+    "course_details": {
+      "code": "CSC 450",
+      "name": "Human-Computer Interaction",
+      "credits": 3,
+      "description": "Design and evaluation of user interfaces, usability principles, and user experience design."
+    },
+    "prerequisite_details": ["CSC 305 System Analysis and Design"]
+  },
+  {
+    "id": 35,
+    "heading": "CSC 463 Advanced Software Development (3 credits)",
+    "text": "CSC 463 Advanced Software Development (3 credits)",
+    "keywords": ["CSC 463", "Advanced Software Development", "3 credits", "large-scale software", "maintainable software", "software engineering", "prerequisite CSC 305"],
+    "document_source": "BSCS ABET Program Requirements",
+    "course_details": {
+      "code": "CSC 463",
+      "name": "Advanced Software Development",
+      "credits": 3,
+      "description": "Techniques and practices for building large-scale, maintainable software systems."
+    },
+    "prerequisite_details": ["CSC 305 System Analysis and Design"]
+  },
+  {
+    "id": 36,
+    "heading": "CSC 480 Internship (3 credits)",
+    "text": "CSC 480 Internship (3 credits)",
+    "keywords": ["CSC 480", "Internship", "3 credits", "IT experience", "professional environment", "practical experience", "prerequisite 90 credits"],
+    "document_source": "BSCS ABET Program Requirements",
+    "course_details": {
+      "code": "CSC 480",
+      "name": "Internship",
+      "credits": 3,
+      "description": "Practical experience in the IT field to apply academic knowledge in a professional environment."
+    },
+    "prerequisite_details": ["Completion of at least 90 credits"]
+  },
+  {
+    "id": 37,
+    "heading": "CSC 490 Senior Study (3 credits)",
+    "text": "CSC 490 Senior Study (3 credits)",
+    "keywords": ["CSC 490", "Senior Study", "3 credits", "capstone project", "final year project", "computing research", "prerequisite final year standing"],
+    "document_source": "BSCS ABET Program Requirements",
+    "course_details": {
+      "code": "CSC 490",
+      "name": "Senior Study",
+      "credits": 3,
+      "description": "Capstone project involving research, development, and presentation in a specialized computing area."
+    },
+    "prerequisite_details": ["Final year standing and departmental approval"]
+  },
+  {
+    "id": 38,
+    "heading": "Liberal Arts Curriculum",
+    "text": "Liberal Arts Curriculum",
+    "keywords": ["Liberal Arts Curriculum", "general education", "university core courses"],
+    "document_source": "BSCS ABET Program Requirements",
+    "course_details": null,
+    "prerequisite_details": null
+  },
+  {
+    "id": 39,
+    "heading": "ENG 101 English Composition (3 credits)",
+    "text": "ENG 101 English Composition (3 credits)",
+    "keywords": ["ENG 101", "English Composition", "3 credits", "writing skills", "grammar", "research paper", "prerequisite None"],
+    "document_source": "BSCS ABET Program Requirements",
+    "course_details": {
+      "code": "ENG 101",
+      "name": "English Composition",
+      "credits": 3,
+      "description": "Development of writing skills, including grammar, composition, and research paper techniques."
+    },
+    "prerequisite_details": ["None"]
+  },
+  {
+    "id": 40,
+    "heading": "MTH 110 Pre-Calculus Mathematics (3 credits)",
+    "text": "MTH 110 Pre-Calculus Mathematics (3 credits)",
+    "keywords": ["MTH 110", "Pre-Calculus Mathematics", "3 credits", "algebra", "trigonometry", "calculus preparation", "prerequisite High school mathematics"],
+    "document_source": "BSCS ABET Program Requirements",
+    "course_details": {
+      "code": "MTH 110",
+      "name": "Pre-Calculus Mathematics",
+      "credits": 3,
+      "description": "Fundamental concepts in algebra and trigonometry as preparation for calculus."
+    },
+    "prerequisite_details": ["High school mathematics"]
+  },
+  {
+    "id": 41,
+    "heading": "COM 201 Public Speaking (3 credits)",
+    "text": "COM 201 Public Speaking (3 credits)",
+    "keywords": ["COM 201", "Public Speaking", "3 credits", "oral communication", "speech writing", "presentation skills", "prerequisite None"],
+    "document_source": "BSCS ABET Program Requirements",
+    "course_details": {
+      "code": "COM 201",
+      "name": "Public Speaking",
+      "credits": 3,
+      "description": "Techniques of effective oral communication, speech writing, and public presentation skills."
+    },
+    "prerequisite_details": ["None"]
   }
 ]
