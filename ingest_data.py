@@ -7,13 +7,11 @@ from dotenv import load_dotenv
 import argparse
 from PyPDF2 import PdfReader
 from docx import Document
-import csv
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings
 from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, VectorParams, PointStruct
 import nltk
-import datetime
 
 # Load environment variables
 load_dotenv()

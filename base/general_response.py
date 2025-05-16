@@ -1,14 +1,12 @@
 import os
 import logging
 from dotenv import load_dotenv
-from typing import List, Dict, Any, Optional
+from typing import List
 import pydantic_ai
 from pydantic import BaseModel, Field
-from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 import streamlit as st
-from qdrant_client import QdrantClient
-import requests
 import json
+import requests
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -17,184 +15,13 @@ logger = logging.getLogger(__name__)
 # Load environment variables
 load_dotenv()
 
-# Initialize embeddings and Qdrant client
-embeddings = OpenAIEmbeddings(api_key=os.getenv("OPENAI_API_KEY"))
-qdrant_client = QdrantClient(
-    url=os.getenv("QDRANT_URL"),
-    api_key=os.getenv("QDRANT_API_KEY")
-)
-
-# Available collections to search
-AVAILABLE_COLLECTIONS = [
-    "course_information", 
-    "class_schedules", 
-    "exam_alerts", 
-    "study_resources", 
-    "professors"
-]
-
-class GeneralSearchResult(BaseModel):
-    """Result from general search across all collections"""
-    context: str = Field(..., description="Context information retrieved from search")
-    sources: List[str] = Field(default_factory=list, description="Sources of the information")
-
 class GeneralResponse(BaseModel):
     """Response for general queries"""
     answer: str = Field(..., description="Comprehensive answer addressing the user's query")
 
-def search_all_collections(query: str, top_k_per_collection: int = 10) -> Dict[str, List[Any]]:
-    """
-    Search across all available collections
-    
-    Args:
-        query: The search query
-        top_k_per_collection: Number of results to return per collection
-        
-    Returns:
-        Dictionary mapping collection names to search results
-    """
-    try:
-        logger.info(f"Searching across all collections for: {query}")
-        
-        # Get query embedding
-        query_embedding = embeddings.embed_query(query)
-        
-        # Search all collections
-        all_results = {}
-        
-        for collection_name in AVAILABLE_COLLECTIONS:
-            try:
-                # Check if collection exists
-                collections = qdrant_client.get_collections().collections
-                collection_names = [c.name for c in collections]
-                
-                if collection_name not in collection_names:
-                    logger.info(f"Collection {collection_name} does not exist, skipping")
-                    continue
-                
-                # Perform vector search
-                results = qdrant_client.search(
-                    collection_name=collection_name,
-                    query_vector=query_embedding,
-                    limit=top_k_per_collection
-                )
-                
-                if results:
-                    all_results[collection_name] = results
-                    logger.info(f"Found {len(results)} results in {collection_name}")
-                
-            except Exception as e:
-                logger.error(f"Error searching collection {collection_name}: {e}")
-                continue
-        
-        return all_results
-        
-    except Exception as e:
-        logger.error(f"Error searching across collections: {e}")
-        return {}
-
-def format_search_results(all_results: Dict[str, List[Any]]) -> GeneralSearchResult:
-    """
-    Format search results from all collections into a single context
-    
-    Args:
-        all_results: Dictionary mapping collection names to search results
-        
-    Returns:
-        Formatted context and sources
-    """
-    if not all_results:
-        return GeneralSearchResult(
-            context="No information found related to your query.",
-            sources=[]
-        )
-    
-    context_parts = []
-    sources = []
-    
-    for collection_name, results in all_results.items():
-        if not results:
-            continue
-        
-        # Add collection header
-        context_parts.append(f"\n## Information from {collection_name.replace('_', ' ').title()}\n")
-        sources.append(collection_name)
-        
-        for i, hit in enumerate(results):
-            payload = hit.payload
-            
-            # Format based on collection type
-            if collection_name == "exam_alerts":
-                # Format exam info
-                item_text = f"Course: {payload.get('course_code', 'N/A')} - {payload.get('course_name', 'Unknown')}\n"
-                item_text += f"Type: {payload.get('type', 'Final Exam')}\n"
-                item_text += f"Date: {payload.get('date', 'Not specified')}\n"
-                item_text += f"Time: {payload.get('time', 'Not specified')}\n"
-                
-            elif collection_name == "class_schedules":
-                # Format schedule info
-                item_text = f"Course: {payload.get('course_code', 'N/A')} - {payload.get('course_name', 'Unknown')}\n"
-                sessions = payload.get("sessions", [])
-                if sessions:
-                    item_text += "Schedule:\n"
-                    for session in sessions:
-                        day = session.get("day", "Unknown")
-                        time = session.get("time_slot", "Unknown time")
-                        item_text += f"- {day}: {time}\n"
-                        
-            elif collection_name == "professors":
-                # Format professor info
-                item_text = f"Name: {payload.get('name', 'Unknown')}\n"
-                item_text += f"Department: {payload.get('department', 'Not specified')}\n"
-                item_text += f"Office Hours: {payload.get('office_hours', 'Not specified')}\n"
-                
-            elif collection_name == "course_information":
-                # Format course info
-                metadata = payload.get("metadata", {})
-                item_text = ""
-                
-                if "heading" in metadata:
-                    item_text += f"Section: {metadata['heading']}\n"
-                
-                course_details = metadata.get("course_details", {})
-                if course_details:
-                    if course_details.get("code"):
-                        item_text += f"Course Code: {course_details['code']}\n"
-                    if course_details.get("name"):
-                        item_text += f"Course Name: {course_details['name']}\n"
-                
-                if payload.get("text"):
-                    item_text += f"Details: {payload.get('text')}\n"
-                
-            elif collection_name == "study_resources":
-                # Format study resource info
-                item_text = f"Resource: {payload.get('title', 'Unknown resource')}\n"
-                item_text += f"Type: {payload.get('resource_type', 'Unknown type')}\n"
-                if payload.get("text"):
-                    item_text += f"Details: {payload.get('text')}\n"
-                
-            else:
-                # Generic format for unknown collection types
-                if payload.get("text"):
-                    item_text = payload.get("text")
-                else:
-                    item_text = str(payload)
-            
-            # Add score
-            item_text += f"(Relevance: {hit.score:.2f})\n"
-            
-            # Add to context
-            context_parts.append(f"{i+1}. {item_text}")
-    
-    context = "\n".join(context_parts)
-    return GeneralSearchResult(
-        context=context,
-        sources=sources
-    )
-
 def get_general_response(query: str, language: str = "English") -> str:
     """
-    Get a general response by searching across all collections
+    Get a general response for user queries without vector search
     
     Args:
         query: The user's question
@@ -205,13 +32,6 @@ def get_general_response(query: str, language: str = "English") -> str:
     """
     try:
         logger.info(f"Processing general query: {query}")
-        
-        # Search across all collections with explicitly higher result count
-        all_results = search_all_collections(query, top_k_per_collection=15)
-        
-        # Format search results
-        search_result = format_search_results(all_results)
-        context = search_result.context
         
         # Prepare language instruction
         language_instruction = ""
@@ -231,18 +51,16 @@ def get_general_response(query: str, language: str = "English") -> str:
         
         logger.info(f"Using model: {model_id}, OpenRouter: {use_openrouter}")
         
-        # Prepare system message
-        system_message = f"""You are a knowledgeable university assistant.
-Your goal is to provide accurate, helpful information to university students based on the following search results:
+        # Prepare system message for general responses
+        system_message = f"""You are a helpful and friendly university assistant chatbot.
+Your goal is to provide accurate, helpful information to university students.
 
-{context}
+{language_instruction}
+Be conversational, friendly, and direct in your responses.
 
-Provide a comprehensive response addressing the user's query. {language_instruction}
-Be conversational but direct, and don't mention that your response is based on search results.
-
-IMPORTANT: If the search results don't contain relevant information or if no information was found, DO NOT mention this limitation to the user. Instead, provide a helpful general response based on common knowledge about universities, academia, and student life. Never say phrases like "I don't have information on this" or "this isn't in my database".
-
-Always maintain a helpful tone and try to address the user's query as best as possible without revealing any limitations in your knowledge base.
+Remember that you're interacting with university students, so focus on being helpful and informative.
+If asked about specific university information that would require specialized knowledge, 
+provide general guidance based on common knowledge about universities, academia, and student life.
 """
         
         # Generate response based on model type

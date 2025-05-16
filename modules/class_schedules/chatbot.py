@@ -1,17 +1,13 @@
 import os
-import json
 from dotenv import load_dotenv
 import logging
 from typing import List, Optional, Dict, Any
 import pydantic_ai
 from pydantic import BaseModel, Field
-from langchain_openai import ChatOpenAI, OpenAIEmbeddings
-import pandas as pd
-from pathlib import Path
+from langchain_openai import OpenAIEmbeddings
 import streamlit as st
 import re
 from qdrant_client import QdrantClient
-from qdrant_client.http import models as qdrant_models
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -25,16 +21,16 @@ COLLECTION_NAME = "class_schedules"
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "")
 
 # Simplified context model for class schedules queries
-class ScheduleQueryContext(BaseModel):
-    """Context for a class schedule query"""
-    user_query: str = Field(..., description="The user's original query about class schedules")
-    course_code: Optional[str] = Field(None, description="Course code mentioned in the query (e.g., 'CSC 226')")
-    course_name: Optional[str] = Field(None, description="Course name mentioned (e.g., 'Database Systems')")
-    day: Optional[str] = Field(None, description="Day of the week mentioned (e.g., 'Monday', 'Tuesday')")
-    time: Optional[str] = Field(None, description="Time mentioned in the query")
-    keywords: List[str] = Field(default_factory=list, description="Important keywords extracted from the query")
-    search_results: Optional[List[Dict[Any, Any]]] = Field(None, description="Relevant class schedule information retrieved")
-    response_language: str = Field("English", description="Language to respond in (English or Arabic)")
+# class ScheduleQueryContext(BaseModel):
+#     """Context for a class schedule query"""
+#     user_query: str = Field(..., description="The user's original query about class schedules")
+#     course_code: Optional[str] = Field(None, description="Course code mentioned in the query (e.g., 'CSC 226')")
+#     course_name: Optional[str] = Field(None, description="Course name mentioned (e.g., 'Database Systems')")
+#     day: Optional[str] = Field(None, description="Day of the week mentioned (e.g., 'Monday', 'Tuesday')")
+#     time: Optional[str] = Field(None, description="Time mentioned in the query")
+#     keywords: List[str] = Field(default_factory=list, description="Important keywords extracted from the query")
+#     search_results: Optional[List[Dict[Any, Any]]] = Field(None, description="Relevant class schedule information retrieved")
+#     response_language: str = Field("English", description="Language to respond in (English or Arabic)")
 
 # Class Schedule search request and response models
 class ScheduleSearchRequest(BaseModel):

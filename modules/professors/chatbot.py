@@ -1,17 +1,13 @@
 import os
-import json
 from dotenv import load_dotenv
 import logging
 from typing import List, Dict, Any, Optional
 import pydantic_ai
 from pydantic import BaseModel, Field
-from pathlib import Path
 import re
 import streamlit as st
-
 from langchain_openai import OpenAIEmbeddings
 from qdrant_client import QdrantClient
-from qdrant_client.http import models as qdrant_models
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -25,14 +21,14 @@ COLLECTION_NAME = "professors"
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "")
 
 # Define models for the pydantic AI agent
-class ProfessorQueryContext(BaseModel):
-    """Simplified context for professor queries"""
-    user_query: str = Field(..., description="The user's original query about professors")
-    professor_name: Optional[str] = Field(None, description="Professor name mentioned in the query")
-    course_name: Optional[str] = Field(None, description="Course name mentioned in the query")
-    keywords: List[str] = Field(default_factory=list, description="Important keywords extracted from the query")
-    search_results: Optional[List[Dict[Any, Any]]] = Field(None, description="Relevant professor information retrieved")
-    response_language: str = Field("English", description="Language to respond in (English or Arabic)")
+# class ProfessorQueryContext(BaseModel):
+#     """Simplified context for professor queries"""
+#     user_query: str = Field(..., description="The user's original query about professors")
+#     professor_name: Optional[str] = Field(None, description="Professor name mentioned in the query")
+#     course_name: Optional[str] = Field(None, description="Course name mentioned in the query")
+#     keywords: List[str] = Field(default_factory=list, description="Important keywords extracted from the query")
+#     search_results: Optional[List[Dict[Any, Any]]] = Field(None, description="Relevant professor information retrieved")
+#     response_language: str = Field("English", description="Language to respond in (English or Arabic)")
 
 # Define models for the search tool
 class ProfessorSearchRequest(BaseModel):

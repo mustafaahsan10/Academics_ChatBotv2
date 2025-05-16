@@ -7,10 +7,8 @@ import pydantic_ai
 from pydantic import BaseModel, Field
 from pathlib import Path
 import streamlit as st
-import sys
 import pandas as pd
 import requests
-import re
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -34,15 +32,15 @@ class ResourceSearchResult(BaseModel):
     context: str = Field(..., description="Context information retrieved from search")
 
 # Query context model
-class ResourceQueryContext(BaseModel):
-    """Context for a study resource query"""
-    user_query: str = Field(..., description="The user's original query about study resources")
-    course_name: Optional[str] = Field(None, description="Course name mentioned in the query (e.g., 'Introduction to Computer Science')")
-    resource_type: Optional[str] = Field(None, description="Type of resource mentioned (e.g., 'study material', 'exam links')")
-    topic: Optional[str] = Field(None, description="Specific topic mentioned in the query")
-    keywords: List[str] = Field(default_factory=list, description="Important keywords extracted from the query")
-    search_results: Optional[List[Dict[Any, Any]]] = Field(None, description="Relevant resource information retrieved")
-    response_language: str = Field("English", description="Language to respond in (English or Arabic)")
+# class ResourceQueryContext(BaseModel):
+#     """Context for a study resource query"""
+#     user_query: str = Field(..., description="The user's original query about study resources")
+#     course_name: Optional[str] = Field(None, description="Course name mentioned in the query (e.g., 'Introduction to Computer Science')")
+#     resource_type: Optional[str] = Field(None, description="Type of resource mentioned (e.g., 'study material', 'exam links')")
+#     topic: Optional[str] = Field(None, description="Specific topic mentioned in the query")
+#     keywords: List[str] = Field(default_factory=list, description="Important keywords extracted from the query")
+#     search_results: Optional[List[Dict[Any, Any]]] = Field(None, description="Relevant resource information retrieved")
+#     response_language: str = Field("English", description="Language to respond in (English or Arabic)")
 
 # Response model
 class ResourceResponse(BaseModel):

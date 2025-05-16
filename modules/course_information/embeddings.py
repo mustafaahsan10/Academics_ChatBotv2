@@ -1,6 +1,5 @@
 import os
 import json
-import glob
 import argparse
 from pathlib import Path
 from typing import List, Dict, Any

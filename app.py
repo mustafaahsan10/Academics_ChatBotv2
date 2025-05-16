@@ -1,10 +1,7 @@
 import streamlit as st
 import os
-import asyncio
 from dotenv import load_dotenv
 import logging
-from pathlib import Path
-import pandas as pd
 
 # Import the base query classifier
 from base.query_classifier import classify_query_sync
@@ -106,13 +103,10 @@ def get_module_response(query: str, language: str = "English") -> str:
         
         logger.info(f"Query classified as '{module_name}' with confidence {confidence}")
         
-        # If low confidence, provide a notice
-        prefix = ""
-        if confidence < 0.5:
-            if language.lower() == "arabic":
-                prefix = "ملاحظة: لست متأكدًا تمامًا من نوع سؤالك، لكنني سأحاول الإجابة بأفضل ما لدي.\n\n"
-            else:
-                prefix = "Note: I'm not entirely sure about the category of your question, but I'll try my best to answer.\n\n"
+        # If confidence is below threshold, route to general response
+        if confidence < 0.3:
+            logger.info(f"Low confidence ({confidence}), routing to general response")
+            return get_general_response_sync(query, language)
         
         # Get the response function for the module
         if module_name in MODULES:
@@ -124,7 +118,7 @@ def get_module_response(query: str, language: str = "English") -> str:
             if os.getenv("APP_ENV") == "development":
                 debug_info = f"\n\n---\nDebug: Query classified as '{module_name}' (confidence: {confidence:.2f})\nReasoning: {reasoning}"
             
-            return prefix + response + debug_info
+            return response + debug_info
         else:
             # Fallback to general response if module not found
             logger.warning(f"Module '{module_name}' not found, falling back to general response")

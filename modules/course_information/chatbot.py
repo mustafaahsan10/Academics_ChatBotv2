@@ -1,16 +1,13 @@
 import os
-import json
 from dotenv import load_dotenv
 import logging
-from typing import List, Optional, Dict, Any
+from typing import List, Optional, Dict
 import pydantic_ai
 from pydantic import BaseModel, Field
-from langchain_openai import ChatOpenAI, OpenAIEmbeddings
-from pathlib import Path
+from langchain_openai import OpenAIEmbeddings
 import streamlit as st
 import re
 from qdrant_client import QdrantClient
-from qdrant_client.http import models as qdrant_models
 
 # Import our custom Agent SDK template
 from agent_sdk_template import Agent as LangGraphAgent
@@ -28,14 +25,14 @@ COLLECTION_NAME = "course_information"
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "")
 
 # Pydantic models for course information
-class CourseQueryContext(BaseModel):
-    """Context for a course information query"""
-    user_query: str = Field(..., description="The user's original query about course information")
-    processed_query: str = Field("", description="The processed query with stopwords removed")
-    keywords_matches: List[Dict] = Field(default_factory=list, description="Matches found in the keywords field")
-    heading_matches: List[Dict] = Field(default_factory=list, description="Matches found in the heading field")
-    context: Optional[str] = Field(None, description="Context information retrieved from search")
-    response_language: str = Field("English", description="Language to respond in (English or Arabic)")
+# class CourseQueryContext(BaseModel):
+#     """Context for a course information query"""
+#     user_query: str = Field(..., description="The user's original query about course information")
+#     processed_query: str = Field("", description="The processed query with stopwords removed")
+#     keywords_matches: List[Dict] = Field(default_factory=list, description="Matches found in the keywords field")
+#     heading_matches: List[Dict] = Field(default_factory=list, description="Matches found in the heading field")
+#     context: Optional[str] = Field(None, description="Context information retrieved from search")
+#     response_language: str = Field("English", description="Language to respond in (English or Arabic)")
 
 class CourseSearchRequest(BaseModel):
     """Request parameters for searching course information"""

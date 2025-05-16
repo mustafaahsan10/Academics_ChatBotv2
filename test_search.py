@@ -5,7 +5,6 @@ from dotenv import load_dotenv
 from qdrant_client import QdrantClient
 from qdrant_client.models import Filter, FieldCondition, MatchValue, MatchAny, IsNotEmpty
 from langchain.embeddings import OpenAIEmbeddings
-import pandas as pd
 from tabulate import tabulate
 import re
 
