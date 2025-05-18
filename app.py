@@ -6,15 +6,8 @@ import logging
 # Import the base query classifier
 from base.query_classifier import classify_query_sync
 
-# Import module-specific chatbots
-from modules.course_information.chatbot import get_course_response_sync
-from modules.class_schedules.chatbot import get_schedule_response_sync
-from modules.exam_alerts.chatbot import get_exam_response_sync
-from modules.study_resources.chatbot import get_resource_response_sync
-from modules.professors.chatbot import get_professor_response_sync
-
-# Import the general response handler
-from base.general_response import get_general_response_sync
+# Import RAG pipeline
+from modules.classified_chatbot import rag_pipeline_simple
 
 from Library.DB_endpoint import db_endpoint
 
@@ -55,27 +48,27 @@ OPENROUTER_MODELS = [
 MODULES = {
     "course_information": {
         "name": "Course Information",
-        "get_response": get_course_response_sync,
+        "collection_name": "admission_course_guide_json",
         "description": "Information about course content, prerequisites, credit hours, etc."
     },
     "class_schedules": {
         "name": "Class Schedules",
-        "get_response": get_schedule_response_sync,
+        "collection_name": "class_schedule_json",
         "description": "Details about when and where classes meet"
     },
     "exam_alerts": {
-        "name": "Exam Alerts",
-        "get_response": get_exam_response_sync,
+        "name": "Exam Data",
+        "collection_name": "exam_data_json",
         "description": "Information about exam dates, deadlines, and assessments"
     },
     "study_resources": {
         "name": "Study Resources",
-        "get_response": get_resource_response_sync,
+        "collection_name": "study_resource_json",
         "description": "Materials for studying including textbooks and online resources"
     },
     "professors": {
         "name": "Professors",
-        "get_response": get_professor_response_sync,
+        "collection_name": "professor_data_json",
         "description": "Faculty information, office hours, and contact details"
     },
     "library": {
@@ -86,7 +79,7 @@ MODULES = {
 
 def get_module_response(query: str, language: str = "English") -> str:
     """
-    Route the query to the appropriate module and get a response
+    Route the query to the appropriate module and get a response using RAG pipeline
     
     Args:
         query: The user's question
@@ -147,19 +140,29 @@ def get_module_response(query: str, language: str = "English") -> str:
         # For other modules, use the RAG pipeline
         # Determine which collection to use
         if module_name in MODULES:
-            response_func = MODULES[module_name]["get_response"]
-            response = response_func(query, language)
-            
-            # Add debug info if in development
-            debug_info = ""
-            if os.getenv("APP_ENV") == "development":
-                debug_info = f"\n\n---\nDebug: Query classified as '{module_name}' (confidence: {confidence:.2f})\nReasoning: {reasoning}"
-            
-            return response + debug_info
+            collection_name = MODULES[module_name]["collection_name"]
         else:
-            # Fallback to general response if module not found
-            logger.warning(f"Module '{module_name}' not found, falling back to general response")
-            return get_general_response_sync(query, language)
+            # Fallback to study resources if module not found
+            logger.warning(f"Module '{module_name}' not found, falling back to study resources")
+            collection_name = MODULES["study_resources"]["collection_name"]
+        
+        # Modify query to include language preference
+        language_prefix = ""
+        if language.lower() == "arabic":
+            language_prefix = "Please respond in Arabic: "
+        
+        modified_query = language_prefix + query
+        
+        # Use RAG pipeline to get response
+        result = rag_pipeline_simple(modified_query, collection_name)
+        response = result["response"]
+        
+        # Add debug info if in development
+        debug_info = ""
+        if os.getenv("APP_ENV") == "development":
+            debug_info = f"\n\n---\nDebug: Query classified as '{module_name}' (confidence: {confidence:.2f})\nReasoning: {reasoning}"
+        
+        return response + debug_info
             
     except Exception as e:
         logger.error(f"Error generating response: {e}")
