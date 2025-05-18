@@ -16,6 +16,8 @@ from modules.professors.chatbot import get_professor_response_sync
 # Import the general response handler
 from base.general_response import get_general_response_sync
 
+from Library.DB_endpoint import db_endpoint
+
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -76,10 +78,9 @@ MODULES = {
         "get_response": get_professor_response_sync,
         "description": "Faculty information, office hours, and contact details"
     },
-    "general_response": {
-        "name": "General Information",
-        "get_response": get_general_response_sync,
-        "description": "General university information and casual conversation"
+    "library": {
+        "name": "Library",
+        "description":"Information about available books and library resources"
     }
 }
 
@@ -109,6 +110,42 @@ def get_module_response(query: str, language: str = "English") -> str:
             return get_general_response_sync(query, language)
         
         # Get the response function for the module
+        # Special handling for library module
+        if module_name == "library":
+            logger.info("Using DB endpoint for library query")
+            try:
+                # Call the db_endpoint function with the user query
+                results = db_endpoint(query)
+                
+                # Format the results for display
+                if "error" in results:
+                    response = f"Error processing library query: {results['error']}"
+                else:
+                    response = f"Query: {results.get('query')}\n\n"
+                    
+                    data = results.get("results", [])
+                    if not data:
+                        response += "No books found matching your query."
+                    else:
+                        response += "Here are the matching books:\n\n"
+                        for i, item in enumerate(data):
+                            response += f"**Book {i+1}:**\n"
+                            for key, value in item.items():
+                                if value is not None:  # Only show non-null values
+                                    response += f"- {key}: {value}\n"
+                            response += "\n"
+                
+                # Add debug info if in development
+                if os.getenv("APP_ENV") == "development":
+                    response += f"\n\n---\nDebug: Query classified as '{module_name}' (confidence: {confidence:.2f})\nReasoning: {reasoning}\nSQL: {results.get('sql')}"
+                
+                return response
+            except Exception as e:
+                logger.error(f"Error in library DB endpoint: {e}", exc_info=True)
+                return "Sorry, there was an error processing your library query."
+        
+        # For other modules, use the RAG pipeline
+        # Determine which collection to use
         if module_name in MODULES:
             response_func = MODULES[module_name]["get_response"]
             response = response_func(query, language)

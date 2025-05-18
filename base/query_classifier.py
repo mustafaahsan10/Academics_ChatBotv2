@@ -35,7 +35,8 @@ classifier_agent = pydantic_ai.Agent(
     3. exam_alerts - For queries about exam dates, deadlines, assignment due dates, assessments
     4. study_resources - For queries about textbooks, study materials, library resources, online resources
     5. professors - For queries about specific faculty members, office hours, contact details, research interests
-    6. general_response - For greetings, casual conversation, general questions, thank you messages, and any queries that don't fit the academic categories above
+    6. library - For queries about library resources, books, availability, borrowing, returning, fees, etc.
+    7. general_response - For greetings, casual conversation, general questions, thank you messages, and any queries that don't fit the academic categories above
 
     Analyze each query carefully to determine which module is most appropriate. Some queries may have multiple aspects,
     but choose the primary intent. If a query is ambiguous, choose the most likely module and indicate a lower confidence score.
@@ -88,7 +89,7 @@ async def classify_query(query: str) -> QueryClassification:
         classification = result.output
         
         # Ensure module is one of the allowed values
-        allowed_modules = ["course_information", "class_schedules", "exam_alerts", "study_resources", "professors", "general_response"]
+        allowed_modules = ["course_information", "class_schedules", "exam_alerts", "study_resources", "professors", "library", "general_response"]
         if classification.module not in allowed_modules:
             # Default to course_information if invalid module
             classification.module = "general_response"
