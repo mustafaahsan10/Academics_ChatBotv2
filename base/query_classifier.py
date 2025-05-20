@@ -23,7 +23,7 @@ class QueryClassification(BaseModel):
 
 # Initialize the classifier agent
 classifier_agent = pydantic_ai.Agent(
-    "openai:gpt-4o-mini",  # Can be configured based on environment
+    "openai:gpt-4.1-nano",  # Can be configured based on environment
     output_type=QueryClassification,
     system_prompt="""
     You are a specialized query classifier for a university academic chatbot system.
@@ -73,7 +73,7 @@ classifier_agent = pydantic_ai.Agent(
 """
 )
 
-async def classify_query(query: str) -> QueryClassification:
+def classify_query_sync(query: str) -> QueryClassification:
     """
     Classify a user query to determine which module should handle it
     
@@ -84,17 +84,17 @@ async def classify_query(query: str) -> QueryClassification:
         A classification object with the module, confidence, and reasoning
     """
     try:
-        # Run the classifier to get structured output
-        result = await classifier_agent.run(query)
+        # Run the classifier to get structured output with synchronous API
+        result = classifier_agent.run_sync(query)
         classification = result.output
         
         # Ensure module is one of the allowed values
         allowed_modules = ["course_information", "class_schedules", "exam_alerts", "study_resources", "professors", "library", "general_response"]
-        if classification.module not in allowed_modules:
-            # Default to course_information if invalid module
-            classification.module = "general_response"
-            classification.confidence = min(classification.confidence, 0.4)
-            classification.reasoning += " (Forced correction: original module classification was invalid)"
+        # if classification.module not in allowed_modules:
+        #     # Default to course_information if invalid module
+        #     classification.module = "general_response"
+        #     classification.confidence = min(classification.confidence, 0.4)
+        #     classification.reasoning += " (Forced correction: original module classification was invalid)"
         
         logger.info(f"Classified query '{query}' as module '{classification.module}' with confidence {classification.confidence}")
         
@@ -110,24 +110,3 @@ async def classify_query(query: str) -> QueryClassification:
             reasoning=f"Error during classification: {str(e)}",
             keywords=[]
         )
-
-def classify_query_sync(query: str) -> QueryClassification:
-    """
-    Synchronous wrapper for classify_query
-    
-    Args:
-        query: The user's query text
-        
-    Returns:
-        A classification object with the module, confidence, and reasoning
-    """
-    import asyncio
-    
-    try:
-        loop = asyncio.get_event_loop()
-    except RuntimeError:
-        # If no event loop exists, create one
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
-        
-    return loop.run_until_complete(classify_query(query))

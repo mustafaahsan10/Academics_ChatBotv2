@@ -13,3 +13,7 @@ tabulate
 requests
 pydantic_ai
 langgraph
+openpyxl
+numpy
+pyaudio
+faster-whisper

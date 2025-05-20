@@ -2,6 +2,7 @@ import streamlit as st
 import os
 from dotenv import load_dotenv
 import logging
+import tempfile
 
 # Import the base query classifier
 from base.query_classifier import classify_query_sync
@@ -10,6 +11,9 @@ from base.query_classifier import classify_query_sync
 from modules.classified_chatbot import rag_pipeline_simple
 
 from Library.DB_endpoint import db_endpoint
+
+# Import speech transcriber
+from speech_to_text import SpeechTranscriber
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -97,12 +101,12 @@ def get_module_response(query: str, language: str = "English") -> str:
         
         logger.info(f"Query classified as '{module_name}' with confidence {confidence}")
         
-        # If confidence is below threshold, route to general response
-        if confidence < 0.3:
-            logger.info(f"Low confidence ({confidence}), routing to general response")
-            return get_general_response_sync(query, language)
+        # # # If confidence is below threshold, route to general response
+      #   # if confidence < 0.3:
+    #   #     logger.info(f"Low confidence ({confidence}), routing to generalesponse")
+      #   #     returnet_general_response_sync(query, language)
         
-        # Get the response function for the module
+        # Get the response function f the module
         # Special handling for library module
         if module_name == "library":
             logger.info("Using DB endpoint for library query")
@@ -153,8 +157,22 @@ def get_module_response(query: str, language: str = "English") -> str:
         
         modified_query = language_prefix + query
         
+        # Get the selected model from session state
+        model = st.session_state.get("model", "openai/gpt-4o-mini")
+        
+        # Check if we need to prepend the provider name for OpenRouter models
+        if st.session_state.get("use_openrouter", False):
+            # For OpenRouter models that aren't OpenAI, need to prepend provider
+            if "gpt" not in model:
+                if "claude" in model:
+                    model = f"anthropic/{model}"
+                elif "gemini" in model:
+                    model = f"google/{model}"
+            else:
+                model = f"openai/{model}"
+        
         # Use RAG pipeline to get response
-        result = rag_pipeline_simple(modified_query, collection_name)
+        result = rag_pipeline_simple(modified_query, collection_name, model)
         response = result["response"]
         
         # Add debug info if in development
@@ -170,6 +188,11 @@ def get_module_response(query: str, language: str = "English") -> str:
             return "عذرًا، حدث خطأ أثناء معالجة سؤالك. يرجى المحاولة مرة أخرى لاحقًا."
         else:
             return "I'm sorry, an error occurred while processing your question. Please try again later."
+
+# Initialize the speech transcriber
+@st.cache_resource
+def get_speech_transcriber():
+    return SpeechTranscriber()
 
 # Main app
 def main():
@@ -222,8 +245,31 @@ def main():
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
     
-    # Input for new message
-    prompt = st.chat_input("Ask me a question...")
+    # Create columns for text and speech input
+    col1, col2 = st.columns([5, 1])
+    
+    # Text input
+    with col1:
+        prompt = st.chat_input("Ask me a question...")
+    
+    # Speech input
+    with col2:
+        speech_button = st.button("🎤 Record")
+    
+    # Handle speech input
+    if speech_button:
+        # Get the transcriber
+        transcriber = get_speech_transcriber()
+        
+        # Show recording status
+        with st.spinner("Recording..."):
+            try:
+                # Record and transcribe
+                prompt = transcriber.listen_and_transcribe(duration=7)
+                st.success(f"Transcribed: {prompt}")
+            except Exception as e:
+                st.error(f"Error recording audio: {str(e)}")
+                prompt = None
     
     if prompt:
         # Display user message

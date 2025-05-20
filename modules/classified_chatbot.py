@@ -64,7 +64,7 @@ def search_qdrant_simple(query: str, collection_name: str, limit: int = 10) -> L
 
     return results
 
-def generate_response(query: str, context: List[Dict[str, Any]]) -> str:
+def generate_response(query: str, context: List[Dict[str, Any]], model: str = "openai/gpt-4o-mini") -> str:
     """Generate a response using OpenAI based on retrieved context."""
     # Prepare context text from search results
     start_time = time.time()
@@ -85,10 +85,11 @@ def generate_response(query: str, context: List[Dict[str, Any]]) -> str:
     Your goal is to provide the single most accurate answer as if you were an official university representative.
     """
 
+    print("Used Model: ", model)
     user_prompt = f"Question: {query}\n\nContext:\n{context_text}"
     start_time_1 = time.time()
     response = client.chat.completions.create(
-        model="openai/gpt-4o",  # Using a powerful model for response generation
+        model=model,  # Use the model passed as parameter
         messages=[
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_prompt}
@@ -101,7 +102,7 @@ def generate_response(query: str, context: List[Dict[str, Any]]) -> str:
 
     return response.choices[0].message.content
 
-def rag_pipeline_simple(query: str, collection_name: str = "admission_course_guide"):
+def rag_pipeline_simple(query: str, collection_name: str = "admission_course_guide", model: str = "openai/gpt-4o-mini"):
     """Complete RAG pipeline from user query to response."""
     print(f"Original query: {query}")
 
@@ -109,7 +110,7 @@ def rag_pipeline_simple(query: str, collection_name: str = "admission_course_gui
     search_results = search_qdrant_simple(query, collection_name, limit=3)
 
     # Generate response
-    response = generate_response(query, search_results)
+    response = generate_response(query, search_results, model)
 
     return {
         "original_query": query,
