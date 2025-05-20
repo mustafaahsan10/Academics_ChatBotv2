@@ -70,5 +70,101 @@
   {
     "text": "Exam for COM 201 Public Speaking is scheduled for 2025-06-04 at 09:00 AM.",
     "keywords": ["COM 201", "Public Speaking", "exam", "schedule", "2025-06-04", "09:00 AM", "date", "time"]
+  },
+  {
+    "text": "Final Exam Schedule Information: The final exam schedule for the Spring 2025 semester was released on April 15, 2025. Students can access the exam schedule through the student portal or view it on department bulletin boards.",
+    "keywords": ["final exam", "schedule", "release date", "April 15", "2025", "student portal", "bulletin boards"]
+  },
+  {
+    "text": "Exam Format Information: All final examinations for the Spring 2025 semester will be conducted on campus in a traditional in-person format. Students must bring their university ID cards for verification purposes.",
+    "keywords": ["exam format", "on campus", "in-person", "Spring 2025", "ID cards", "verification"]
+  },
+  {
+    "text": "Exam Location for CSC 226: The final exam for CSC 226 (Introduction to Database) will be held in the Technology Building, Room TB-305. Students should arrive 15 minutes before the scheduled exam time.",
+    "keywords": ["CSC 226", "Introduction to Database", "exam location", "Technology Building", "TB-305", "arrival time"]
+  },
+  {
+    "text": "Exam Accommodation Information: Students requiring special accommodations for their exams must submit their requests to the Office of Student Services at least two weeks before the exam date.",
+    "keywords": ["exam accommodations", "special needs", "Office of Student Services", "request deadline", "two weeks"]
+  },
+  {
+    "text": "Make-up Exam Policy: Students who miss their scheduled exam due to documented illness or emergency must contact their course instructor within 24 hours to arrange for a make-up exam.",
+    "keywords": ["make-up exam", "missed exam", "illness", "emergency", "documentation", "24 hours", "policy"]
+  },
+  {
+    "text": "Exam Location for CSC 305: The final exam for CSC 305 (System Analysis and Design) will be held in the Science Hall, Room SH-210.",
+    "keywords": ["CSC 305", "System Analysis and Design", "exam location", "Science Hall", "SH-210"]
+  },
+  {
+    "text": "Exam Location for CSC 312: The final exam for CSC 312 (Computer Architecture) will be held in the Technology Building, Room TB-201.",
+    "keywords": ["CSC 312", "Computer Architecture", "exam location", "Technology Building", "TB-201"]
+  },
+  {
+    "text": "Exam Location for CSC 316: The final exam for CSC 316 (Fundamentals of Computer Security) will be held in the Science Hall, Room SH-310.",
+    "keywords": ["CSC 316", "Fundamentals of Computer Security", "exam location", "Science Hall", "SH-310"]
+  },
+  {
+    "text": "Exam Location for CSC 317: The final exam for CSC 317 (Information Assurance and Security) will be held in the Technology Building, Room TB-305.",
+    "keywords": ["CSC 317", "Information Assurance and Security", "exam location", "Technology Building", "TB-305"]
+  },
+  {
+    "text": "Exam Location for CSC 345: The final exam for CSC 345 (Fundamentals of Computer Network Management) will be held in the Engineering Building, Room EB-110.",
+    "keywords": ["CSC 345", "Fundamentals of Computer Network Management", "exam location", "Engineering Building", "EB-110"]
+  },
+  {
+    "text": "Exam Location for CSC 385: The final exam for CSC 385 (Internet Computing) will be held in the Technology Building, Room TB-205.",
+    "keywords": ["CSC 385", "Internet Computing", "exam location", "Technology Building", "TB-205"]
+  },
+  {
+    "text": "Exam Location for CSC 405: The final exam for CSC 405 (Systems Integration) will be held in the Science Hall, Room SH-215.",
+    "keywords": ["CSC 405", "Systems Integration", "exam location", "Science Hall", "SH-215"]
+  },
+  {
+    "text": "Exam Location for CSC 414: The final exam for CSC 414 (Applied Operating Systems) will be held in the Technology Building, Room TB-301.",
+    "keywords": ["CSC 414", "Applied Operating Systems", "exam location", "Technology Building", "TB-301"]
+  },
+  {
+    "text": "Exam Location for CSC 425: The final exam for CSC 425 (Data Communications and Computer Networks) will be held in the Engineering Building, Room EB-120.",
+    "keywords": ["CSC 425", "Data Communications and Computer Networks", "exam location", "Engineering Building", "EB-120"]
+  },
+  {
+    "text": "Exam Location for CSC 446: The final exam for CSC 446 (Applied Database Systems) will be held in the Technology Building, Room TB-305.",
+    "keywords": ["CSC 446", "Applied Database Systems", "exam location", "Technology Building", "TB-305"]
+  },
+  {
+    "text": "Exam Location for CSC 450: The final exam for CSC 450 (Human-Computer Interaction) will be held in the Science Hall, Room SH-220.",
+    "keywords": ["CSC 450", "Human-Computer Interaction", "exam location", "Science Hall", "SH-220"]
+  },
+  {
+    "text": "Exam Location for CSC 463: The final exam for CSC 463 (Advanced Software Development) will be held in the Technology Building, Room TB-210.",
+    "keywords": ["CSC 463", "Advanced Software Development", "exam location", "Technology Building", "TB-210"]
+  },
+  {
+    "text": "Exam Location for CSC 480: The final exam for CSC 480 (Internship) will be held in the Engineering Building, Room EB-130.",
+    "keywords": ["CSC 480", "Internship", "exam location", "Engineering Building", "EB-130"]
+  },
+  {
+    "text": "Exam Location for CSC 490: The final exam for CSC 490 (Senior Study) will be held in the Science Hall, Room SH-230.",
+    "keywords": ["CSC 490", "Senior Study", "exam location", "Science Hall", "SH-230"]
+  },
+  {
+    "text": "Exam Location for ENG 101: The final exam for ENG 101 (English Composition) will be held in the Humanities Building, Room HB-105.",
+    "keywords": ["ENG 101", "English Composition", "exam location", "Humanities Building", "HB-105"]
+  },
+  {
+    "text": "Exam Location for MTH 110: The final exam for MTH 110 (Pre-Calculus Mathematics) will be held in the Science Hall, Room SH-310.",
+    "keywords": ["MTH 110", "Pre-Calculus Mathematics", "exam location", "Science Hall", "SH-310"]
+  },
+  {
+    "text": "Exam Location for COM 201: The final exam for COM 201 (Public Speaking) will be held in the Humanities Building, Room HB-110.",
+    "keywords": ["COM 201", "Public Speaking", "exam location", "Humanities Building", "HB-110"]
+  },
+  {
+    "text": "Exam Materials Information: Students are advised to bring blue or black pens, pencils, erasers, and calculators (where permitted) to their exams. Electronic devices other than approved calculators are not allowed in the examination rooms.",
+    "keywords": ["exam materials", "pens", "pencils", "calculators", "electronic devices", "not allowed"]
+  },
+  {
+    "text": "Exam Duration Policy: Each exam is scheduled for a duration of 2 hours. Students arriving more than 30 minutes late will not be permitted to take the exam.",
+    "keywords": ["exam duration", "2 hours", "late arrival", "30 minutes", "policy"]
   }
 ]

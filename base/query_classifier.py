@@ -58,11 +58,13 @@ classifier_agent = pydantic_ai.Agent(
     - "What are Professor Smith's office hours?" → professors (high confidence)
     - "Where is Professor Johnson's office located?" → professors (high confidence)
     - "What courses is Professor Davis currently teaching?" → professors (high confidence)
+    - "Who is teaching [Course Name] this semester?" → professors (high confidence)
 
 
     - "When will the final exam schedule be released?" → exam_alerts (high confidence)
     - "What time is my Database Systems exam?" → exam_alerts (high confidence)
     - "Where will my exam for CSC 226 be held?" → exam_alerts (high confidence)
+    
 
 
     - "Hello, how are you today?" → general_response (high confidence)

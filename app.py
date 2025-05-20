@@ -3,6 +3,7 @@ import os
 from dotenv import load_dotenv
 import logging
 import tempfile
+import time
 
 # Import the base query classifier
 from base.query_classifier import classify_query_sync
@@ -101,12 +102,7 @@ def get_module_response(query: str, language: str = "English") -> str:
         
         logger.info(f"Query classified as '{module_name}' with confidence {confidence}")
         
-        # # # If confidence is below threshold, route to general response
-      #   # if confidence < 0.3:
-    #   #     logger.info(f"Low confidence ({confidence}), routing to generalesponse")
-      #   #     returnet_general_response_sync(query, language)
-        
-        # Get the response function f the module
+        # Get the response function for the module
         # Special handling for library module
         if module_name == "library":
             logger.info("Using DB endpoint for library query")
@@ -190,105 +186,189 @@ def get_module_response(query: str, language: str = "English") -> str:
             return "I'm sorry, an error occurred while processing your question. Please try again later."
 
 # Initialize the speech transcriber
-@st.cache_resource
+@st.cache_resource(ttl="1h")
 def get_speech_transcriber():
     return SpeechTranscriber()
 
 # Main app
 def main():
+    # Custom CSS to remove button gaps
+    st.markdown("""
+    <style>
+    /* Remove padding around buttons */
+    div.stButton > button {
+        margin: 0;
+        padding: 0.4rem 1rem;
+    }
+    
+    /* Adjust button container spacing */
+    div.row-widget.stButton {
+        padding: 0;
+        margin: 0;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+    
     st.title("🎓 University Assistant")
     
-    # Sidebar with settings
-    with st.sidebar:
-        st.subheader("Settings")
-        language = st.selectbox("Language / اللغة", ["English", "Arabic"])
+    # Initialize session state for recording status if it doesn't exist
+    if "recording" not in st.session_state:
+        st.session_state.recording = False
         
-        # Model selection dropdown - default to first model
-        model_options = list(AVAILABLE_MODELS.keys())
-        selected_model_name = st.selectbox(
-            "Select AI Model",
-            model_options,
-            index=0
-        )
-        
-        selected_model_id = AVAILABLE_MODELS[selected_model_name]
-        
-        # Store model ID and whether it's an OpenRouter model in session state
-        if "model" not in st.session_state or st.session_state.model != selected_model_id:
-            st.session_state.model = selected_model_id
-            st.session_state.use_openrouter = selected_model_id in OPENROUTER_MODELS
-        
-        # Clear conversation button
-        if st.button("Clear Conversation"):
-            if "messages" in st.session_state:
-                st.session_state.messages = []
-            st.rerun()
-        
-        # Show module information
-        st.subheader("Available Modules")
-        for module_id, module_info in MODULES.items():
-            with st.expander(module_info["name"]):
-                st.write(module_info["description"])
+    if "transcriber" not in st.session_state:
+        st.session_state.transcriber = get_speech_transcriber()
     
-    st.subheader("University Information Assistant")
-    st.write("Ask me anything about courses, schedules, exams, faculty, library resources, admission, or tuition!")
+    # Main content area (upper section)
+    main_area = st.container()
     
-    # Display model being used
-    st.caption(f"Currently using: {selected_model_name}")
+    # Chat and controls area (bottom section)
+    bottom_container = st.container()
     
-    # Initialize chat history in session state if needed
-    if "messages" not in st.session_state:
-        st.session_state.messages = []
-    
-    # Display chat history
-    for message in st.session_state.messages:
-        with st.chat_message(message["role"]):
-            st.markdown(message["content"])
-    
-    # Create columns for text and speech input
-    col1, col2 = st.columns([5, 1])
-    
-    # Text input
-    with col1:
-        prompt = st.chat_input("Ask me a question...")
-    
-    # Speech input
-    with col2:
-        speech_button = st.button("🎤 Record")
-    
-    # Handle speech input
-    if speech_button:
-        # Get the transcriber
-        transcriber = get_speech_transcriber()
-        
-        # Show recording status
-        with st.spinner("Recording..."):
-            try:
-                # Record and transcribe
-                prompt = transcriber.listen_and_transcribe(duration=7)
-                st.success(f"Transcribed: {prompt}")
-            except Exception as e:
-                st.error(f"Error recording audio: {str(e)}")
-                prompt = None
-    
-    if prompt:
-        # Display user message
-        with st.chat_message("user"):
-            st.markdown(prompt)
+    # Main content area with app information
+    with main_area:
+        # Sidebar with settings
+        with st.sidebar:
+            st.subheader("Settings")
+            language = st.selectbox("Language / اللغة", ["English", "Arabic"])
             
+            # Model selection dropdown - default to first model
+            model_options = list(AVAILABLE_MODELS.keys())
+            selected_model_name = st.selectbox(
+                "Select AI Model",
+                model_options,
+                index=0
+            )
+            
+            selected_model_id = AVAILABLE_MODELS[selected_model_name]
+            
+            # Store model ID and whether it's an OpenRouter model in session state
+            if "model" not in st.session_state or st.session_state.model != selected_model_id:
+                st.session_state.model = selected_model_id
+                st.session_state.use_openrouter = selected_model_id in OPENROUTER_MODELS
+            
+            # Clear conversation button
+            if st.button("Clear Conversation"):
+                if "messages" in st.session_state:
+                    st.session_state.messages = []
+                st.rerun()
+            
+            # # Show module information
+            # st.subheader("Available Modules")
+            # for module_id, module_info in MODULES.items():
+            #     with st.expander(module_info["name"]):
+            #         st.write(module_info["description"])
+        
+        st.subheader("University Information Assistant")
+        st.write("Ask me anything about courses, schedules, exams, faculty, library resources, admission, or tuition!")
+        
+        # Display model being used
+        st.caption(f"Currently using: {selected_model_name}")
+        
+        # Initialize chat history in session state if needed
+        if "messages" not in st.session_state:
+            st.session_state.messages = []
+        
+        # Recording status indicator
+        recording_status = st.empty()
+        if st.session_state.recording:
+            recording_status.markdown("🔴 **Recording in progress...**")
+    
+    # Bottom container for chat history and input controls
+    with bottom_container:
+        # Display a separator line
+        st.markdown("---")
+        
+        # Display chat history
+        for message in st.session_state.messages:
+            with st.chat_message(message["role"]):
+                st.markdown(message["content"])
+        
+        # Create a layout for input and buttons
+        col_input, col_buttons = st.columns([6, 1])
+        
+        # Text input
+        with col_input:
+            prompt = st.chat_input("Ask me a question...")
+            
+        # Buttons side by side
+        with col_buttons:
+            button_cols = st.columns(2)
+            
+            # Start button - minimal text
+            with button_cols[0]:
+                start_button = st.button("🎤", disabled=st.session_state.recording)
+            
+            # Stop button - minimal text
+            with button_cols[1]:
+                stop_button = st.button("⏹️", disabled=not st.session_state.recording)
+    
+    # Handle start recording
+    if start_button:
+        try:
+            st.session_state.recording = True
+            success = st.session_state.transcriber.start_recording()
+            if not success:
+                st.error("Failed to start recording. Please try again.")
+                st.session_state.recording = False
+            st.rerun()
+        except Exception as e:
+            st.error(f"Error starting recording: {str(e)}")
+            st.session_state.recording = False
+    
+    # Handle stop recording
+    if stop_button and st.session_state.recording:
+        try:
+            # Clear the recording status
+            recording_status.empty()
+            
+            with st.spinner("Processing recording..."):
+                audio_file = st.session_state.transcriber.stop_recording()
+                st.session_state.recording = False
+                
+                if audio_file:
+                    prompt = st.session_state.transcriber.transcribe_audio(audio_file)
+                    if prompt:
+                        st.success(f"Transcribed: {prompt}")
+                        
+                        # Process the transcription
+                        # Add to session state message history
+                        if "messages" not in st.session_state:
+                            st.session_state.messages = []
+                        st.session_state.messages.append({"role": "user", "content": prompt})
+                        
+                        # Generate response
+                        response = get_module_response(prompt, language=language)
+                        
+                        # Update message history with response
+                        st.session_state.messages.append({"role": "assistant", "content": response})
+                        
+                        # Rerun to display updated chat history
+                        st.rerun()
+                    else:
+                        st.warning("No speech detected.")
+                else:
+                    st.warning("No audio recorded or recording too short.")
+        except Exception as e:
+            st.error(f"Error processing recording: {str(e)}")
+            st.session_state.recording = False
+    
+    # Handle text input
+    if prompt:
         # Add to session state message history
         if "messages" not in st.session_state:
             st.session_state.messages = []
         st.session_state.messages.append({"role": "user", "content": prompt})
         
-        # Generate and display assistant response
-        with st.chat_message("assistant"):
-            with st.spinner(f"Thinking with {selected_model_name}..."):
-                response = get_module_response(prompt, language=language)
-                st.markdown(response)
+        # Show a loading spinner while generating response
+        with st.spinner("Generating response..."):
+            # Generate response
+            response = get_module_response(prompt, language=language)
         
         # Update message history
         st.session_state.messages.append({"role": "assistant", "content": response})
+        
+        # Rerun to update the UI with the new messages
+        st.rerun()
 
 if __name__ == "__main__":
     main()
