@@ -7,6 +7,7 @@ import time
 
 # Import the base query classifier
 from base.query_classifier import classify_query_sync
+from base.general_response import get_general_response_sync
 
 # Import RAG pipeline
 from modules.classified_chatbot import rag_pipeline_simple
@@ -105,39 +106,66 @@ def get_module_response(query: str, language: str = "English") -> str:
         # Get the response function for the module
         # Special handling for library module
         if module_name == "library":
-            logger.info("Using DB endpoint for library query")
+            logger.info("Processing query through library orchestrator")
             try:
-                # Call the db_endpoint function with the user query
-                results = db_endpoint(query)
+                # Import the library orchestrator
+                from Library import process_library_query
                 
-                # Format the results for display
-                if "error" in results:
-                    response = f"Error processing library query: {results['error']}"
-                else:
-                    response = f"Query: {results.get('query')}\n\n"
-                    
-                    data = results.get("results", [])
-                    if not data:
-                        response += "No books found matching your query."
-                    else:
-                        response += "Here are the matching books:\n\n"
-                        for i, item in enumerate(data):
-                            response += f"**Book {i+1}:**\n"
-                            for key, value in item.items():
-                                if value is not None:  # Only show non-null values
-                                    response += f"- {key}: {value}\n"
-                            response += "\n"
+                # Process the library query through the orchestrator
+                result = process_library_query(query)
+                
+                # Get the response from the result
+                response = result["response"]
                 
                 # Add debug info if in development
                 if os.getenv("APP_ENV") == "development":
-                    response += f"\n\n---\nDebug: Query classified as '{module_name}' (confidence: {confidence:.2f})\nReasoning: {reasoning}\nSQL: {results.get('sql')}"
+                    debug_info = f"\n\n---\nDebug: Query classified as '{module_name}' (confidence: {confidence:.2f})\n"
+                    debug_info += f"DB Query intent: {result.get('is_db_query')} (confidence: {result.get('confidence', 0):.2f})\n"
+                    debug_info += f"Reasoning: {result.get('reasoning', '')}"
+                    if result.get("sql"):
+                        debug_info += f"\nSQL: {result.get('sql')}"
+                    response += debug_info
                 
                 return response
             except Exception as e:
-                logger.error(f"Error in library DB endpoint: {e}", exc_info=True)
+                logger.error(f"Error in library orchestrator: {e}", exc_info=True)
                 return "Sorry, there was an error processing your library query."
         
-        # For other modules, use the RAG pipeline
+        # Special handling for professors module - check if it's a meeting request
+        if module_name == "professors":
+            logger.info("Processing query through professors orchestrator")
+            try:
+                # Import the professor orchestrator
+                from modules.professors import process_professor_query
+                
+                # Check if query is about scheduling a meeting
+                if module_name in MODULES:
+                    collection_name = MODULES[module_name]["collection_name"]
+                else:
+                    collection_name = "professor_data_json"
+                
+                result = process_professor_query(query, collection_name)
+                
+                # If it's a meeting request, return the generated response
+                if result is not None and result.get("is_meeting_request", False):
+                    response = result["response"]
+                    
+                    # Add debug info if in development
+                    if os.getenv("APP_ENV") == "development":
+                        debug_info = f"\n\n---\nDebug: Query classified as '{module_name}' (confidence: {confidence:.2f})\n"
+                        debug_info += f"Meeting intent detected (confidence: {result.get('confidence', 0):.2f})\n"
+                        debug_info += f"Reasoning: {result.get('reasoning', '')}"
+                        response += debug_info
+                    
+                    return response
+                
+                # If not a meeting request, continue with RAG pipeline below
+                logger.info("Not a meeting request, using regular RAG pipeline")
+            except Exception as e:
+                logger.error(f"Error in professors orchestrator: {e}", exc_info=True)
+                # Continue with RAG pipeline if there's an error
+        
+        # For other modules or non-meeting professor queries, use the RAG pipeline
         # Determine which collection to use
         if module_name in MODULES:
             collection_name = MODULES[module_name]["collection_name"]
