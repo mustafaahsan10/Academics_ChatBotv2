@@ -33,7 +33,7 @@ classifier_agent = pydantic_ai.Agent(
     1. course_information - For queries about course content, prerequisites, credit hours, descriptions, faculty structure, departments, majors, degree programs, university academic structure
     2. class_schedules - For queries about when and where classes meet, timetables, room numbers, semester start/end dates, lecture times, final exam schedules
     3. exam_alerts - For queries about exam dates, deadlines, assignment due dates, assessments
-    4. study_resources - For queries about textbooks, study materials, library resources, online resources
+    4. study_resources - For queries about textbooks, study materials, online resources
     5. professors - For queries about specific faculty members, office hours, contact details, research interests
     6. library - For queries about library resources, books, availability, borrowing, returning, fees, etc.
     7. general_response - For greetings, casual conversation, general questions, thank you messages, and any queries that don't fit the academic categories above
@@ -48,6 +48,7 @@ classifier_agent = pydantic_ai.Agent(
     - "What are the available faculties at the university?" → course_information (high confidence)
     - "How many credits does a Computer Science major have?" → course_information (high confidence)
     - "What undergraduate programs are available?" → course_information (high confidence)
+    - What is the prerequisite to take course csc 226? (high confidence)
 
 
     - "Can I see the class CSC 226 schedule for the upcoming semester?" → class_schedules (high confidence)
@@ -65,7 +66,11 @@ classifier_agent = pydantic_ai.Agent(
     - "What time is my Database Systems exam?" → exam_alerts (high confidence)
     - "Where will my exam for CSC 226 be held?" → exam_alerts (high confidence)
     
-
+    ## Library
+    - Is book 1948 available for renting? (high confidence)
+    - What is the cost for renting book “1984”? (high confidence)
+    - How much does the book “who moved my cheese” cost? (high confidence)
+    - How can I check if a book is available in the library? (high confidence)
 
     - "Hello, how are you today?" → general_response (high confidence)
     - "Thank you for your help!" → general_response (high confidence)
