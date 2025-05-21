@@ -4,8 +4,11 @@ from typing import Dict, Any, Tuple, Optional
 import os
 from Library.DB_endpoint import db_endpoint
 
-# Set up OpenAI client for intent detection
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+# Set up OpenRouter client for intent detection
+client = OpenAI(
+    base_url="https://openrouter.ai/api/v1",
+    api_key=os.getenv("OPENROUTER_API_KEY"),
+)
 
 def detect_db_query_intent(query: str) -> Tuple[bool, float, str]:
     """
@@ -42,7 +45,7 @@ def detect_db_query_intent(query: str) -> Tuple[bool, float, str]:
     
     try:
         response = client.chat.completions.create(
-            model="gpt-4.1-nano",
+            model="gpt-4.1-nano",  # OpenRouter model
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": query}

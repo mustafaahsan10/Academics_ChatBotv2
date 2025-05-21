@@ -3,7 +3,10 @@ from openai import OpenAI
 from typing import Dict, Any, Tuple, Optional
 import os
 # Set up OpenAI client for intent detection
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+client = OpenAI(
+    base_url="https://openrouter.ai/api/v1",
+    api_key=os.getenv("OPENROUTER_API_KEY"),
+)
 
 def detect_meeting_intent(query: str) -> Tuple[bool, float, str]:
     """
