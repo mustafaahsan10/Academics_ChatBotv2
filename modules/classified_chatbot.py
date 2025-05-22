@@ -6,23 +6,23 @@ from qdrant_client.http import models
 from typing import List, Dict, Any
 import time
 from dotenv import load_dotenv
-
+import streamlit as st
 load_dotenv()
 
 # Set up OpenRouter with OpenAI client
-OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
+OPENROUTER_API_KEY = st.secrets.get("OPENROUTER_API_KEY")
 client = OpenAI(
     base_url="https://openrouter.ai/api/v1",
     api_key=OPENROUTER_API_KEY,
 )
 
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+OPENAI_API_KEY = st.secrets.get("OPENAI_API_KEY")
 embeddings_client = OpenAI(api_key=OPENAI_API_KEY)
 
 # Connect to Qdrant (local or cloud)
 qdrant_client = QdrantClient(
-    url=os.getenv("QDRANT_URL"),
-    api_key=os.getenv("QDRANT_API_KEY")
+    url=st.secrets.get("QDRANT_URL"),
+    api_key=st.secrets.get("QDRANT_API_KEY"),
 )
 
 def generate_embedding(text: str) -> List[float]:

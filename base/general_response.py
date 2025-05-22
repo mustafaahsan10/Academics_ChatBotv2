@@ -68,7 +68,7 @@ provide general guidance based on common knowledge about universities, academia,
             # Use OpenRouter API
             import requests
             
-            openrouter_api_key = os.getenv("OPENROUTER_API_KEY")
+            openrouter_api_key = st.secrets.get("OPENROUTER_API_KEY")
             if not openrouter_api_key:
                 raise ValueError("OpenRouter API key not found")
             
@@ -123,7 +123,7 @@ provide general guidance based on common knowledge about universities, academia,
         if not use_openrouter:
             general_agent = pydantic_ai.Agent(
                 model=model_id,
-                api_key=os.getenv("OPENAI_API_KEY"),
+                api_key=st.secrets["OPENAI_API_KEY"],
                 system_prompt=system_message,
                 output_type=GeneralResponse
             )

@@ -6,7 +6,7 @@ import time
 import threading
 from openai import OpenAI
 from dotenv import load_dotenv
-
+import streamlit as st
 # Load environment variables
 load_dotenv()
 
@@ -14,7 +14,7 @@ class SpeechTranscriber:
     def __init__(self, model_size="gpt-4o-transcribe"):
         """Initialize the speech transcriber with the specified model."""
         # Initialize OpenAI client
-        self.openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+        self.openai_client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
         self.model = model_size  # Default to GPT-4o transcribe model
         self.is_recording = False
         self.audio_data = []

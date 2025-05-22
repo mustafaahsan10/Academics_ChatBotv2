@@ -5,7 +5,7 @@ import sqlite3
 import requests
 import dotenv
 from pathlib import Path
-
+import streamlit as st
 # Load environment variables from .env file if present
 try:
     dotenv.load_dotenv()
@@ -14,7 +14,7 @@ except:
     print("No .env file found or error loading it")
 
 # OpenRouter API Key from environment variable
-OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
+OPENROUTER_API_KEY = st.secrets.get("OPENROUTER_API_KEY")
 print(f"OPENROUTER_API_KEY exists: {OPENROUTER_API_KEY is not None}")
 
 # Path to the database file (will be created in memory)
