@@ -79,6 +79,7 @@ MODULES = {
     },
     "library": {
         "name": "Library",
+        "collection_name": "library_data_json",
         "description":"Information about available books and library resources"
     }
 }
@@ -111,22 +112,13 @@ def get_module_response(query: str, language: str = "English") -> str:
                 # Import the library orchestrator
                 from Library import process_library_query
                 
-                # Process the library query through the orchestrator
+                
+                # Process the library query through the orchestrator with the model
                 result = process_library_query(query)
-                
-                # Get the response from the result
-                response = result["response"]
-                
-                # Add debug info if in development
-                if os.getenv("APP_ENV") == "development":
-                    debug_info = f"\n\n---\nDebug: Query classified as '{module_name}' (confidence: {confidence:.2f})\n"
-                    debug_info += f"DB Query intent: {result.get('is_db_query')} (confidence: {result.get('confidence', 0):.2f})\n"
-                    debug_info += f"Reasoning: {result.get('reasoning', '')}"
-                    if result.get("sql"):
-                        debug_info += f"\nSQL: {result.get('sql')}"
-                    response += debug_info
-                
-                return response
+
+                if result is not None:
+                    response = result["response"]
+                    return response
             except Exception as e:
                 logger.error(f"Error in library orchestrator: {e}", exc_info=True)
                 return "Sorry, there was an error processing your library query."

@@ -3,6 +3,7 @@ from openai import OpenAI
 from typing import Dict, Any, Tuple, Optional
 import os
 from Library.DB_endpoint import db_endpoint
+from modules.classified_chatbot import rag_pipeline_simple
 
 # Set up OpenRouter client for intent detection
 client = OpenAI(
@@ -34,13 +35,13 @@ def detect_db_query_intent(query: str) -> Tuple[bool, float, str]:
         "reasoning": "<brief explanation>"
     }
     
-    Examples:
+    Examples of DATABASE QUERIES (return true):
     - "Do you have any books on machine learning?" → {"is_db_query": true, "confidence": 0.95, "reasoning": "Asking about specific books in the library database"}
     - "Is 'Clean Code' available in the library?" → {"is_db_query": true, "confidence": 0.9, "reasoning": "Asking about availability of a specific book"}
     - "Which books by Robert Martin do you have?" → {"is_db_query": true, "confidence": 0.95, "reasoning": "Asking about books by a specific author"}
-    - "What are the library hours?" → {"is_db_query": false, "confidence": 0.8, "reasoning": "Asking about library operations, not database content"}
-    - "How do I get a library card?" → {"is_db_query": false, "confidence": 0.9, "reasoning": "Asking about library services, not specific books"}
-    - "Where is the science section in the library?" → {"is_db_query": false, "confidence": 0.85, "reasoning": "Asking about physical library layout, not database content"}
+    - "Are there any books on computer science still available?" → {"is_db_query": true, "confidence": 0.9, "reasoning": "Asking about book availability on a specific subject"}
+    - "Is book 1948 available for renting?" → {"is_db_query": true, "confidence": 0.9, "reasoning": "Asking about book availability on a specific subject"}
+    
     """
     
     try:
@@ -73,10 +74,11 @@ def detect_db_query_intent(query: str) -> Tuple[bool, float, str]:
 def process_library_query(query: str) -> Dict[str, Any]:
     """
     Process a query related to the library, determining if it should use the database
-    endpoint or be handled by a general response (to be implemented later).
+    endpoint or be handled by a general response using the RAG pipeline.
     
     Args:
         query: The user's question
+        model: The LLM model to use for RAG pipeline (from Streamlit session state)
         
     Returns:
         A dictionary with the response and metadata
@@ -115,35 +117,4 @@ def process_library_query(query: str) -> Dict[str, Any]:
             "sql": results.get("sql"),
             "results": results
         }
-    
-    # For general library questions - placeholder for future implementation
-    # For now, we'll still use the DB endpoint but with a note
-    results = db_endpoint(query)
-    
-    if "error" in results:
-        general_response = "I understand you're asking about general library information rather than specific books. " + \
-                          "That functionality will be available soon. In the meantime, I'll try to find relevant books: \n\n" + \
-                          f"Error processing query: {results['error']}"
-    else:
-        general_response = "I understand you're asking about general library information rather than specific books. " + \
-                          "That functionality will be available soon. In the meantime, here are some possibly relevant books: \n\n"
-        
-        data = results.get("results", [])
-        if not data:
-            general_response += "No relevant books found."
-        else:
-            for i, item in enumerate(data):
-                general_response += f"**Book {i+1}:**\n"
-                for key, value in item.items():
-                    if value is not None:  # Only show non-null values
-                        general_response += f"- {key}: {value}\n"
-                general_response += "\n"
-    
-    return {
-        "response": general_response,
-        "is_db_query": False,
-        "confidence": confidence,
-        "reasoning": reasoning,
-        "sql": results.get("sql"),
-        "results": results
-    } 
+    return None

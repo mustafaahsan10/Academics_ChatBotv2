@@ -36,12 +36,13 @@ classifier_agent = pydantic_ai.Agent(
     4. study_resources - For queries about textbooks, study materials, online resources
     5. professors - For queries about specific faculty members, office hours, contact details, research interests
     6. library - For queries about library resources, books, availability, borrowing, returning, fees, etc.
-    7. general_response - For greetings, casual conversation, general questions, thank you messages, and any queries that don't fit the academic categories above
 
     Analyze each query carefully to determine which module is most appropriate. Some queries may have multiple aspects,
     but choose the primary intent. If a query is ambiguous, choose the most likely module and indicate a lower confidence score.
 
     For example:
+    
+    ## Course Information
     - "What are the prerequisites for CS350?" → course_information (high confidence)
     - "Can you tell me about the Computer Science department?" → course_information (high confidence)
     - "What majors does the Faculty of Engineering offer?" → course_information (high confidence)
@@ -50,18 +51,18 @@ classifier_agent = pydantic_ai.Agent(
     - "What undergraduate programs are available?" → course_information (high confidence)
     - What is the prerequisite to take course csc 226? (high confidence)
 
-
+    ## Class Schedules
     - "Can I see the class CSC 226 schedule for the upcoming semester?" → class_schedules (high confidence)
     - "What are the lecture times for Database Systems?" → class_schedules (high confidence)
 
-
+    ## Professors
     - "How can I find Professor Hoda Maalouf's contact information?" → professors (high confidence)
     - "What are Professor Smith's office hours?" → professors (high confidence)
     - "Where is Professor Johnson's office located?" → professors (high confidence)
     - "What courses is Professor Davis currently teaching?" → professors (high confidence)
     - "Who is teaching [Course Name] this semester?" → professors (high confidence)
 
-
+    ## Exam Alerts
     - "When will the final exam schedule be released?" → exam_alerts (high confidence)
     - "What time is my Database Systems exam?" → exam_alerts (high confidence)
     - "Where will my exam for CSC 226 be held?" → exam_alerts (high confidence)
@@ -72,6 +73,7 @@ classifier_agent = pydantic_ai.Agent(
     - How much does the book “who moved my cheese” cost? (high confidence)
     - How can I check if a book is available in the library? (high confidence)
 
+    ## General
     - "Hello, how are you today?" → general_response (high confidence)
     - "Thank you for your help!" → general_response (high confidence)
     - "What can this chatbot do?" → general_response (high confidence)
