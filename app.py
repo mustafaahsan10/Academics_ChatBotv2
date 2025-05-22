@@ -7,7 +7,6 @@ import time
 
 # Import the base query classifier
 from base.query_classifier import classify_query_sync
-from base.general_response import get_general_response_sync
 
 # Import RAG pipeline
 from modules.classified_chatbot import rag_pipeline_simple

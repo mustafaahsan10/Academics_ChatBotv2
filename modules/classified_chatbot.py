@@ -5,21 +5,24 @@ from qdrant_client import QdrantClient
 from qdrant_client.http import models
 from typing import List, Dict, Any
 import time
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Set up OpenRouter with OpenAI client
-OPENROUTER_API_KEY = "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"
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 client = OpenAI(
     base_url="https://openrouter.ai/api/v1",
     api_key=OPENROUTER_API_KEY,
 )
 
-OPENAI_API_KEY = "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"
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 embeddings_client = OpenAI(api_key=OPENAI_API_KEY)
 
 # Connect to Qdrant (local or cloud)
 qdrant_client = QdrantClient(
-    url="https://8b6857da-0682-417b-a31b-2a83bef2cab3.us-east-1-0.aws.cloud.qdrant.io",
-    api_key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.dWjs7ZnPcyo0lbk1tvelYBim14HKNwDm1qfWTKaoVoQ"
+    url=os.getenv("QDRANT_URL"),
+    api_key=os.getenv("QDRANT_API_KEY")
 )
 
 def generate_embedding(text: str) -> List[float]:
