@@ -1,8 +1,8 @@
-import re
 from openai import OpenAI
 from typing import Dict, Any, Tuple, Optional
 import os
 # Set up OpenAI client for intent detection
+
 client = OpenAI(
     base_url="https://openrouter.ai/api/v1",
     api_key=os.getenv("OPENROUTER_API_KEY"),
@@ -28,14 +28,24 @@ def detect_meeting_intent(query: str) -> Tuple[bool, float, str]:
     {
         "is_meeting_intent": true/false,
         "confidence": <float between 0 and 1>,
-        "reasoning": "<brief explanation>"
+        "reasoning": "<brief explanation>",
+        "professor_name": "<name of the professor>"
     }
     
-    Examples:
+    Examples of MEETING REQUESTS (return true):
     - "I want to schedule a meeting with Professor Smith" → {"is_meeting_intent": true, "confidence": 0.95, "reasoning": "Explicitly mentions scheduling a meeting with a professor"}
     - "Can I book an appointment with Dr. Johnson?" → {"is_meeting_intent": true, "confidence": 0.9, "reasoning": "Asks about booking an appointment with a professor"}
+    - "How do I set up a time to meet with Professor Williams?" → {"is_meeting_intent": true, "confidence": 0.9, "reasoning": "Asking about setting up meeting time"}
+    
+    Examples of GENERAL QUERIES (return false):
     - "What are Professor Davis's office hours?" → {"is_meeting_intent": false, "confidence": 0.8, "reasoning": "Asking about office hours, not scheduling a meeting"}
     - "Tell me about Professor Wilson's research interests" → {"is_meeting_intent": false, "confidence": 0.95, "reasoning": "Asking about research interests, not scheduling"}
+    - "What courses does Dr. Garcia teach?" → {"is_meeting_intent": false, "confidence": 0.95, "reasoning": "Asking about courses taught, not scheduling"}
+    - "Can you tell me Professor Brown's email address?" → {"is_meeting_intent": false, "confidence": 0.9, "reasoning": "Asking for contact information, not scheduling"}
+    - "What is Professor Lee's background?" → {"is_meeting_intent": false, "confidence": 0.95, "reasoning": "Asking about professor's background, not scheduling"}
+    - "Where is Dr. Taylor's office located?" → {"is_meeting_intent": false, "confidence": 0.9, "reasoning": "Asking about office location, not scheduling"}
+    
+    Only classify as a meeting intent if the user is specifically asking to schedule, book, or arrange a meeting/appointment with a professor. General information queries about professors should be classified as false.
     """
     
     try:
@@ -58,7 +68,8 @@ def detect_meeting_intent(query: str) -> Tuple[bool, float, str]:
         return (
             parsed_response["is_meeting_intent"],
             parsed_response["confidence"],
-            parsed_response["reasoning"]
+            parsed_response["reasoning"],
+            parsed_response["professor_name"]
         )
     except Exception as e:
         print(f"Error classifying meeting intent: {e}")
@@ -93,29 +104,6 @@ def generate_meeting_link(professor_name: Optional[str] = None) -> Dict[str, Any
                        f"This is a demo link that will be replaced with a real scheduling system in the future."
     }
 
-def extract_professor_name(query: str) -> Optional[str]:
-    """
-    Extract the professor name from the query if present.
-    
-    Args:
-        query: The user's question
-        
-    Returns:
-        The professor name if found, None otherwise
-    """
-    # Look for common patterns like "Professor X" or "Dr. Y"
-    professor_patterns = [
-        r'(?:professor|prof\.?|dr\.?)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)',  # Professor Smith, Dr. Johnson
-        r'(?:meet|meeting|appointment|schedule)\s+(?:with)?\s+(?:professor|prof\.?|dr\.?)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)',  # meet with Professor Smith
-    ]
-    
-    for pattern in professor_patterns:
-        matches = re.findall(pattern, query, re.IGNORECASE)
-        if matches:
-            return matches[0]
-    
-    return None
-
 def process_professor_query(query: str, collection_name: str) -> Dict[str, Any]:
     """
     Process a query related to professors, determining if it's about scheduling
@@ -129,12 +117,12 @@ def process_professor_query(query: str, collection_name: str) -> Dict[str, Any]:
         A dictionary with the response and metadata
     """
     # Detect if this is a meeting scheduling intent
-    is_meeting, confidence, reasoning = detect_meeting_intent(query)
+    is_meeting, confidence, reasoning, professor_name = detect_meeting_intent(query)
     
     # If it's a meeting request with reasonable confidence
     if is_meeting and confidence > 0.7:
         # Extract professor name if possible
-        professor_name = extract_professor_name(query)
+        # professor_name = extract_professor_name(query)
         
         # Generate meeting link
         meeting_info = generate_meeting_link(professor_name)

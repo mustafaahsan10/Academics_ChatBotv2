@@ -1,0 +1,78 @@
+[
+    {
+      "text": "NDU Library Information - General",
+      "keywords": ["library information", "NDU library", "academic resources", "university library", "study resources"]
+    },
+    {
+      "text": "The Notre Dame University Library is located in the Main Campus, Building B, First Floor. Opening hours: Monday-Friday 8:00 AM-8:00 PM, Saturday 9:00 AM-1:00 PM. Contact: library@ndu.edu.lb or extension 2320.",
+      "keywords": ["library location", "opening hours", "NDU library contact", "library schedule", "weekend hours", "library building", "campus library"]
+    },
+    {
+      "text": "Checking Book Availability",
+      "keywords": ["book availability", "library catalog", "find books", "resource search", "library collection"]
+    },
+    {
+      "text": "Students can check book availability through multiple methods: 1) Online OPAC system accessible at library.ndu.edu.lb/catalog where you can search by title, author, subject, or ISBN; 2) NDU Mobile App under 'Library Services'; 3) Visit the Information Desk at the library entrance; 4) Call the library at extension 2320 during operating hours.",
+      "keywords": ["check book availability", "OPAC system", "library catalog", "online book search", "NDU Mobile App", "Information Desk", "book lookup", "library extension"]
+    },
+    {
+      "text": "When searching the online catalog, green status indicates the book is available for checkout, yellow means it's on reserve or limited circulation, and red indicates it's already checked out. For checked-out items, you can place a hold request through your online library account.",
+      "keywords": ["book status", "green status", "yellow status", "red status", "checked-out books", "hold request", "library account", "catalog indicators"]
+    },
+    {
+      "text": "For electronic books, look for the 'E-Book' label in the catalog. These can be accessed immediately by clicking 'Access Online' and logging in with your NDU credentials. The library subscribes to over 200,000 electronic books across various academic disciplines.",
+      "keywords": ["electronic books", "E-Book label", "online access", "NDU credentials", "digital resources", "academic e-books", "electronic collection"]
+    },
+    {
+      "text": "Book Borrowing Process",
+      "keywords": ["book borrowing", "checkout process", "library loans", "borrow materials", "lending procedure"]
+    },
+    {
+      "text": "To borrow books from the NDU Library, follow these steps: 1) Locate the book using the catalog or browse the open shelves; 2) Bring the book and your valid NDU ID card to the Circulation Desk; 3) The librarian will scan your ID and the book's barcode; 4) Note the due date stamped on the receipt or sent to your NDU email.",
+      "keywords": ["borrowing steps", "Circulation Desk", "NDU ID card", "book barcode", "due date", "book receipt", "checkout procedure", "borrow books"]
+    },
+    {
+      "text": "Self-checkout stations are available near the Circulation Desk. Place your NDU ID on the scanner, follow the touchscreen instructions, and place books on the RFID pad one at a time. Take your receipt which shows due dates. Not all materials can be self-checked - reference books, reserve items, and multimedia may require staff assistance.",
+      "keywords": ["self-checkout", "RFID pad", "touchscreen", "self-service", "book scanner", "automated checkout", "circulation technology"]
+    },
+    {
+      "text": "Books not available at NDU Library can be requested through Interlibrary Loan (ILL) service. Submit requests through your library account or the ILL form at the Circulation Desk. ILL requests typically take 3-10 business days to fulfill depending on the source library.",
+      "keywords": ["Interlibrary Loan", "ILL service", "book requests", "external borrowing", "source library", "catalog request", "unavailable books"]
+    },
+    {
+      "text": "Borrowing Duration and Limits",
+      "keywords": ["borrowing duration", "loan period", "return deadlines", "borrowing limits", "checkout time", "book loans"]
+    },
+    {
+      "text": "Undergraduate students can borrow up to 7 books simultaneously for a period of 14 days. Graduate students can borrow up to 10 books for 21 days. Faculty members can borrow up to 15 books for a full semester. All borrowers are allowed to renew items twice if no hold requests exist on the material.",
+      "keywords": ["undergraduate borrowing", "graduate borrowing", "faculty borrowing", "borrowing limits", "loan periods", "book renewal", "simultaneous checkouts", "borrowing privileges"]
+    },
+    {
+      "text": "Course reserve materials have shorter loan periods: 2-hour in-library use, overnight loans (due next day by 10:00 AM), or 3-day loans, as specified by the course instructor. These materials are kept behind the Circulation Desk and must be requested by course number and instructor name.",
+      "keywords": ["course reserves", "short loans", "overnight borrowing", "in-library use", "instructor-specified loans", "restricted circulation", "high-demand materials"]
+    },
+    {
+      "text": "Reference materials, rare books, theses and dissertations, newspapers, and current periodicals cannot be borrowed and must be used within the library premises. Some exceptions may be granted by the Library Director for faculty research purposes.",
+      "keywords": ["non-circulating items", "reference materials", "in-library use only", "rare books", "theses", "periodicals", "borrowing restrictions"]
+    },
+    {
+      "text": "Overdue books incur a fine of 1,000 LBP per day per item for regular loans and 5,000 LBP per day for reserve materials. Lost or damaged books must be replaced or paid for at current market value plus a 50,000 LBP processing fee. Unpaid library fines may result in holds on registration or graduation.",
+      "keywords": ["overdue fines", "late returns", "book replacement", "damaged materials", "library fees", "registration holds", "daily fines", "borrowing penalties"]
+    },
+    {
+      "text": "General Library FAQs",
+      "keywords": ["library FAQ", "common questions", "library help", "student assistance", "resource guidance"]
+    },
+    {
+      "text": "The library offers group study rooms that can be booked online through the library website or at the Information Desk. Reservations can be made up to two weeks in advance for blocks of 2 hours. A minimum of 3 students is required for group study room reservations.",
+      "keywords": ["group study rooms", "room reservations", "advance booking", "time blocks", "study space", "group work", "collaborative areas"]
+    },
+    {
+      "text": "Printing and photocopying services are available in the library at a cost of 100 LBP per black and white page and 500 LBP per color page. Students can add credit to their printing account at the Circulation Desk or through the Bursar's Office. Scanning to email is available free of charge.",
+      "keywords": ["printing services", "photocopying", "per-page cost", "printing credit", "black and white", "color printing", "scanning service"]
+    },
+    {
+      "text": "Library orientation sessions are held during the first two weeks of each semester. Individual research consultations with librarians can be scheduled by appointment through the library website or by emailing reference@ndu.edu.lb.",
+      "keywords": ["library orientation", "research consultations", "librarian appointments", "research help", "information literacy", "resource navigation", "library training"]
+    }
+]
