@@ -4,16 +4,18 @@ import pyaudio
 import numpy as np
 import time
 import threading
-from faster_whisper import WhisperModel
+from openai import OpenAI
+from dotenv import load_dotenv
 
-# Disable symlink warnings
-os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
+# Load environment variables
+load_dotenv()
 
 class SpeechTranscriber:
-    def __init__(self, model_size="medium.en"):
+    def __init__(self, model_size="gpt-4o-transcribe"):
         """Initialize the speech transcriber with the specified model."""
-        # Load the Whisper model
-        self.model = WhisperModel(model_size, device="cpu", compute_type="int8")
+        # Initialize OpenAI client
+        self.openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+        self.model = model_size  # Default to GPT-4o transcribe model
         self.is_recording = False
         self.audio_data = []
         self.p = None
@@ -125,12 +127,14 @@ class SpeechTranscriber:
         except Exception as e:
             print(f"Error cleaning up resources: {e}")
     
-    def transcribe_audio(self, audio_file):
+    def transcribe_audio(self, audio_file, prompt="", response_format="text"):
         """
-        Transcribe an audio file using the Whisper model.
+        Transcribe an audio file using OpenAI's speech-to-text API.
         
         Args:
             audio_file: Path to the audio file
+            prompt: Optional prompt to guide the transcription
+            response_format: Format of the response (text or json)
             
         Returns:
             Transcribed text
@@ -138,22 +142,35 @@ class SpeechTranscriber:
         if not audio_file or not os.path.exists(audio_file):
             return ""
             
-        print("Transcribing...")
-        segments, _ = self.model.transcribe(audio_file, beam_size=5)
-        
-        text = ""
-        for segment in segments:
-            text += segment.text
-        
-        # Clean up the temporary file
-        if os.path.exists(audio_file):
-            os.remove(audio_file)
+        try:
+            print(f"Transcribing with OpenAI's {self.model}...")
             
-        return text
+            with open(audio_file, "rb") as file:
+                transcription = self.openai_client.audio.transcriptions.create(
+                    model=self.model,
+                    file=file,
+                    response_format=response_format,
+                    prompt=prompt
+                )
+            
+            # Clean up the temporary file
+            if os.path.exists(audio_file):
+                os.remove(audio_file)
+                  # Return the transcription text
+            # If response format is "text", the response is already a string
+            if response_format == "text":
+                return transcription
+            # Otherwise, access the text property
+            return transcription.text
+            
+        except Exception as e:
+            print(f"Error transcribing audio: {e}")
+            return ""
     
-    def is_currently_recording(self):
-        """Check if recording is currently in progress"""
-        return self.is_recording
+    
+
+        
+   
 
 # For testing
 if __name__ == "__main__":
@@ -167,5 +184,6 @@ if __name__ == "__main__":
     if audio_file:
         text = transcriber.transcribe_audio(audio_file)
         print(f"Transcription: {text}")
+        
     else:
-        print("No audio recorded.") 
+        print("No audio recorded.")
