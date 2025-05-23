@@ -8,10 +8,10 @@ import streamlit as st
 load_dotenv()
 
 class SpeechTranscriber:
-    def __init__(self, model_size="gpt-4o-transcribe"):
+    def __init__(self,  model_size="whisper-1"):
         """Initialize the speech transcriber with the specified model."""
         # Initialize OpenAI client
-        api_key = os.getenv("OPENAI_API_KEY") or st.secrets.get("OPENAI_API_KEY")
+        api_key = st.secrets.get("OPENAI_API_KEY")
         if not api_key:
             raise ValueError("OpenAI API key not found in environment variables or Streamlit secrets")
             
