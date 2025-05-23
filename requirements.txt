@@ -15,4 +15,5 @@ pydantic_ai
 langgraph
 openpyxl
 numpy
+streamlit-webrtc
 pydub
