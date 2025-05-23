@@ -209,6 +209,8 @@ def get_module_response(query: str, language: str = "English") -> str:
 def get_speech_transcriber():
     return SpeechTranscriber()
 
+
+
 # Main app
 def main():
     # Custom CSS to remove button gaps
@@ -230,12 +232,15 @@ def main():
     
     st.title("🎓 University Assistant")
     
-    # Initialize session state for recording status if it doesn't exist
+    # Initialize session state
     if "recording" not in st.session_state:
         st.session_state.recording = False
         
     if "transcriber" not in st.session_state:
         st.session_state.transcriber = get_speech_transcriber()
+        
+    if "audio_counter" not in st.session_state:
+        st.session_state.audio_counter = 0
     
     # Main content area (upper section)
     main_area = st.container()
@@ -245,7 +250,7 @@ def main():
     
     # Main content area with app information
     with main_area:
-        # Sidebar with settings
+        # Sidebar with settings only (no audio input)
         with st.sidebar:
             st.subheader("Settings")
             language = st.selectbox("Language / اللغة", ["English", "Arabic"])
@@ -270,12 +275,6 @@ def main():
                 if "messages" in st.session_state:
                     st.session_state.messages = []
                 st.rerun()
-            
-            # # Show module information
-            # st.subheader("Available Modules")
-            # for module_id, module_info in MODULES.items():
-            #     with st.expander(module_info["name"]):
-            #         st.write(module_info["description"])
         
         st.subheader("University Information Assistant")
         st.write("Ask me anything about courses, schedules, exams, faculty, library resources, admission, or tuition!")
@@ -289,8 +288,6 @@ def main():
         
         # Recording status indicator
         recording_status = st.empty()
-        if st.session_state.recording:
-            recording_status.markdown("🔴 **Recording in progress...**")
     
     # Bottom container for chat history and input controls
     with bottom_container:
@@ -302,80 +299,66 @@ def main():
             with st.chat_message(message["role"]):
                 st.markdown(message["content"])
         
-        # Create a layout for input and buttons
-        col_input, col_buttons = st.columns([6, 1])
+        # Create two rows: one for audio input (hidden), one for text input and buttons
+        audio_container = st.container()
+        input_container = st.container()
         
-        # Text input
-        with col_input:
-            prompt = st.chat_input("Ask me a question...")
+        # Audio input (always present but visually managed)
+        with audio_container:
+            # Use a unique key to force reset after processing
+            audio_key = f"audio_input_{st.session_state.get('audio_counter', 0)}"
+            audio_data = st.audio_input("Record your message", key=audio_key)
+        
+        # Text input and buttons
+        with input_container:
+            col_input, col_button = st.columns([6, 1])
             
-        # Buttons side by side
-        with col_buttons:
-            button_cols = st.columns(2)
+            # Text input
+            with col_input:
+                prompt = st.chat_input("Ask me a question...")
             
-            # Start button - minimal text
-            with button_cols[0]:
-                start_button = st.button("🎤", disabled=st.session_state.recording)
-            
-            # Stop button - minimal text
-            with button_cols[1]:
-                stop_button = st.button("⏹️", disabled=not st.session_state.recording)
-    
-    # Handle start recording
-    if start_button:
-        try:
-            st.session_state.recording = True
-            success = st.session_state.transcriber.start_recording()
-            if not success:
-                st.error("Failed to start recording. Please try again.")
-                st.session_state.recording = False
-            st.rerun()
-        except Exception as e:
-            st.error(f"Error starting recording: {str(e)}")
-            st.session_state.recording = False
-    
-    # Handle stop recording
-    if stop_button and st.session_state.recording:
-        try:
-            # Clear the recording status
-            recording_status.empty()
-            
-            with st.spinner("Processing recording..."):
-                audio_file = st.session_state.transcriber.stop_recording()
-                st.session_state.recording = False
-                
-                if audio_file:
-                    prompt = st.session_state.transcriber.transcribe_audio(audio_file)
-                    if prompt:
-                        st.success(f"Transcribed: {prompt}")
-                        
-                        # Process the transcription
+        
+        # Process audio if available
+        if audio_data:
+            with st.spinner("Transcribing audio..."):
+                try:
+                    # Save audio data to temporary file
+                    with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as tmp_file:
+                        audio_data.seek(0)
+                        tmp_file.write(audio_data.read())
+                        temp_file = tmp_file.name
+                    
+                    # Transcribe the audio
+                    transcribed_text = st.session_state.transcriber.transcribe_audio(temp_file)
+                    
+                    if transcribed_text:
                         # Add to session state message history
-                        if "messages" not in st.session_state:
-                            st.session_state.messages = []
-                        st.session_state.messages.append({"role": "user", "content": prompt})
+                        st.session_state.messages.append({"role": "user", "content": transcribed_text})
                         
                         # Generate response
-                        response = get_module_response(prompt, language=language)
+                        with st.spinner("Generating response..."):
+                            response = get_module_response(transcribed_text, language=language)
                         
                         # Update message history with response
                         st.session_state.messages.append({"role": "assistant", "content": response})
                         
-                        # Rerun to display updated chat history
+                        # Increment counter to reset audio widget
+                        st.session_state.audio_counter = st.session_state.get('audio_counter', 0) + 1
+                        
+                        # Rerun to show new messages and reset audio
                         st.rerun()
                     else:
-                        st.warning("No speech detected.")
-                else:
-                    st.warning("No audio recorded or recording too short.")
-        except Exception as e:
-            st.error(f"Error processing recording: {str(e)}")
-            st.session_state.recording = False
+                        st.warning("Could not transcribe audio. Please try again.")
+                        
+                except Exception as e:
+                    st.error(f"Error processing audio: {str(e)}")
+                    logger.error(f"Audio processing error: {e}", exc_info=True)
+        
+      
     
     # Handle text input
     if prompt:
         # Add to session state message history
-        if "messages" not in st.session_state:
-            st.session_state.messages = []
         st.session_state.messages.append({"role": "user", "content": prompt})
         
         # Show a loading spinner while generating response
