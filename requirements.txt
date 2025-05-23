@@ -15,5 +15,4 @@ pydantic_ai
 langgraph
 openpyxl
 numpy
-pyaudio
-faster-whisper
+pydub
