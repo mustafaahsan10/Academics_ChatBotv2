@@ -15,5 +15,5 @@ pydantic_ai
 langgraph
 openpyxl
 numpy
-pyaudio
-faster-whisper
+streamlit-webrtc
+pydub
